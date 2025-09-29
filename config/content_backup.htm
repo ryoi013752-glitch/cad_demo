@@ -161,7 +161,19 @@ def t1_sol3(x, y):
     return 2.0*cmath.atan((1280.0*y + cmath.sqrt(-4000000.0*cmath.pow(x, 4) - 3200000.0*cmath.pow(x, 3) - 8000000.0*cmath.pow(x, 2)*cmath.pow(y, 2) - 4000000.0*cmath.pow(x, 2)*y + 178400.0*cmath.pow(x, 2) - 3200000.0*x*cmath.pow(y, 2) - 1600000.0*x*y + 327360.0*x - 4000000.0*cmath.pow(y, 4) - 4000000.0*cmath.pow(y, 3) - 181600.0*cmath.pow(y, 2) + 409200.0*y + 125911.0) + 320.0)/(2000.0*cmath.pow(x, 2) + 2080.0*x + 2000.0*cmath.pow(y, 2) + 1000.0*y + 461.0))
 def t2_sol3(x, y):
     return 2.0*cmath.atan((1280.0*y - cmath.sqrt(-4000000.0*cmath.pow(x, 4) + 3200000.0*cmath.pow(x, 3) - 8000000.0*cmath.pow(x, 2)*cmath.pow(y, 2) - 4000000.0*cmath.pow(x, 2)*y + 178400.0*cmath.pow(x, 2) + 3200000.0*x*cmath.pow(y, 2) + 1600000.0*x*y - 327360.0*x - 4000000.0*cmath.pow(y, 4) - 4000000.0*cmath.pow(y, 3) - 181600.0*cmath.pow(y, 2) + 409200.0*y + 125911.0) + 320.0)/(2000.0*cmath.pow(x, 2) + 480.0*x + 2000.0*cmath.pow(y, 2) + 1000.0*y - 51.0))</pre>
-<p></p><h2>P_webots</h2>
+<p><span>利用右上方最遠的繪圖點進行上列 Solution 3 方程式查驗:</span></p>
+<p><span><a href="/downloads/plotter_dimension_design_2.slvs">plotter_dimension_design_2.slvs</a></span></p>
+<p><span><a href="/downloads/webots_check_sol3.py">webots_check_sol3.py</a></span></p>
+<p><span>pythonw.exe -u "webots_check_sol3.py"<br/>--- Solution 3 at P(0.2, 0.185) ---<br/>t1 (Radians): (1.221335238965607+0j)<br/>t2 (Radians): (0.7473365120313953+0j)<br/>------------------------------------------<br/>t1 (Degrees): 69.9774 degrees<br/>t2 (Degrees): 42.8192 degrees</span></p>
+<p><span><img caption="false" height="254" src="/images/webots_check_sol3.png" width="300"/></span></p><h2>P_webots</h2>
+<p>Webots 場景中的 hingejoint 是以機構的初始角度作為 0 度。</p>
+<p>轉入 Webots 的 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 其機構初始設置為:</p>
+<p><img alt="" height="300" src="/images/webots_plotter_initial_conf.png" width="300"/></p>
+<p>若以逆時針轉角為正， t1 必須反轉 8.78 度才能達到垂直的位置，而 t2 則必須正轉 6.69 度才能達到垂直的位置。</p>
+<p>若兩個馬達都以水平線作為 0 度，則處了考慮從垂直角度位置，還必須逆轉 90 度才能到達水平的零點轉角位置。</p>
+<p>此一角度座標定義，可以利用 <a href="/downloads/webots_plotter_zero_degree.py">webots_plotter_zero_degree.py</a> 控制程式，讓兩個馬達的轉角設置在水平位置。</p>
+<p><img alt="" height="265" src="/images/webots_plotter_zeor_degree.png" width="300"/></p>
+<p><a href="/downloads/plotter_onshape_w4.7z">plotter_onshape_w4.7z</a></p>
 <p>兩種建立剛體的方法 url 給定 OBJ 或 STL 檔案所在相對位置:</p>
 <p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/reference/solid">Solid</a> - <a href="https://cyberbotics.com/doc/reference/shape">Shape</a> - <a href="https://cyberbotics.com/doc/reference/mesh">Mesh</a> - url</p>
 <p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/reference/cadshape">CadShape</a> - url</p>

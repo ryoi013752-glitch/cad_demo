@@ -31,8 +31,11 @@ Robot {
       }
       device [
         RotationalMotor {
-          name "left_motor"
+          name "t1"
           maxTorque 200
+        }
+        PositionSensor {
+          name "sensor1"
         }
       ]
       endPoint DEF link1 Solid {
@@ -115,7 +118,10 @@ Robot {
       }
       device [
         RotationalMotor {
-          name "right_motor"
+          name "t2"
+        }
+        PositionSensor {
+          name "sensor2"
         }
       ]
       endPoint DEF link4 Solid {
@@ -138,5 +144,5 @@ Robot {
     }
   ]
   name "plotter"
-  controller "draw_400x400"
+  controller "read_degree"
 }
