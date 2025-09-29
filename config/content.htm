@@ -150,7 +150,22 @@ def t2_sol4(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 + 800*x**3 - 
 <p style="padding-left: 30px;">Plotter 到達點 (200, 230) 時的 t1 與 t2 角度（degree）:<br/><br/>JSolution 3 <span>(同上列 math 格式 Solution 4)</span>:</p>
 <p style="padding-left: 30px;">t1 = 66.72°</p>
 <p style="padding-left: 30px;">t2 = 45.95°</p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>P_webots</h2>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>P_onshape</h2>
+<p><img caption="false" height="234" src="/images/plotter_in_onshape.png" width="300"/></p>
+<p></p>
+<p><a href="/downloads/plotter_dimension_design_2.slvs">plotter_dimension_design_2.slvs</a></p>
+<p><a href="/downloads/webots_plotter_sympy.py">webots_plotter_sympy.py</a></p>
+<p><img alt="" height="400" src="/images/webots_plotter_sympy.gif" width="400"/></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"># Solution 3:
+def t1_sol3(x, y):
+    return 2.0*cmath.atan((1280.0*y + cmath.sqrt(-4000000.0*cmath.pow(x, 4) - 3200000.0*cmath.pow(x, 3) - 8000000.0*cmath.pow(x, 2)*cmath.pow(y, 2) - 4000000.0*cmath.pow(x, 2)*y + 178400.0*cmath.pow(x, 2) - 3200000.0*x*cmath.pow(y, 2) - 1600000.0*x*y + 327360.0*x - 4000000.0*cmath.pow(y, 4) - 4000000.0*cmath.pow(y, 3) - 181600.0*cmath.pow(y, 2) + 409200.0*y + 125911.0) + 320.0)/(2000.0*cmath.pow(x, 2) + 2080.0*x + 2000.0*cmath.pow(y, 2) + 1000.0*y + 461.0))
+def t2_sol3(x, y):
+    return 2.0*cmath.atan((1280.0*y - cmath.sqrt(-4000000.0*cmath.pow(x, 4) + 3200000.0*cmath.pow(x, 3) - 8000000.0*cmath.pow(x, 2)*cmath.pow(y, 2) - 4000000.0*cmath.pow(x, 2)*y + 178400.0*cmath.pow(x, 2) + 3200000.0*x*cmath.pow(y, 2) + 1600000.0*x*y - 327360.0*x - 4000000.0*cmath.pow(y, 4) - 4000000.0*cmath.pow(y, 3) - 181600.0*cmath.pow(y, 2) + 409200.0*y + 125911.0) + 320.0)/(2000.0*cmath.pow(x, 2) + 480.0*x + 2000.0*cmath.pow(y, 2) + 1000.0*y - 51.0))</pre>
+<p><span>利用右上方最遠的繪圖點進行上列 Solution 3 方程式查驗:</span></p>
+<p><span><a href="/downloads/plotter_dimension_design_2.slvs">plotter_dimension_design_2.slvs</a></span></p>
+<p><span><a href="/downloads/webots_check_sol3.py">webots_check_sol3.py</a></span></p>
+<p><span>pythonw.exe -u "webots_check_sol3.py"<br/>--- Solution 3 at P(0.2, 0.185) ---<br/>t1 (Radians): (1.221335238965607+0j)<br/>t2 (Radians): (0.7473365120313953+0j)<br/>------------------------------------------<br/>t1 (Degrees): 69.9774 degrees<br/>t2 (Degrees): 42.8192 degrees</span></p>
+<p><span><img caption="false" height="254" src="/images/webots_check_sol3.png" width="300"/></span></p><h2>P_webots</h2>
 <p>兩種建立剛體的方法 url 給定 OBJ 或 STL 檔案所在相對位置:</p>
 <p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/reference/solid">Solid</a> - <a href="https://cyberbotics.com/doc/reference/shape">Shape</a> - <a href="https://cyberbotics.com/doc/reference/mesh">Mesh</a> - url</p>
 <p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/reference/cadshape">CadShape</a> - url</p>
