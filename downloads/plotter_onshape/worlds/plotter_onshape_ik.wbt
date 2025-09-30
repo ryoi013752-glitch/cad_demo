@@ -1,0 +1,148 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  position -4.138113202169621e-18 -3.9725886740828366e-16 2.385459849639429
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 1.5 1.5
+}
+Robot {
+  translation -0.2 -0.25 0.0686
+  children [
+    DEF base CadShape {
+      url [
+        "../cad/split_parts/part_3.obj"
+      ]
+    }
+    DEF left HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "t1"
+          maxTorque 200
+        }
+        PositionSensor {
+          name "sensor1"
+        }
+      ]
+      endPoint DEF link1 Solid {
+        children [
+          DEF link1_shape CadShape {
+            url [
+              "../cad/split_parts/part_5.obj"
+            ]
+          }
+          DEF joint2 HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor -0.048872 0.316246 0
+            }
+            endPoint DEF link2 Solid {
+              children [
+                DEF link2_shape CadShape {
+                  url [
+                    "../cad/split_parts/part_2.obj"
+                  ]
+                }
+                DEF joint3 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 0 1
+                    anchor 0.193524 0.525156 0
+                  }
+                  endPoint DEF link3 Solid {
+                    children [
+                      DEF link3 CadShape {
+                        url [
+                          "../cad/split_parts/part_1.obj"
+                        ]
+                      }
+                      DEF joint4 HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0 0 1
+                          anchor 0.43727 0.317822 0
+                        }
+                        endPoint SolidReference {
+                          solidName "link4"
+                        }
+                      }
+                    ]
+                    name "link3"
+                    boundingObject Mesh {
+                      url [
+                        "../cad/split_parts/part_1.obj"
+                      ]
+                    }
+                    physics Physics {
+                    }
+                  }
+                }
+              ]
+              name "link2"
+              boundingObject Mesh {
+                url [
+                  "../cad/split_parts/part_2.obj"
+                ]
+              }
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "link1"
+        boundingObject Mesh {
+          url [
+            "../cad/split_parts/part_5.obj"
+          ]
+        }
+        physics DEF link1 Physics {
+        }
+      }
+    }
+    DEF right HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.4 0 0
+      }
+      device [
+        RotationalMotor {
+          name "t2"
+        }
+        PositionSensor {
+          name "sensor2"
+        }
+      ]
+      endPoint DEF link4 Solid {
+        children [
+          DEF link4 CadShape {
+            url [
+              "../cad/split_parts/part_4.obj"
+            ]
+          }
+        ]
+        name "link4"
+        boundingObject Mesh {
+          url [
+            "../cad/split_parts/part_4.obj"
+          ]
+        }
+        physics Physics {
+        }
+      }
+    }
+  ]
+  name "plotter"
+  controller "ik"
+}

@@ -144,5 +144,5 @@ Robot {
     }
   ]
   name "plotter"
-  controller "read_degree"
+  controller "zero_degree"
 }
