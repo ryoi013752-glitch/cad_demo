@@ -146,9 +146,26 @@ img.add_border {
 <p><a href="https://github.com/apirrone/Open_Duck_Mini">Open Duck Mini</a> 是一款模組化、開源的雙足仿生機器人平台，專為教育與研究設計，具備高自由度與低成本特性。</p>
 <p><img caption="false" height="298" src="./../images/openduck_mini.png" width="200"/></p>
 <p><a href="https://cad.onshape.com/documents/26c83cdd49510fc094b845a1/w/1f0ebd66fbcba930fc39351f/e/98c9ea7ad6f244e859d1e24a">Openduck in Onshape</a></p>
+<p><a href="https://github.com/apirrone/Open_Duck_reference_motion_generator">https://github.com/apirrone/Open_Duck_reference_motion_generator</a> </p>
+<p><a href="https://github.com/mdecycu/Open_Duck_Blender">https://github.com/mdecycu/Open_Duck_Blender</a> </p>
 <p><a href="./../downloads/openduck_frame.7z">openduck_frame.7z</a> (parasolid in NX2312)</p>
 <p>Openduck in Solvespace:</p>
 <p><img alt="" height="184" src="./../images/openduck_in_solvespace.png" width="300"/></p>
+<p>Inverse Kinematic Solutions: </p>
+<p style="padding-left: 30px;"><a href="https://github.com/rpiRobotics/ik-geo">https://github.com/rpiRobotics/ik-geo</a> </p>
+<p style="padding-left: 30px;"><a href="https://pypi.org/project/ik-geo/">https://pypi.org/project/ik-geo/</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/weigao95/yaik">https://github.com/weigao95/yaik</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/rpiRobotics/rpi_general_robotics_toolbox_py">https://github.com/rpiRobotics/rpi_general_robotics_toolbox_py</a> </p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0094114X25000606">IK-Geo: Unified robot inverse kinematics using subproblem decomposition</a></p>
+<ol>
+<li>IK‑Geo 是一個針對 6 自由度全旋轉關節機器人（6R manipulator） 的逆運動學解法，採用「子問題分解法（subproblem decomposition）」的方式，把整個 IK 問題拆成六種幾何子問題（如圓與點、兩圓之交、圓與平面、圓與球、三圓交、四圓交）來逐步求解。</li>
+<li>對於某些特定的機構構型（例如有三個交會或平行軸線的 6R 機構），它能用閉式（closed-form）方式解出所有解，而無需數值搜尋。其他構型則可能退化為對一或兩個關節角做 1D 或 2D 搜索。</li>
+<li>作者宣稱對於許多常見工業 6R機器人（例如 UR5 等），IK-Geo 的速度能比 IKFast 快 40 倍以上。</li>
+<li>IK-Geo 也具備處理奇異情況的能力（比如在解不存在時提供最小平方近似解或連續近似解）以增加解題穩健性。</li>
+<li>實作上，IK-Geo 提供 MATLAB、C++、Rust、Python 等多語言版本，並附有測試範例與效能比較。</li>
+<li>IK-Geo 的主要特點是其採用幾何分解，加上部分搜尋混合的策略，以在效率與泛用性之間取得不錯的折衷。</li>
+</ol>
+<p>其他參考資料: <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=11122599">Automatic Geometric Decomposition for Analytical Inverse Kinematics</a></p>
 <hr/>
 <p>設計規格：</p>
 <ol>
