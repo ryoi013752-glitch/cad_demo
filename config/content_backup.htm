@@ -1,5 +1,7 @@
 <h1>About</h1>
 <p>課程名稱: 電腦輔助設計與實習</p>
+<p><a href="https://mde.tw/cp_demo">https://mde.tw/cp_demo</a></p>
+<p><a href="https://github.com/mdecycu/cd_demo">https://github.com/mdecycu/cd_demo</a></p>
 <p>課程評分:</p>
 <p style="padding-left: 30px;"><span style="background-color: #ffff00;">學習心得報告 (60%)</span> - MS Teams 線上參與，6人一組每三週發表學習心得。</p>
 <p style="padding-left: 60px;">w3、w7、w10、w14、w17、w18</p>
@@ -11,8 +13,7 @@
 <p style="padding-left: 60px;">w17: 如何實作一套 <a href="https://youtu.be/iOLFP90DneY">5-bar Linkage Plotter</a> 與 <a href="https://mde.tw/cad2025/content/OpenDuck.html">Openduck mini</a>？(<a href="https://la.disneyresearch.com/publication/design-and-control-of-a-bipedal-robotic-character/">Disney Bipedal Robot</a>)</p>
 <p style="padding-left: 60px;">w18: 課程總結</p>
 <p style="padding-left: 30px;"><span style="background-color: #ffff00;">個人與分組網站維護 (40%)</span> - 每週至少兩次推送與課程進度相關的學習內容與心得。</p>
-<p style="padding-left: 60px;">w9 期中自評、w18 期末自評</p>
-<h1>Plotter</h1>
+<p style="padding-left: 60px;">w9 期中自評、w18 期末自評</p><h1>Plotter</h1>
 <p>設計要求:</p>
 <p style="padding-left: 30px;">使用平面五連桿設計一套能夠在 <span style="background-color: #ffff99;">20cm x 20cm</span> 範圍中進行繪圖的畫圖機</p>
 <p style="padding-left: 30px;">驅動: NEMA 17 步進馬達或 STS3215 系列伺服馬達</p>
@@ -83,28 +84,28 @@
 <p><a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a></p>
 <p><img caption="false" height="233" src="/images/plotter_in_onshape.png" width="300"/></p>
 <p>採 matplotlib 模擬四種掃掠 20cmx20cm 正方形邊長的逆向運動學 Solutions:</p>
-<p><a href="/downloads/cad_demo_all_four_simulation_gif.py">cad_demo_all_four_simulation_gif.py</a></p>
-<p><img alt="" height="400" src="/images/plotter_four_simulation.gif" width="400"/></p>
+<p><a href="/downloads/cad_demo_sym_formulation.py">cad_demo_sym_formulation.py</a></p>
+<p><a href="/downloads/cad_demo_check_sym_sol.py">cad_demo_check_sym_sol.py</a></p>
 <p>Python math 格式:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Solution 1:
-def t1_sol1(x, y): return 2 * math.atan((-y + math.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2))/(x**2 + 320*x + y**2))
-def t2_sol1(x, y): return 2 * math.atan((-y + math.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000))/(x**2 - 720*x + y**2 + 104000))
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def t1_sol1(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2)) / (x**2 + 320*x + y**2))
+def t2_sol1(x, y): return 2 * cmath.atan((320*y + cmath.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000)) / (x**2 - 720*x + y**2 + 104000))
 
 # Solution 2:
-def t1_sol2(x, y): return 2 * math.atan((-y + math.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2))/(x**2 + 320*x + y**2))
-def t2_sol2(x, y): return 2 * math.atan((-y - math.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000))/(x**2 - 720*x + y**2 + 104000))
+def t1_sol2(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2)) / (x**2 + 320*x + y**2))
+def t2_sol2(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000)) / (x**2 - 720*x + y**2 + 104000))
 
 # Solution 3:
-def t1_sol3(x, y): return 2 * math.atan((-y - math.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2))/(x**2 + 320*x + y**2))
-def t2_sol3(x, y): return 2 * math.atan((-y + math.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000))/(x**2 - 720*x + y**2 + 104000))
+def t1_sol3(x, y): return 2 * cmath.atan((320*y + cmath.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2)) / (x**2 + 320*x + y**2))
+def t2_sol3(x, y): return 2 * cmath.atan((320*y + cmath.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000)) / (x**2 - 720*x + y**2 + 104000))
 
 # Solution 4:
-def t1_sol4(x, y): return 2 * math.atan((-y - math.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2))/(x**2 + 320*x + y**2))
-def t2_sol4(x, y): return 2 * math.atan((-y - math.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000))/(x**2 - 720*x + y**2 + 104000))</pre>
+def t1_sol4(x, y): return 2 * cmath.atan((320*y + cmath.sqrt(-x**4 - 2*x**2*y**2 + 102400*x**2 - y**4 + 102400*y**2)) / (x**2 + 320*x + y**2))
+def t2_sol4(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 + 800*x**3 - 2*x**2*y**2 - 137600*x**2 + 800*x*y**2 - 8960000*x - y**4 + 22400*y**2 + 2496000000)) / (x**2 - 720*x + y**2 + 104000))</pre>
+<p><img alt="" height="400" src="/images/cad_demo_sym_formulation_result.gif" width="400"/></p>
 <p>mathjax 格式:</p>
-<p>Solution 1:<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]<br/><br/>Solution 2:<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]<br/><br/>Solution 3:<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]<br/><br/>Solution 4:<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]</p>
+<p>JSolution 1 (同上列 math 格式 Solution 2):<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]<br/><br/>JSolution 2 <span>(同上列 math 格式 Solution 1)</span>:<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]<br/><br/>JSolution 3 <span>(同上列 math 格式 Solution 4)</span>:<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y - \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]<br/><br/>JSolution 4 <span>(同上列 math 格式 Solution 3)</span><span>:</span>:<br/><br/>\[<br/>t_{1} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} - 2 x^{2} y^{2} + 102400 x^{2} - y^{4} + 102400 y^{2}}}{x^{2} + 320 x + y^{2}} \right)}<br/>\]<br/><br/>\[<br/>t_{2} = 2 \operatorname{atan}{\left(\frac{320 y + \sqrt{- x^{4} + 800 x^{3} - 2 x^{2} y^{2} - 137600 x^{2} + 800 x y^{2} - 8960000 x - y^{4} + 22400 y^{2} + 2496000000}}{x^{2} - 720 x + y^{2} + 104000} \right)}<br/>\]</p>
 <p>上列符號式求解(Symbolic Formulation)與圖形法求解進行比較:</p>
-<p style="padding-left: 30px;">Plotter 到達點 (200, 230) 時的 t1 與 t2 角度（degree）:<br/><br/>Solution 1:</p>
+<p style="padding-left: 30px;">Plotter 到達點 (200, 230) 時的 t1 與 t2 角度（degree）:<br/><br/>JSolution 3 <span>(同上列 math 格式 Solution 4)</span>:</p>
 <p style="padding-left: 30px;">t1 = 66.72°</p>
 <p style="padding-left: 30px;">t2 = 45.95°</p>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h1>Openduck</h1>
