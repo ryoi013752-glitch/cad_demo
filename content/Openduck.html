@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='Plotter.html'>Plotter</a><ul class='dropdown'><li><a href='自由度.html'>自由度</a><li><a href='AI_plotter.html'>AI_plotter</a></li></ul><li><a href='Openduck.html'>Openduck</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Reading.html'>Reading</a><li><a href='CAD.html'>CAD</a><li><a href='Design.html'>Design</a><li class='has-children'><a href='Plotter.html'>Plotter</a><ul class='dropdown'><li><a href='自由度.html'>自由度</a><li><a href='AI_plotter.html'>AI_plotter</a><li><a href='P_onshape.html'>P_onshape</a><li><a href='P_webots.html'>P_webots</a></li></ul><li><a href='Openduck.html'>Openduck</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,15 +142,37 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">AI_plotter << <a href='AI_plotter.html'>Previous</a> <br /><h1>Openduck</h1>
+    <div id="tipue_search_content">P_webots << <a href='P_webots.html'>Previous</a> <br /><h1>Openduck</h1>
 <p><a href="https://github.com/apirrone/Open_Duck_Mini">Open Duck Mini</a> 是一款模組化、開源的雙足仿生機器人平台，專為教育與研究設計，具備高自由度與低成本特性。</p>
 <p><img caption="false" height="298" src="./../images/openduck_mini.png" width="200"/></p>
+<p><a href="https://cad.onshape.com/documents/26c83cdd49510fc094b845a1/w/1f0ebd66fbcba930fc39351f/e/98c9ea7ad6f244e859d1e24a">Openduck in Onshape</a></p>
+<p><a href="https://github.com/apirrone/Open_Duck_reference_motion_generator">https://github.com/apirrone/Open_Duck_reference_motion_generator</a> </p>
+<p><a href="https://github.com/mdecycu/Open_Duck_Blender">https://github.com/mdecycu/Open_Duck_Blender</a> </p>
+<p><a href="./../downloads/openduck_frame.7z">openduck_frame.7z</a> (parasolid in NX2312)</p>
+<p>Openduck in Solvespace:</p>
+<p><img alt="" height="184" src="./../images/openduck_in_solvespace.png" width="300"/></p>
+<p>Inverse Kinematic Solutions: </p>
+<p style="padding-left: 30px;"><a href="https://github.com/rpiRobotics/ik-geo">https://github.com/rpiRobotics/ik-geo</a> </p>
+<p style="padding-left: 30px;"><a href="https://pypi.org/project/ik-geo/">https://pypi.org/project/ik-geo/</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/weigao95/yaik">https://github.com/weigao95/yaik</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/rpiRobotics/rpi_general_robotics_toolbox_py">https://github.com/rpiRobotics/rpi_general_robotics_toolbox_py</a> </p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0094114X25000606">IK-Geo: Unified robot inverse kinematics using subproblem decomposition</a></p>
+<ol>
+<li>IK‑Geo 是一個針對 6 自由度全旋轉關節機器人（6R manipulator） 的逆運動學解法，採用「子問題分解法（subproblem decomposition）」的方式，把整個 IK 問題拆成六種幾何子問題（如圓與點、兩圓之交、圓與平面、圓與球、三圓交、四圓交）來逐步求解。</li>
+<li>對於某些特定的機構構型（例如有三個交會或平行軸線的 6R 機構），它能用閉式（closed-form）方式解出所有解，而無需數值搜尋。其他構型則可能退化為對一或兩個關節角做 1D 或 2D 搜索。</li>
+<li>作者宣稱對於許多常見工業 6R機器人（例如 UR5 等），IK-Geo 的速度能比 IKFast 快 40 倍以上。</li>
+<li>IK-Geo 也具備處理奇異情況的能力（比如在解不存在時提供最小平方近似解或連續近似解）以增加解題穩健性。</li>
+<li>實作上，IK-Geo 提供 MATLAB、C++、Rust、Python 等多語言版本，並附有測試範例與效能比較。</li>
+<li>IK-Geo 的主要特點是其採用幾何分解，加上部分搜尋混合的策略，以在效率與泛用性之間取得不錯的折衷。</li>
+</ol>
+<p>其他參考資料: <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=11122599">Automatic Geometric Decomposition for Analytical Inverse Kinematics</a></p>
+<hr/>
 <p>設計規格：</p>
 <ol>
 <li>使用 12 顆 <a href="https://www.feetechrc.com/74v-19-kgcm-plastic-case-metal-tooth-magnetic-code-double-axis-ttl-series-steering-gear.html">FeeTech STS3215</a> 伺服馬達（7.4V，19kg·cm 扭矩）+ 2 顆 <a href="https://www.amazon.com/dp/B0FJQZSFMS">Miuzei 9g 輔助伺服</a>，實現 14 個自由度（雙足腿部 10 DOF，頭頸 4 DOF），支援穩定步態、轉向與精確感測定位。</li>
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
-</ol><br />AI_plotter << <a href='AI_plotter.html'>Previous</a> </div>
+</ol><br />P_webots << <a href='P_webots.html'>Previous</a> </div>
         
     <!-- footer -->
       <div class="container">

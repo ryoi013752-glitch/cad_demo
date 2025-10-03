@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='Plotter.html'>Plotter</a><ul class='dropdown'><li><a href='自由度.html'>自由度</a><li><a href='AI_plotter.html'>AI_plotter</a></li></ul><li><a href='Openduck.html'>Openduck</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Reading.html'>Reading</a><li><a href='CAD.html'>CAD</a><li><a href='Design.html'>Design</a><li class='has-children'><a href='Plotter.html'>Plotter</a><ul class='dropdown'><li><a href='自由度.html'>自由度</a><li><a href='AI_plotter.html'>AI_plotter</a><li><a href='P_onshape.html'>P_onshape</a><li><a href='P_webots.html'>P_webots</a></li></ul><li><a href='Openduck.html'>Openduck</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,12 +142,16 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">自由度 << <a href='自由度.html'>Previous</a> <a href='Openduck.html'>Next</a> >> Openduck<br /><h1>AI_plotter</h1>
+    <div id="tipue_search_content">自由度 << <a href='自由度.html'>Previous</a> <a href='P_onshape.html'>Next</a> >> P_onshape<br /><h1>AI_plotter</h1>
 <p><img alt="" height="259" src="./../images/plotter_dimension_design.png" width="300"/></p>
 <p>已知一個平面五連桿繪圖機購得兩個馬達的中心座標位於 (0,0), (200,0), 四根連桿長度皆為 160mm, 若 plotter 繪圖的座標點為 (x,y), (0,0) 位置上的馬達其轉角從正向 X 軸起算, 以逆時針方向為正, 其轉動角度為 t1, 而(200,0) 位置上的馬達其轉角也是從正向 X 軸起算, 也是以逆時針方向為正, 其轉動角度為 t2, 請利用 Python sympy 推導出以 x, y 為輸入變數, 求四組 t1 與 t2 作為輸出的逆向運動方程式。</p>
 <p><a href="./../downloads/plotter_sympy_inverse_kinematics.py">plotter_sympy_inverse_kinematics.py</a></p>
 <p><a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a></p>
 <p><img caption="false" height="233" src="./../images/plotter_in_onshape.png" width="300"/></p>
+<p>link1 tip center: -24.436, 158.123, 9 (模型放大兩倍，並轉為 m (-0.048872, 0.316246))<br/>pen center: 96.762, 262.578, -3 (模型放大兩倍，並轉為 m，(0.193524, 0.525156))<br/>link3 tip center: 218.635, 158.911, 15 (模型放大兩倍，並轉為 m，(0.43727, 0.317822))<br/>right motor center: 200, 0, 15 (模型放大兩倍，並轉為 m，(0.4, 0))<br/>left motor center: 0,0,0</p>
+<p>Webots 場景檔案:</p>
+<p style="padding-left: 30px;"><a href="./../downloads/plotter_onshape_w3.7z">plotter_onshape_w3.7z</a> (僅轉入馬達基座與左側 link1)</p>
+<p style="padding-left: 30px;"><a href="./../downloads/plotter_onshape_w4.7z">plotter_onshape_w4.7z</a> (僅轉入馬達基座、左側link1 與 link2)</p>
 <p>採 matplotlib 模擬四種掃掠 20cmx20cm 正方形邊長的逆向運動學 Solutions:</p>
 <p><a href="./../downloads/cad_demo_sym_formulation.py">cad_demo_sym_formulation.py</a></p>
 <p><a href="./../downloads/cad_demo_check_sym_sol.py">cad_demo_check_sym_sol.py</a></p>
@@ -173,7 +177,10 @@ def t2_sol4(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 + 800*x**3 - 
 <p style="padding-left: 30px;">Plotter 到達點 (200, 230) 時的 t1 與 t2 角度（degree）:<br/><br/>JSolution 3 <span>(同上列 math 格式 Solution 4)</span>:</p>
 <p style="padding-left: 30px;">t1 = 66.72°</p>
 <p style="padding-left: 30px;">t2 = 45.95°</p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><br />自由度 << <a href='自由度.html'>Previous</a> <a href='Openduck.html'>Next</a> >> Openduck</div>
+<p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</p>
+<br />自由度 << <a href='自由度.html'>Previous</a> <a href='P_onshape.html'>Next</a> >> P_onshape</div>
         
     <!-- footer -->
       <div class="container">
