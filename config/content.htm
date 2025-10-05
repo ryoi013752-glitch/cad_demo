@@ -280,3 +280,64 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
 </ol>
+<h1>Webots</h1>
+<p>如何將 MCAD(Mechanical Computer Aided Design) 組立檔案轉為 Webots 場景 .wbt</p>
+<h4>URDF(Unified Robot Description Format):</h4>
+<p style="padding-left: 30px;"><a href="https://wiki.ros.org/urdf/XML">https://wiki.ros.org/urdf/XML</a> </p>
+<p>將 <a href="https://github.com/Rhoban/onshape-to-robot">https://github.com/Rhoban/onshape-to-robot</a> 改寫為 NX-to-robot</p>
+<h4>Converter:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/scripts/converter">https://github.com/cyberbotics/webots/tree/master/scripts/converter</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/urdf2webots">https://github.com/cyberbotics/urdf2webots</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/resources/osm_importer">https://github.com/cyberbotics/webots/tree/master/resources/osm_importer</a> </p>
+<p style="padding-left: 30px;"><a href="https://suke.uclalemur.org/pcbot/lab2/webots_import/">https://suke.uclalemur.org/pcbot/lab2/webots_import/</a> </p>
+<h4>PR:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/pull/1419">Mesh node</a></p>
+<p>利用 <a href="https://mermaid.js.org/">https://mermaid.js.org/</a> 建立 Webots 場景節點流程圖:</p>
+<p><a href="/downloads/link0.html">link0.html</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="mermaid"&gt;
+flowchart TD
+    %% link0
+    subgraph L0[link0]
+    direction TB
+
+    %% 頂層節點, Plotter 為物件名稱, 中括號內為內置字串
+    Plotter[Robot]
+
+    %% 三個主要分支
+    Plotter --&gt; Robot物理節點[physics]
+    Robot物理節點 --&gt; 物理節點[NULL]
+
+    Plotter --&gt; Robot_boundingObject[boundingObject]
+    Robot_boundingObject --&gt; UseLink0[NULL]
+
+    Plotter --&gt; Children[children]
+    Children --&gt; DefLink0[DEF Link_0 Shape]
+    Children --&gt; HingeJoint[HingeJoint]  
+    DefLink0 -.-&gt;UseLink0
+
+    HingeJoint --&gt; Devices[devices]
+    Devices --&gt; Motor[RotationalMotor&lt;br/&gt;name: 'motor0']
+
+    HingeJoint --&gt; JointParams[jointparameters]
+    JointParams --&gt; HingeParams[HingeJointParameters]
+
+    HingeJoint --&gt; EndPoint[endPoint]
+    EndPoint --&gt; Solid[DEF link1 Solid]
+
+    %% 新增三個節點並連接 Solid
+    Solid --&gt; Physics2[physics]
+    Solid --&gt; Bounding2[boundingobject]
+    Solid --&gt; Children2[children]
+    end
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>

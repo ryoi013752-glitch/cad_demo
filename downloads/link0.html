@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+  <div class="mermaid">
+flowchart TD
+    %% link0
+    subgraph L0[link0]
+    direction TB
+
+    %% 頂層節點, Plotter 為物件名稱, 中括號內為內置字串
+    Plotter[Robot]
+
+    %% 三個主要分支
+    Plotter --> Robot物理節點[physics]
+    Robot物理節點 --> 物理節點[NULL]
+
+    Plotter --> Robot_boundingObject[boundingObject]
+    Robot_boundingObject --> UseLink0[NULL]
+
+    Plotter --> Children[children]
+    Children --> DefLink0[DEF Link_0 Shape]
+    Children --> HingeJoint[HingeJoint]  
+    DefLink0 -.->UseLink0
+
+    HingeJoint --> Devices[devices]
+    Devices --> Motor[RotationalMotor<br/>name: 'motor0']
+
+    HingeJoint --> JointParams[jointparameters]
+    JointParams --> HingeParams[HingeJointParameters]
+
+    HingeJoint --> EndPoint[endPoint]
+    EndPoint --> Solid[DEF link1 Solid]
+
+    %% 新增三個節點並連接 Solid
+    Solid --> Physics2[physics]
+    Solid --> Bounding2[boundingobject]
+    Solid --> Children2[children]
+
+    end
+
+  </div>
+</body>
+</html>

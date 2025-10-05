@@ -1,0 +1,29 @@
+flowchart TD
+    %% link0 主標籤（文字說明）
+    subgraph L0[link0]
+    direction TB
+
+    %% 頂層節點
+    Robot[Robot]
+
+    %% 三個主要分支
+    Robot --> PhysicsLabel[physics]
+    PhysicsLabel --> Physics[physics]
+
+    Robot --> BoundingLabel[boundingObject]
+    BoundingLabel --> UseLink0[USE Link_0]
+
+    Robot --> Children[children]
+    Children --> DefLink0[DEF Link_0 Shape]
+    DefLink0 -->|dotted| UseLink0
+
+    DefLink0 --> HingeJoint[HingeJoint]
+    HingeJoint --> Devices[devices]
+    Devices --> Motor[RotationalMotor<br/>name: 'motor0']
+
+    HingeJoint --> JointParams[jointParameters]
+    JointParams --> HingeParams[HingeJointParameters]
+
+    HingeJoint --> EndPoint[endPoint]
+    EndPoint --> Solid[DEF link1 Solid]
+    end

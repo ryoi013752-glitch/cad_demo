@@ -142,42 +142,67 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Design << <a href='Design.html'>Previous</a> <a href='自由度.html'>Next</a> >> 自由度<br /><h1>Plotter</h1>
-<p>設計要求:</p>
-<p style="padding-left: 30px;">使用平面五連桿設計一套能夠在 <span style="background-color: #ffff99;">20cm x 20cm</span> 範圍中進行繪圖的畫圖機</p>
-<p style="padding-left: 30px;">驅動: NEMA 17 步進馬達或 STS3215 系列伺服馬達</p>
-<p>首先查詢 NEMA 17 步進馬達與STS3215 系列伺服馬達的規格尺寸。</p>
-<p>17 NE2: 42.3mmx42.3mmx34mm (from <a href="https://www.sumfu.com/step/nema17">https://www.sumfu.com/step/nema17</a>)</p>
-<p>STS3215: 45.23mmx24.73mmx29mm (from <a href="https://www.feetechrc.com/74v-19-kgcm-plastic-case-metal-tooth-magnetic-code-double-axis-ttl-series-steering-gear.html">FeeTech</a>)</p>
-<p>平面五連桿 plotter 自由度如何計算?</p>
-<p style="padding-left: 30px;">計算「平面五連桿機構（Five-bar linkage）」的自由度（Degrees of Freedom, DOF）可以使用「Gruebler-Kutzbach 方程式」來處理。</p>
-<p style="padding-left: 30px;">平面機構的自由度 = 3(包含地面的構件數 - 1) - 2(有一個自由度的接頭數) - 有兩個自由度的接頭數</p>
-<p style="padding-left: 30px;">因此平面五連桿的自由度 = 3(5-1) - 2(5) - 0 = 2，因此設計中的 Plotter 有兩個自由度。</p>
-<p>Plotter 尺寸設計:</p>
-<p style="padding-left: 30px;">假設左側的馬達中心座標為 (0, 0), 若希望右側的馬達與左側馬達保持水平位置，則右側馬達的座標可設為 (x1, 0), x1 為第一個系統的設計參數。 </p>
-<p style="padding-left: 30px;">若希望繪圖區 20cmx20cm 正方形的下方距離馬達 30mm，則繪圖區的左下角點座標為 (0, 30)， 而右下角點座標則為 (200, 30)， 左上角點的座標為 (0, 230)，右上角點的座標為 (200, 230)。</p>
-<p style="padding-left: 30px;">因此從左側馬達中心點到繪圖區右上角點的距離為: \[\sqrt{(200^2 + 230^2)}\] = 304.7950</p>
-<p style="padding-left: 30px;">若採四個連桿長度都相同的設計，單一桿長的兩倍必須大於 304.7950</p>
-<p style="padding-left: 30px;">以下尋找桿長的設計上限:</p>
-<p style="padding-left: 60px;">針對希望繪圖區域為 20cmx20cm 的平面五軸 plotter，初步設計內容如下，試問已知兩倍連桿長度必須大於 304.795, 請問能不能針對合理設計找出兩倍連桿長度必須小於多少的約束條件? 假設左側的馬達中心座標為 (0, 0), 若希望右側的馬達與左側馬達保持水平位置，則右側馬達的座標可設為 (x1, 0), x1 為第一個系統的設計參數。 </p>
-<p style="padding-left: 60px;">若希望繪圖區 20cmx20cm 正方形的下方距離馬達 30mm，則繪圖區的左下角點座標為 (0, 30)， 而右下角點座標則為 (200, 30)， 左上角點的座標為 (0, 230)，右上角點的座標為 (200, 230)。<br/>因此從左側馬達中心點到繪圖區右上角點的距離為: \[\sqrt{(200^2 + 230^2)}\]</p>
-<p style="padding-left: 30px;">針對 \(x\_1 = 200\) mm（左右馬達水平間距）來計算這個五軸平面機構的連桿長度範圍。<br/><br/>一、 左馬達到繪圖區右上角的距離（已知）：<br/><br/>\[<br/>L_{\text{left→RU}} = \sqrt{200^2 + 230^2} = \sqrt{40000 + 52900} = \sqrt{92900} \approx \boxed{304.80 \text{ mm}}<br/>\]<br/><br/><br/>二、右馬達到繪圖區左上角 \((0, 230)\) 的距離：<br/><br/>這是對稱點，對應右馬達控制的最遠點：<br/><br/>\[<br/>L_{\text{right→LU}} = \sqrt{(200)^2 + (230)^2} = \sqrt{92900} \approx \boxed{304.80 \text{ mm}}<br/>\]<br/><br/>因為 \(x_1 = 200\)，所以左右兩馬達的極限距離對稱<br/><br/><br/>所以，兩倍連桿長度的下限為：<br/><br/>\[<br/>\boxed{2L_{\text{min}} &gt; 304.80 \text{ mm}}<br/>\]<br/><br/>三、上限推導：<br/><br/>雖然理論上兩連桿長度可以非常長，但為了避免結構不穩、精度低落、繪圖區域外擴太多，我們以合理幾何極限來限制上限。<br/><br/>最大極限是：<br/><br/>當筆頭落在兩馬達直線中點的正上方（最大高度），也就是在 \((100, y)\)，最高為繪圖區頂端 \(y = 230\)，此時：<br/><br/>\[<br/>L_{\text{center}} = \sqrt{(100)^2 + (230)^2} = \sqrt{10000 + 52900} = \sqrt{62900} \approx \boxed{250.80 \text{ mm}}<br/>\]<br/><br/>所以每支連桿最大約需 250.80 mm，即：<br/><br/>\[<br/>\boxed{2L_{\text{max}} \le 501.60 \text{ mm}}<br/>\]<br/><br/>最終結果（針對 \(x_1 = 200\) mm）：<br/><br/>\[<br/>\boxed{<br/>\text{合理的兩倍連桿長度範圍為：} \quad<br/>\boxed{<br/>304.80 &lt; 2L \le 501.60 \text{ mm}<br/>}<br/>}<br/>\]<br/><br/><br/>建議設計值：<br/><br/>接下來選擇 2L 稍微大於 305 mm，並保留些許餘裕（比如 310\(~\)350 mm）以兼顧活動性與結構穩定性。<br/><br/>例如：<br/><br/>連桿長度 \(L = 160\) mm → 2L = 320 mm <br/>連桿長度 \(L = 175\) mm → 2L = 350 mm <br/><br/>如此 Plotter 不僅可完整覆蓋繪圖區，又不會讓連桿過長造成搖晃或干涉。<br/><br/></p>
-<p style="padding-left: 30px;">設計考量:</p>
-<p style="padding-left: 30px;"><span style="background-color: #ccffcc;">連桿長度</span>考量:</p>
-<p style="padding-left: 60px;">連桿過長會造成機構搖晃、擺動放大<br/><br/>輕微的驅動誤差或彎曲都會被放大，導致筆尖失準<br/><br/>選擇 \(2L \le 350\) mm 能兼顧結構剛性與控制穩定性，因為精簡的設計原則是希望連桿盡可能短而剛性強，只要能覆蓋工作區即可。</p>
-<p style="padding-left: 30px;">其次考慮<span style="background-color: #ccffcc;">角度靈活性</span>（Joint Angle Flexibility）</p>
-<p style="padding-left: 60px;">在過短的 \(2L\) 情況下，某些筆尖位置需要讓兩個關節角度幾乎伸直或壓扁，會造成奇異點問題（singularity)，控制算法難以計算，且反應變慢、系統容易不穩定。<br/><br/>適度延長 \(2L\) 讓關節角度變化更自然、更靈活，例如筆尖在中間時，兩支連桿不是筆直對拉，而有良好的角度展開。</p>
-<p style="padding-left: 30px;">針對<span style="background-color: #ccffcc;">控制精度</span>（Resolution）的考量:</p>
-<p style="padding-left: 60px;">以五軸機構而言，連桿越長時，角度一點點改變就會讓筆尖移動很大距離，如此將會造成繪圖解析度下降（resolution drop）。<br/><br/>若 \(2L\) 尺寸選擇遠大於繪圖區，筆尖移動時會有過度放大現象。<br/><br/>因此控制在 \(2L = 310\sim350\) mm 可維持一個平衡的解析度。</p>
-<p style="padding-left: 30px;">針對<span style="background-color: #ccffcc;">物理尺寸與成本</span>（Practicality）的考量:</p>
-<p style="padding-left: 60px;">太長的連桿會導致整機體積變大，同時讓連桿本體與承載結構變重、造價也會提高。<br/><br/>因此兩倍連桿的長度設計選擇接近下限、但略微加大其尺寸範圍（如 310–350 mm）最符合成本效益與設計效率。</p>
-<p>最終 Plotter 尺寸設計採連桿長度 160mm 配置如下:</p>
-<p><img alt="" height="259" src="./../images/plotter_dimension_design.png" width="300"/></p>
-<p><a href="./../downloads/plotter_dimension_design.slvs">plotter_dimension_design.slvs</a></p>
-<p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-</p>
-<br />Design << <a href='Design.html'>Previous</a> <a href='自由度.html'>Next</a> >> 自由度</div>
+    <div id="tipue_search_content">Openduck << <a href='Openduck.html'>Previous</a> <br /><h1>Webots</h1>
+<p>如何將 MCAD(Mechanical Computer Aided Design) 組立檔案轉為 Webots 場景 .wbt</p>
+<h4>URDF(Unified Robot Description Format):</h4>
+<p style="padding-left: 30px;"><a href="https://wiki.ros.org/urdf/XML">https://wiki.ros.org/urdf/XML</a> </p>
+<p>將 <a href="https://github.com/Rhoban/onshape-to-robot">https://github.com/Rhoban/onshape-to-robot</a> 改寫為 NX-to-robot</p>
+<h4>Converter:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/scripts/converter">https://github.com/cyberbotics/webots/tree/master/scripts/converter</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/urdf2webots">https://github.com/cyberbotics/urdf2webots</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/resources/osm_importer">https://github.com/cyberbotics/webots/tree/master/resources/osm_importer</a> </p>
+<p style="padding-left: 30px;"><a href="https://suke.uclalemur.org/pcbot/lab2/webots_import/">https://suke.uclalemur.org/pcbot/lab2/webots_import/</a> </p>
+<h4>PR:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/pull/1419">Mesh node</a></p>
+<p>利用 <a href="https://mermaid.js.org/">https://mermaid.js.org/</a> 建立 Webots 場景節點流程圖:</p>
+<p><a href="./../downloads/link0.html">link0.html</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="mermaid"&gt;
+flowchart TD
+    %% link0
+    subgraph L0[link0]
+    direction TB
+
+    %% 頂層節點, Plotter 為物件名稱, 中括號內為內置字串
+    Plotter[Robot]
+
+    %% 三個主要分支
+    Plotter --&gt; Robot物理節點[physics]
+    Robot物理節點 --&gt; 物理節點[NULL]
+
+    Plotter --&gt; Robot_boundingObject[boundingObject]
+    Robot_boundingObject --&gt; UseLink0[NULL]
+
+    Plotter --&gt; Children[children]
+    Children --&gt; DefLink0[DEF Link_0 Shape]
+    Children --&gt; HingeJoint[HingeJoint]  
+    DefLink0 -.-&gt;UseLink0
+
+    HingeJoint --&gt; Devices[devices]
+    Devices --&gt; Motor[RotationalMotor&lt;br/&gt;name: 'motor0']
+
+    HingeJoint --&gt; JointParams[jointparameters]
+    JointParams --&gt; HingeParams[HingeJointParameters]
+
+    HingeJoint --&gt; EndPoint[endPoint]
+    EndPoint --&gt; Solid[DEF link1 Solid]
+
+    %% 新增三個節點並連接 Solid
+    Solid --&gt; Physics2[physics]
+    Solid --&gt; Bounding2[boundingobject]
+    Solid --&gt; Children2[children]
+    end
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><br />Openduck << <a href='Openduck.html'>Previous</a> </div>
         
     <!-- footer -->
       <div class="container">

@@ -14,9 +14,6 @@
 <p style="padding-left: 60px;">w17: 如何實作一套 <a href="https://youtu.be/iOLFP90DneY">5-bar Linkage Plotter</a> 與 <a href="https://mde.tw/cad2025/content/OpenDuck.html">Openduck mini</a>？(<a href="https://la.disneyresearch.com/publication/design-and-control-of-a-bipedal-robotic-character/">Disney Bipedal Robot</a>)</p>
 <p style="padding-left: 60px;">w18: 課程總結</p>
 <p style="padding-left: 30px;"><span style="background-color: #ffff00;">個人與分組網站維護 (40%)</span> - 每週至少兩次推送與課程進度相關的學習內容與心得。</p>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-<p style="padding-left: 60px;">w9 期中自評、w18 期末自評</p><h1>Plotter</h1>
-=======
 <p style="padding-left: 60px;">w9 期中自評、w18 期末自評</p>
 <h1>Reading</h1>
 <p>英文資料基本閱讀能力自我查驗:</p>
@@ -36,14 +33,15 @@
 <p style="padding-left: 60px;"><a href="/downloads/SNAP_Getting_Started_v12.pdf">SNAP_Getting_Started_v12.pdf</a></p>
 <p style="padding-left: 30px;">Solvespace:</p>
 <p style="padding-left: 60px;"><a href="/downloads/solvespace-documentation.pdf">solvespace-documentation.pdf</a></p>
-<p style="padding-left: 60px;"><a href="https://solvespace.readthedocs.io/en/latest/">https://solvespace.readthedocs.io/en/latest/</a> </p>
+<p style="padding-left: 60px;"><a href="https://solvespace.readthedocs.io/en/latest/">https://solvespace.readthedocs.io/en/latest/</a></p>
 <p style="padding-left: 60px;"><a href="https://solvespace.com/tutorial.pl">https://solvespace.com/tutorial.pl</a></p>
 <p style="padding-left: 60px;"><a href="https://youtu.be/vBNAIMiomls">https://youtu.be/vBNAIMiomls</a></p>
-<p style="padding-left: 60px;"><a href="https://arachnoid.com/Computer_Aided_Design/index.html">https://arachnoid.com/Computer_Aided_Design/index.html</a> </p>
-<p style="padding-left: 60px;"><a href="https://news.ycombinator.com/item?id=30625341">https://news.ycombinator.com/item?id=30625341</a> </p>
+<p style="padding-left: 60px;"><a href="https://arachnoid.com/Computer_Aided_Design/index.html">https://arachnoid.com/Computer_Aided_Design/index.html</a></p>
+<p style="padding-left: 60px;"><a href="https://news.ycombinator.com/item?id=30625341">https://news.ycombinator.com/item?id=30625341</a></p>
 <p style="padding-left: 60px;"><a href="https://cq.cx/sketchflat.pl">https://cq.cx/sketchflat.pl</a></p>
 <p style="padding-left: 60px;"><a href="https://cq.cx/sketchflat-tutorial.p">https://cq.cx/sketchflat-tutorial.p</a>l</p>
-<p style="padding-left: 90px;"><a href="/downloads/sketchflat-internals.pdf">sketchflat-internals.pdf</a></p><h1>Design</h1>
+<p style="padding-left: 90px;"><a href="/downloads/sketchflat-internals.pdf">sketchflat-internals.pdf</a></p>
+<h1>Design</h1>
 <h4>Math</h4>
 <p>利用 Python + Sympy 解數學相關題目:</p>
 <p style="padding-left: 30px;"><a href="/downloads/taming math and physics using sympy.pdf">taming math and physics using sympy.pdf</a></p>
@@ -57,8 +55,8 @@
 <h4>Mechanical Advantage Analysis:</h4>
 <p style="padding-left: 30px;"><a href="/downloads/mechanical_advantage_analysis.pdf">/downloads/mechanical_advantage_analysis.pdf</a></p>
 <h4>Webots:</h4>
-<p style="padding-left: 30px;"><a href="/downloads/Simulation_of_a_Mobile_Manipulator_on_Webots.pdf">Simulation_of_a_Mobile_Manipulator_on_Webots.pdf</a></p><h1>Plotter</h1>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 46deeca03da92a2d1f723859d7860ae926744d7c
+<p style="padding-left: 30px;"><a href="/downloads/Simulation_of_a_Mobile_Manipulator_on_Webots.pdf">Simulation_of_a_Mobile_Manipulator_on_Webots.pdf</a></p>
+<h1>Plotter</h1>
 <p>設計要求:</p>
 <p style="padding-left: 30px;">使用平面五連桿設計一套能夠在 <span style="background-color: #ffff99;">20cm x 20cm</span> 範圍中進行繪圖的畫圖機</p>
 <p style="padding-left: 30px;">驅動: NEMA 17 步進馬達或 STS3215 系列伺服馬達</p>
@@ -90,7 +88,10 @@
 <p>最終 Plotter 尺寸設計採連桿長度 160mm 配置如下:</p>
 <p><img alt="" height="259" src="/images/plotter_dimension_design.png" width="300"/></p>
 <p><a href="/downloads/plotter_dimension_design.slvs">plotter_dimension_design.slvs</a></p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>自由度</h2>
+<p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</p>
+<h2>自由度</h2>
 <p>平面機構的自由度推導:<br/><br/>要解釋 <a href="https://en.wikipedia.org/wiki/Chebychev%E2%80%93Gr%C3%BCbler%E2%80%93Kutzbach_criterion">Grübler 公式</a>（或稱 Kutzbach 公式）如何推導出來，需要從平面機構的運動學基本原理出發，逐步分析構件、自由度和約束的關係。以下是 Grübler 公式的推導過程，針對平面五連桿機構的自由度計算：<br/><br/>Grübler 公式</p>
 <p>平面機構的自由度公式為：</p>
 <p>\[<br/>DOF = 3(N - 1) - 2J_1 - J_2<br/>\]</p>
@@ -122,7 +123,10 @@
 <p>一、平面運動：公式假設機構在二維平面內運動，每個構件有 3 個自由度。<br/>二、無冗餘約束：公式假設關節的約束是獨立的。如果機構有冗餘約束（例如平行四邊形結構），自由度可能需要進一步分析。<br/>三、關節類型：公式適用於常見的轉動對、滑動對等，若有特殊關節，需重新計算約束。<br/><br/>特殊情況的考慮</p>
 <p>如果機構有冗餘約束（例如某些連桿的運動被重複限制），Grübler 公式可能給出不正確的自由度（例如負值或零），這表示機構可能過約束或需要特殊分析。</p>
 <p>對於五連桿機構，若結構為閉環且無冗餘約束，自由度通常為 2，這與實際應用（如繪圖機或機械手臂）一致。</p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>AI_plotter</h2>
+<p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</p>
+<h2>AI_plotter</h2>
 <p><img alt="" height="259" src="/images/plotter_dimension_design.png" width="300"/></p>
 <p>已知一個平面五連桿繪圖機購得兩個馬達的中心座標位於 (0,0), (200,0), 四根連桿長度皆為 160mm, 若 plotter 繪圖的座標點為 (x,y), (0,0) 位置上的馬達其轉角從正向 X 軸起算, 以逆時針方向為正, 其轉動角度為 t1, 而(200,0) 位置上的馬達其轉角也是從正向 X 軸起算, 也是以逆時針方向為正, 其轉動角度為 t2, 請利用 Python sympy 推導出以 x, y 為輸入變數, 求四組 t1 與 t2 作為輸出的逆向運動方程式。</p>
 <p><a href="/downloads/plotter_sympy_inverse_kinematics.py">plotter_sympy_inverse_kinematics.py</a></p>
@@ -157,7 +161,10 @@ def t2_sol4(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 + 800*x**3 - 
 <p style="padding-left: 30px;">Plotter 到達點 (200, 230) 時的 t1 與 t2 角度（degree）:<br/><br/>JSolution 3 <span>(同上列 math 格式 Solution 4)</span>:</p>
 <p style="padding-left: 30px;">t1 = 66.72°</p>
 <p style="padding-left: 30px;">t2 = 45.95°</p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>P_onshape</h2>
+<p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</p>
+<h2>P_onshape</h2>
 <p><img caption="false" height="234" src="/images/plotter_in_onshape.png" width="300"/></p>
 <p></p>
 <p><a href="/downloads/plotter_dimension_design_2.slvs">plotter_dimension_design_2.slvs</a></p>
@@ -223,7 +230,8 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <hr/>
 <p><span><a href="/downloads/webots_check_sol3.py">webots_check_sol3.py</a></span></p>
 <p><span>pythonw.exe -u "webots_check_sol3.py"<br/>--- Solution 3 at P(0.2, 0.185) ---<br/>t1 (Radians): (1.221335238965607+0j)<br/>t2 (Radians): (0.7473365120313953+0j)<br/>------------------------------------------<br/>t1 (Degrees): 69.9774 degrees<br/>t2 (Degrees): 42.8192 degrees</span></p>
-<p><span><img caption="false" height="254" src="/images/webots_check_sol3.png" width="300"/></span></p><h2>P_webots</h2>
+<p><span><img caption="false" height="254" src="/images/webots_check_sol3.png" width="300"/></span></p>
+<h2>P_webots</h2>
 <p>Webots 場景中的 hingejoint 是以機構的初始角度作為 0 度。</p>
 <p>轉入 Webots 的 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 其機構初始設置為:</p>
 <p><img alt="" height="300" src="/images/webots_plotter_initial_conf.png" width="300"/></p>
@@ -240,7 +248,8 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p style="padding-left: 30px;">boundingObject USE shape</p>
 <p><a href="https://cyberbotics.com/doc/reference/solidreference">SolidReference</a> 設定於 link3 端點，且參照 link4_solid，表示第四旋轉軸既位於 link3，同時也必須位於 link4，讓 Webots 透過此一 closed chain 約束條件，於系統方程式運算時，能夠模擬封閉連桿機構的運動。</p>
 <p><img alt="" height="253" src="/images/plotter_project_SolidReference.png" width="300"/></p>
-<p>從 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 以 <a href="https://en.wikipedia.org/wiki/STL_(file_format)">STL</a> 格式轉出後，利用 <a href="/downloads/plotter_onshape/cad/split_stl_to_obj_scale2_w_mtl.py">split_stl_to_obj_scale2_w_mtl.py</a>，以兩倍原始尺寸分割零件為 <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">OBJ</a> 格式後，轉進 Webots 建立第一階段的模擬場景: 僅 link1 轉動: <a href="/downloads/plotter_onshape_link1.7z">plotter_onshape_link1.7z</a></p><h1>Openduck</h1>
+<p>從 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 以 <a href="https://en.wikipedia.org/wiki/STL_(file_format)">STL</a> 格式轉出後，利用 <a href="/downloads/plotter_onshape/cad/split_stl_to_obj_scale2_w_mtl.py">split_stl_to_obj_scale2_w_mtl.py</a>，以兩倍原始尺寸分割零件為 <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">OBJ</a> 格式後，轉進 Webots 建立第一階段的模擬場景: 僅 link1 轉動: <a href="/downloads/plotter_onshape_link1.7z">plotter_onshape_link1.7z</a></p>
+<h1>Openduck</h1>
 <p><a href="https://github.com/apirrone/Open_Duck_Mini">Open Duck Mini</a> 是一款模組化、開源的雙足仿生機器人平台，專為教育與研究設計，具備高自由度與低成本特性。</p>
 <p><img caption="false" height="298" src="/images/openduck_mini.png" width="200"/></p>
 <p><a href="https://cad.onshape.com/documents/26c83cdd49510fc094b845a1/w/1f0ebd66fbcba930fc39351f/e/98c9ea7ad6f244e859d1e24a">Openduck in Onshape</a></p>
@@ -271,3 +280,65 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
 </ol>
+<h1>Webots</h1>
+<p>如何將 MCAD(Mechanical Computer Aided Design) 組立檔案轉為 Webots 場景 .wbt</p>
+<h4>URDF(Unified Robot Description Format):</h4>
+<p style="padding-left: 30px;"><a href="https://wiki.ros.org/urdf/XML">https://wiki.ros.org/urdf/XML</a> </p>
+<p>將 <a href="https://github.com/Rhoban/onshape-to-robot">https://github.com/Rhoban/onshape-to-robot</a> 改寫為 NX-to-robot</p>
+<h4>Converter:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/scripts/converter">https://github.com/cyberbotics/webots/tree/master/scripts/converter</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/urdf2webots">https://github.com/cyberbotics/urdf2webots</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/resources/osm_importer">https://github.com/cyberbotics/webots/tree/master/resources/osm_importer</a> </p>
+<p style="padding-left: 30px;"><a href="https://suke.uclalemur.org/pcbot/lab2/webots_import/">https://suke.uclalemur.org/pcbot/lab2/webots_import/</a> </p>
+<h4>PR:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/pull/1419">Mesh node</a></p>
+<p>利用 <a href="https://mermaid.js.org/">https://mermaid.js.org/</a> 建立 Webots 場景節點流程圖:</p>
+<p><a href="/downloads/link0.html">link0.html</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="mermaid"&gt;
+flowchart TD
+    %% link0
+    subgraph L0[link0]
+    direction TB
+
+    %% 頂層節點, Plotter 為物件名稱, 中括號內為內置字串
+    Plotter[Robot]
+
+    %% 三個主要分支
+    Plotter --&gt; Robot物理節點[physics]
+    Robot物理節點 --&gt; 物理節點[NULL]
+
+    Plotter --&gt; Robot_boundingObject[boundingObject]
+    Robot_boundingObject --&gt; UseLink0[NULL]
+
+    Plotter --&gt; Children[children]
+    Children --&gt; DefLink0[DEF Link_0 Shape]
+    Children --&gt; HingeJoint[HingeJoint]  
+    DefLink0 -.-&gt;UseLink0
+
+    HingeJoint --&gt; Devices[devices]
+    Devices --&gt; Motor[RotationalMotor&lt;br/&gt;name: 'motor0']
+
+    HingeJoint --&gt; JointParams[jointparameters]
+    JointParams --&gt; HingeParams[HingeJointParameters]
+
+    HingeJoint --&gt; EndPoint[endPoint]
+    EndPoint --&gt; Solid[DEF link1 Solid]
+
+    %% 新增三個節點並連接 Solid
+    Solid --&gt; Physics2[physics]
+    Solid --&gt; Bounding2[boundingobject]
+    Solid --&gt; Children2[children]
+    end
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><iframe height="600" src="/downloads/link0.html" width="800"></iframe></p>
