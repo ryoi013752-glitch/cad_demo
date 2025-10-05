@@ -8,7 +8,7 @@
 <vnodes>
 <v t="leo.20190515144024.1"><vh>@settings</vh>
 <v t="leo.20190515144024.2"><vh>@data qt-gui-plugin-style-sheet</vh></v>
-<v t="leo.20190515144024.3"><vh>@string initial_split_orientation = horizontal</vh></v>
+<v t="leo.20190515144024.3"><vh>@string qt-layout-name = vertical-thirds</vh></v>
 </v>
 <v t="leo.20201127112020.1"><vh>About</vh>
 <v t="leo.20210320213557.1"><vh>cmsimde</vh></v>
@@ -7422,8 +7422,8 @@ QLineEdit#editorLabel {
     border: 2px;
     margin: 2px;
 }</t>
-<t tx="leo.20190515144024.3">horizontal: body pane to the left
-vertical: body pane on the botton</t>
+<t tx="leo.20190515144024.3">@string qt-layout-name = vertical-thirds
+@string qt-layout-name = horizontal-thirds</t>
 <t tx="leo.20190515144224.1" _mod_time="4741da3890e87b13482e"># coding: utf-8
 
 @others

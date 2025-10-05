@@ -341,3 +341,42 @@ flowchart TD
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+<h2>Mermaid</h2>
+<p>將 gist 上的 mermaid 流程圖顯示在頁面:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script type="module"&gt;// &lt;![CDATA[
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+async function loadMermaidFromGist() {
+  const res = await fetch('https://gist.githubusercontent.com/mdecycu/ca89be74dfb4daec472df7c31cc935fb/raw/7fa1c03f621614134842daf17647f0a86ff581b7/cad1');
+  const code = await res.text();
+
+  const container = document.getElementById('cad1');
+  container.className = 'mermaid';        // apply mermaid styling
+  container.textContent = code;           // insert Mermaid diagram code as text
+
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: false });
+  mermaid.init(undefined, container);     // render only this container
+}
+
+loadMermaidFromGist();
+// ]]&gt;&lt;/script&gt;</pre>
+<div id="cad1"></div>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+async function loadMermaidFromGist() {
+  const res = await fetch('https://gist.githubusercontent.com/mdecycu/ca89be74dfb4daec472df7c31cc935fb/raw/7fa1c03f621614134842daf17647f0a86ff581b7/cad1');
+  const code = await res.text();
+
+  const container = document.getElementById('cad1');
+  container.className = 'mermaid';        // apply mermaid styling
+  container.textContent = code;           // insert Mermaid diagram code as text
+
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: false });
+  mermaid.init(undefined, container);     // render only this container
+}
+
+loadMermaidFromGist();
+</script>
