@@ -153,6 +153,22 @@ img.add_border {
 <p style="padding-left: 30px;">計算「平面五連桿機構（Five-bar linkage）」的自由度（Degrees of Freedom, DOF）可以使用「Gruebler-Kutzbach 方程式」來處理。</p>
 <p style="padding-left: 30px;">平面機構的自由度 = 3(包含地面的構件數 - 1) - 2(有一個自由度的接頭數) - 有兩個自由度的接頭數</p>
 <p style="padding-left: 30px;">因此平面五連桿的自由度 = 3(5-1) - 2(5) - 0 = 2，因此設計中的 Plotter 有兩個自由度。</p>
+<p>以下設計會讓 BCD 在繪圖範圍成為直線 (singularity)，因此修改設計需求如下，並轉而改用基因演算法進行尺寸設計:</p>
+<p>五連桿機構設計最佳化：最小化連桿尺寸<br/><br/>本設計的目標是針對一組 20 cm × 20 cm 的繪圖區域，尋找並最佳化三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>A. 待最佳化設計變數：<br/>1. L1：主連桿/驅動連桿長度（L1 = L4）。<br/>2. L2：副連桿長度（L2 = L3）。<br/>3. distance：機構底部距離（定義馬達中心連線到繪圖區域底邊的垂直距離）。<br/><br/>B. 固定參數：<br/>1. 馬達間距 (LENGTH)：兩側連桿（L1 和 L4）的固定轉軸中心必須保持 20 cm 的水平間距。<br/>2. 繪圖區域 (W×H)：機構必須能覆蓋一個 20 cm 寬度和 20 cm 高度的完整矩形區域。<br/>3. 對稱性要求：機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)</p>
+<p style="padding-left: 30px;">設計應追求連桿總尺寸的最小化。優化目標 J 定義為：</p>
+<p style="padding-left: 30px;">最小化 J = 1.0 * L1 + 1.0 * L2 + 0.5 * distance</p>
+<p style="padding-left: 30px;">（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）</p>
+<p>三、運動學與工程約束 (Constraints)</p>
+<p>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>C1. 可達性與外側奇異點迴避 (L1+L2 約束)</p>
+<p style="padding-left: 30px;">連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點所需的最大距離 Dmax。</p>
+<p style="padding-left: 30px;">目的：保證筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點）導致的鎖死。<br/>約束式：L1 + L2 &gt; Dmax</p>
+<p>C2. 繪圖區域穩定性與內側奇異點迴避</p>
+<p style="padding-left: 30px;">連桿 L2 的兩倍長度 (2 * L2) 必須大於筆尖 C 點在整個 20 cm × 20 cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br/><br/>安全裕度：必須強制加入 1.0 cm 的安全裕度 (Δ)。<br/>目的：保證筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點）導致的控制失效。<br/>約束式：2 * L2 &gt; Max(DBD)Area + 1.0 cm</p>
+<p>C3. 轉軸方向約束 (Y 座標約束)</p>
+<p style="padding-left: 30px;">在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。</p>
+<p style="padding-left: 30px;">目的：確保機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
+<p style="padding-left: 30px;">約束式：YB &gt;= 0 且 YD &gt;= 0</p>
+<hr/>
 <p>Plotter 尺寸設計:</p>
 <p style="padding-left: 30px;">假設左側的馬達中心座標為 (0, 0), 若希望右側的馬達與左側馬達保持水平位置，則右側馬達的座標可設為 (x1, 0), x1 為第一個系統的設計參數。 </p>
 <p style="padding-left: 30px;">若希望繪圖區 20cmx20cm 正方形的下方距離馬達 30mm，則繪圖區的左下角點座標為 (0, 30)， 而右下角點座標則為 (200, 30)， 左上角點的座標為 (0, 230)，右上角點的座標為 (200, 230)。</p>
@@ -171,13 +187,12 @@ img.add_border {
 <p style="padding-left: 60px;">以五軸機構而言，連桿越長時，角度一點點改變就會讓筆尖移動很大距離，如此將會造成繪圖解析度下降（resolution drop）。<br/><br/>若 \(2L\) 尺寸選擇遠大於繪圖區，筆尖移動時會有過度放大現象。<br/><br/>因此控制在 \(2L = 310\sim350\) mm 可維持一個平衡的解析度。</p>
 <p style="padding-left: 30px;">針對<span style="background-color: #ccffcc;">物理尺寸與成本</span>（Practicality）的考量:</p>
 <p style="padding-left: 60px;">太長的連桿會導致整機體積變大，同時讓連桿本體與承載結構變重、造價也會提高。<br/><br/>因此兩倍連桿的長度設計選擇接近下限、但略微加大其尺寸範圍（如 310–350 mm）最符合成本效益與設計效率。</p>
-<p>最終 Plotter 尺寸設計採連桿長度 160mm 配置如下:</p>
+<p>以上考量 Plotter 尺寸設計採連桿長度 160mm 配置如下 (BCD 在繪圖區域中會形成 singularity):</p>
 <p><img alt="" height="259" src="./../images/plotter_dimension_design.png" width="300"/></p>
 <p><a href="./../downloads/plotter_dimension_design.slvs">plotter_dimension_design.slvs</a></p>
 <p>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-</p>
-<br />Design << <a href='Design.html'>Previous</a> <a href='自由度.html'>Next</a> >> 自由度</div>
+</p><br />Design << <a href='Design.html'>Previous</a> <a href='自由度.html'>Next</a> >> 自由度</div>
         
     <!-- footer -->
       <div class="container">
