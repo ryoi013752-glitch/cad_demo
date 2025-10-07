@@ -1,0 +1,145 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5386388473453381 0.5580090184390224 0.6312639126951616 1.9977572470383025
+  position 0.1644767565665336 -0.0696834673451115 0.8326925834213968
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 1.5 1.5
+}
+Robot {
+  children [
+    DEF left_motor CadShape {
+      url [
+        "../cad/split_parts/part_1.obj"
+      ]
+    }
+    DEF joint1 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "t1"
+        }
+      ]
+      endPoint DEF link1 Solid {
+        children [
+          DEF link1_shape CadShape {
+            url [
+              "../cad/split_parts/part_3.obj"
+            ]
+          }
+          DEF joint2 HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor 0 0.2 0
+            }
+            endPoint DEF link2 Solid {
+              children [
+                DEF link2_shape CadShape {
+                  url [
+                    "../cad/split_parts/part_4.obj"
+                  ]
+                }
+                DEF joint3 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 0 1
+                    anchor 0.2531 0.294 0
+                  }
+                  endPoint DEF link3 Solid {
+                    children [
+                      DEF link3_shape CadShape {
+                        url [
+                          "../cad/split_parts/part_5.obj"
+                        ]
+                      }
+                    ]
+                    name "link3"
+                    boundingObject Mesh {
+                      url [
+                        "../cad/split_parts/part_5.obj"
+                      ]
+                    }
+                    physics Physics {
+                    }
+                  }
+                }
+              ]
+              name "link2"
+              boundingObject Mesh {
+                url [
+                  "../cad/split_parts/part_4.obj"
+                ]
+              }
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "link1"
+        boundingObject Mesh {
+          url [
+            "../cad/split_parts/part_3.obj"
+          ]
+        }
+        physics Physics {
+        }
+      }
+    }
+    DEF right_motor CadShape {
+      url [
+        "../cad/split_parts/part_2.obj"
+      ]
+    }
+    DEF joint5 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.2 0 0
+      }
+      device [
+        RotationalMotor {
+          name "t2"
+        }
+      ]
+      endPoint DEF link4 Solid {
+        children [
+          DEF link4_shape CadShape {
+            url [
+              "../cad/split_parts/part_6.obj"
+            ]
+          }
+          DEF joint4 HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor 0.3903 0.0615 0
+            }
+            endPoint SolidReference {
+              solidName "link3"
+            }
+          }
+        ]
+        name "link4"
+        boundingObject Mesh {
+          url [
+            "../cad/split_parts/part_6.obj"
+          ]
+        }
+        physics Physics {
+        }
+      }
+    }
+  ]
+  name "plotter"
+  controller "my_controller"
+}
