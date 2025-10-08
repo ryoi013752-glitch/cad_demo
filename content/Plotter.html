@@ -169,6 +169,8 @@ img.add_border {
 <p style="padding-left: 30px;">目的：確保機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
 <p style="padding-left: 30px;">約束式：YB &gt;= 0 且 YD &gt;= 0</p>
 <p><a href="./../downloads/redesign_ga1.py">redesign_ga1.py</a></p>
+<p>選用下列設計:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置, 其轉動角度以逆時針為正, 轉角設為 t1, 且從其右邊的水平線算起<br/>E 點座標 (20, 0) 為右邊馬達位置, 其轉動角度也是以逆時針為正, 轉角設為 t2, 也是從其右邊的水平線算起<br/>AB 為 link1 長度為 20, BC 為 link2 長度為 27, CD 為 link3 長度為 27, DE 為 link4 長度為 20, C 點為 plotter 擺放位置<br/>請利用數值方法推導 def t1(cx, cy) 以及 t2(cx, cy), 其中 cx 為 plotter C 點的 x 座標, 而 cy 則為 plotter C點的 y 座標</p>
 <hr/>
 <p><a href="./../downloads/redesign.slvs">redesign.slvs</a></p>
 <p><a href="./../downloads/redesign.py">redesign.py</a></p>
@@ -176,6 +178,9 @@ img.add_border {
 <p><a href="./../downloads/redesign.7z">redesign.7z</a></p>
 <p><a href="./../downloads/redesign_simulation.py">redesign_simulation.py</a></p>
 <p><a href="./../downloads/plotter_redesign.7z">plotter_redesign.7z</a> (含初步 Webots 場景)</p>
+<p>修正起始角度的 Webots 場景: <a href="./../downloads/plotter_redesign_w6.7z">plotter_redesign_w6.7z</a></p>
+<p>Prompt:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置, 其轉動角度以逆時針為正, 轉角設為 t1, 且從其右邊的水平線算起<br/>E 點座標 (0.2, 0) 為右邊馬達位置, 其轉動角度也是以逆時針為正, 轉角設為 t2, 也是從其右邊的水平線算起<br/>AB 為 link1 長度為 0.2, BC 為 link2 長度為 027, CD 為 link3 長度為 0.27, DE 為 link4 長度為 0.2, C 點為 plotter 擺放位置<br/>請利用 sympy 方法推導 def t1(cx, cy) 以及 t2(cx, cy), 其中 cx 為 plotter C 點的 x 座標, 而 cy 則為 plotter C點的 y 座標<br/><br/>最後結果請給出四種 solutions 的 python function 格式</p>
 <p><img caption="false" height="272" src="./../images/redesign1.png" width="300"/></p>
 <p><img alt="" height="282" src="./../images/redesign2.png" width="300"/></p>
 <p><img alt="" height="225" src="./../images/5bar_animation.gif" width="300"/></p>

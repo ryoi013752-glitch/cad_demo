@@ -1,7 +1,3 @@
-"""my_controller controller."""
-
-# 已經完成校正以及納入 IK 方程式
-from controller import Robot
 import math
 import numpy as np
 
@@ -76,63 +72,16 @@ def ik(cx: float, cy: float) -> tuple:
     
     #return t1_rad, t2_rad # 傳回 radian
     return math.degrees(t1_rad), math.degrees(t2_rad)
+    
+# 測試點
+cx_test = 0.2
+cy_test = 0.2
 
+t1_deg, t2_deg = ik(cx_test, cy_test)
 
-# initial t1=90 deg, t2=17.9 deg
-deg = math.pi/180
-# offset 單位為角度
-t1_offset = -90
-t2_offset = -17.9
-# plotter C 點座標
-'''
-cx = 0.2531
-cy = 0.2940
-#
-cx = 0.2
-cy = 0.4
-#
-cx = 0
-cy = 0.4
-'''
-cx = 0
-cy = 0.2
-# ik 使用角度為單位
-t1_deg, t2_deg = ik(cx, cy)
-print(t1_deg, t2_deg)
-t1_rad = (t1_deg + t1_offset)*deg
-t2_rad = (t2_deg + t2_offset)*deg
-
-# create the Robot instance.
-robot = Robot()
-
-# get the time step of the current world.
-timestep = int(robot.getBasicTimeStep())
-
-# You should insert a getDevice-like function in order to get the
-# instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
-t1 = robot.getDevice("t1")
-t2 = robot.getDevice("t2")
-
-
-t1.setVelocity(5.0)
-t2.setVelocity(5.0)
-t1.setPosition(t1_rad)
-t2.setPosition(t2_rad)
-
-# Main loop:
-# - perform simulation steps until Webots is stopping the controller
-while robot.step(timestep) != -1:
-    # Read the sensors:
-    # Enter here functions to read sensor data, like:
-    #  val = ds.getValue()
-
-    # Process sensor data here.
-
-    # Enter here functions to send actuator commands, like:
-    #  motor.setPosition(10.0)
-    pass
-
-# Enter here exit cleanup code.
+if t1_deg is not None:
+    print(f"輸入 C({cx_test}, {cy_test}) 的解為:")
+    print(f"t1 (左臂) = {t1_deg:.2f} deg")   # 預期值: 84.35 deg
+    print(f"t2 (右臂) = {t2_deg:.2f} deg")   # 預期值: 52.60 deg
+else:
+    print(f"C({cx_test}, {cy_test}) 點在此配置下無法到達。")
