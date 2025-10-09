@@ -101,6 +101,9 @@
 <p><a href="/downloads/redesign.7z">redesign.7z</a></p>
 <p><a href="/downloads/redesign_simulation.py">redesign_simulation.py</a></p>
 <p><a href="/downloads/plotter_redesign.7z">plotter_redesign.7z</a> (含初步 Webots 場景)</p>
+<p>修正起始角度的 Webots 場景: <a href="/downloads/plotter_redesign_w6.7z">plotter_redesign_w6.7z</a></p>
+<p>Prompt:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置, 其轉動角度以逆時針為正, 轉角設為 t1, 且從其右邊的水平線算起<br/>E 點座標 (0.2, 0) 為右邊馬達位置, 其轉動角度也是以逆時針為正, 轉角設為 t2, 也是從其右邊的水平線算起<br/>AB 為 link1 長度為 0.2, BC 為 link2 長度為 027, CD 為 link3 長度為 0.27, DE 為 link4 長度為 0.2, C 點為 plotter 擺放位置<br/>請利用 sympy 方法推導 def t1(cx, cy) 以及 t2(cx, cy), 其中 cx 為 plotter C 點的 x 座標, 而 cy 則為 plotter C點的 y 座標<br/><br/>最後結果請給出四種 solutions 的 python function 格式</p>
 <p><img caption="false" height="272" src="/images/redesign1.png" width="300"/></p>
 <p><img alt="" height="282" src="/images/redesign2.png" width="300"/></p>
 <p><img alt="" height="225" src="/images/5bar_animation.gif" width="300"/></p>
@@ -265,7 +268,9 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p><a href="https://cyberbotics.com/doc/reference/solidreference">SolidReference</a> 設定於 link3 端點，且參照 link4_solid，表示第四旋轉軸既位於 link3，同時也必須位於 link4，讓 Webots 透過此一 closed chain 約束條件，於系統方程式運算時，能夠模擬封閉連桿機構的運動。</p>
 <p><img alt="" height="253" src="/images/plotter_project_SolidReference.png" width="300"/></p>
 <p>從 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 以 <a href="https://en.wikipedia.org/wiki/STL_(file_format)">STL</a> 格式轉出後，利用 <a href="/downloads/plotter_onshape/cad/split_stl_to_obj_scale2_w_mtl.py">split_stl_to_obj_scale2_w_mtl.py</a>，以兩倍原始尺寸分割零件為 <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">OBJ</a> 格式後，轉進 Webots 建立第一階段的模擬場景: 僅 link1 轉動: <a href="/downloads/plotter_onshape_link1.7z">plotter_onshape_link1.7z</a></p>
-<h1>Openduck</h1>
+<h2>P_Control</h2>
+<p>Arduino <a href="https://wokwi.com/projects/366115111171985409">control two stepper motors</a></p>
+<p><a href="https://swf.com.tw/?p=1188">使用Python的pySerial模組進行序列通訊：連接電腦與Arduino和MicroPython</a></p><h1>Openduck</h1>
 <p><a href="https://github.com/apirrone/Open_Duck_Mini">Open Duck Mini</a> 是一款模組化、開源的雙足仿生機器人平台，專為教育與研究設計，具備高自由度與低成本特性。</p>
 <p><img caption="false" height="298" src="/images/openduck_mini.png" width="200"/></p>
 <p><a href="https://cad.onshape.com/documents/26c83cdd49510fc094b845a1/w/1f0ebd66fbcba930fc39351f/e/98c9ea7ad6f244e859d1e24a">Openduck in Onshape</a></p>
