@@ -1,5 +1,8 @@
 <h1>About</h1>
 <p>課程名稱: 電腦輔助設計與實習</p>
+<p><a href="https://mde.tw/cp_demo"></a></p>
+<p>分組倉儲 demo 網站: <a href="https://mde.tw/cad_demo">https://mde.tw/cad_demo</a></p>
+<p>demo 倉儲: <a href="https://github.com/mdecycu/cad_demo">https://github.com/mdecycu/cad_demo</a> </p>
 <p>課程評分:</p>
 <p style="padding-left: 30px;"><span style="background-color: #ffff00;">學習心得報告 (60%)</span> - MS Teams 線上參與，6人一組每三週發表學習心得。</p>
 <p style="padding-left: 60px;">w3、w7、w10、w14、w17、w18</p>
@@ -30,15 +33,26 @@
 <p style="padding-left: 60px;"><a href="/downloads/SNAP_Getting_Started_v12.pdf">SNAP_Getting_Started_v12.pdf</a></p>
 <p style="padding-left: 30px;">Solvespace:</p>
 <p style="padding-left: 60px;"><a href="/downloads/solvespace-documentation.pdf">solvespace-documentation.pdf</a></p>
-<p style="padding-left: 60px;"><a href="https://solvespace.readthedocs.io/en/latest/">https://solvespace.readthedocs.io/en/latest/</a> </p>
+<p style="padding-left: 60px;"><a href="https://solvespace.readthedocs.io/en/latest/">https://solvespace.readthedocs.io/en/latest/</a></p>
 <p style="padding-left: 60px;"><a href="https://solvespace.com/tutorial.pl">https://solvespace.com/tutorial.pl</a></p>
 <p style="padding-left: 60px;"><a href="https://youtu.be/vBNAIMiomls">https://youtu.be/vBNAIMiomls</a></p>
-<p style="padding-left: 60px;"><a href="https://arachnoid.com/Computer_Aided_Design/index.html">https://arachnoid.com/Computer_Aided_Design/index.html</a> </p>
-<p style="padding-left: 60px;"><a href="https://news.ycombinator.com/item?id=30625341">https://news.ycombinator.com/item?id=30625341</a> </p>
+<p style="padding-left: 60px;"><a href="https://arachnoid.com/Computer_Aided_Design/index.html">https://arachnoid.com/Computer_Aided_Design/index.html</a></p>
+<p style="padding-left: 60px;"><a href="https://news.ycombinator.com/item?id=30625341">https://news.ycombinator.com/item?id=30625341</a></p>
 <p style="padding-left: 60px;"><a href="https://cq.cx/sketchflat.pl">https://cq.cx/sketchflat.pl</a></p>
 <p style="padding-left: 60px;"><a href="https://cq.cx/sketchflat-tutorial.p">https://cq.cx/sketchflat-tutorial.p</a>l</p>
-<p style="padding-left: 90px;"><a href="/downloads/sketchflat-internals.pdf">sketchflat-internals.pdf</a></p><h1>Design</h1>
+<p style="padding-left: 90px;"><a href="/downloads/sketchflat-internals.pdf">sketchflat-internals.pdf</a></p>
+<h1>Design</h1>
 <h4>Math</h4>
+<p>利用基因演算法解決機械設計問題:</p>
+<p style="padding-left: 30px;">Length = 20</p>
+<p style="padding-left: 30px;">平面五連桿 Plotter 設計目標是針對一組 Length cm×Length cm 的繪圖區域，尋找並最佳化五連桿機構中的三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>    馬達間距 (LENGTH): 兩側連桿（L1 和 L4）的固定轉軸中心必須保持 Length cm 的水平間距。<br/><br/>    繪圖區域 (W×H): 機構必須能覆蓋一個 Length cm 寬度 (W) 和 Length cm 高度 (H) 的完整矩形區域。<br/><br/>    對稱性要求: 機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)<br/><br/>設計應追求連桿總尺寸的最小化。優化目標 J 定義為：<br/>最小化 J=1.0⋅L1+1.0⋅L2+0.5⋅distance<br/><br/>（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）<br/><br/>三、運動學與工程約束 (Constraints)<br/><br/>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>1. 可達性與外側奇異點迴避 (L1+L2 約束)<br/><br/>連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點（即 X=Length,Y=distance+Length）處所需的最大距離 Dmax。<br/><br/>這項約束保證了筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點，即 A,B,C 共線）導致的鎖死。<br/><br/>2. 繪圖區域穩定性 (內側奇異點迴避)<br/><br/>連桿 L2 的兩倍長度 (2⋅L2) 必須大於筆尖 C 點在整個 Length cm×Length cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br/><br/>更重要的是，為了考慮實際製造公差和控制誤差，必須強制加入 1.0 cm 的安全裕度 (Δ)：<br/>2⋅L2&gt;Max(DBD)Area+1.0 cm<br/><br/>這項約束保證了筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點，即 B,C,D 共線）導致的控制失效。<br/><br/>3. 轉軸方向約束 (Y 座標約束)<br/><br/>在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。<br/><br/>這確保了機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
+<p style="padding-left: 30px;"><a href="/downloads/redesign_ga1.py">redesign_ga1.py</a></p>
+<p style="padding-left: 30px;"><a href="/downloads/redesign_ga1.slvs">redesign_ga1.slvs</a></p>
+<p style="padding-left: 30px;">【基因演算法最終最小化尺寸設計結果】<br/>找到**滿足約束且最小化尺寸**的設計（總尺寸 J ≈ 59.44 cm）:<br/>L1 (Link 1 &amp; 4) = 21.79 cm<br/>L2 (Link 2 &amp; 3) = 26.70 cm<br/>Distance (Y-bottom) = 21.89 cm<br/><br/>--- 最終設計驗證 ---<br/>1. 最遠點奇異點約束 (L1+L2 &gt; D_max): 48.50 &gt; 46.42 (滿足)<br/>2. 繪圖區域穩定性 (2*L2 &gt; Max(D_BD) + 1.0cm):<br/>   2*L2 = 53.40 cm<br/>   Max(D_BD) + 1.0 cm = 51.60 + 1.00 = 52.60 cm<br/>   **裕度滿足 (2*L2 僅略大於所需值，實現最小化)**<br/>3. Y 座標約束 (Y_B, Y_D &gt;= 0): 在逆運動學中已確保 (滿足)</p>
+<hr/>
+<p style="padding-left: 30px;">最小尺寸設計如下:</p>
+<p style="padding-left: 30px;">【基因演算法最終最小化尺寸設計結果】<br/>找到**滿足約束且最小化尺寸**的設計（總尺寸 J ≈ 54.97 cm）:<br/>L1 (Link 1 &amp; 4) = 20.00 cm<br/>L2 (Link 2 &amp; 3) = 25.44 cm<br/>Distance (Y-bottom) = 19.04 cm<br/><br/>--- 最終設計驗證 ---<br/>1. 最遠點奇異點約束 (L1+L2 &gt; D_max): 45.45 &gt; 43.87 (滿足)<br/>2. 繪圖區域穩定性 (2*L2 &gt; Max(D_BD) + 1.0cm):<br/>   2*L2 = 50.89 cm<br/>   Max(D_BD) + 1.0 cm = 49.63 + 1.00 = 50.63 cm<br/>   **裕度滿足 (2*L2 僅略大於所需值，實現最小化)**<br/>3. Y 座標約束 (Y_B, Y_D &gt;= 0): 在逆運動學中已確保 (滿足)</p>
+<hr/>
 <p>利用 Python + Sympy 解數學相關題目:</p>
 <p style="padding-left: 30px;"><a href="/downloads/taming math and physics using sympy.pdf">taming math and physics using sympy.pdf</a></p>
 <p style="padding-left: 30px;"><a href="/downloads/sympy_documentation.pdf">sympy_documentation.pdf</a></p>
@@ -62,6 +76,22 @@
 <p style="padding-left: 30px;">計算「平面五連桿機構（Five-bar linkage）」的自由度（Degrees of Freedom, DOF）可以使用「Gruebler-Kutzbach 方程式」來處理。</p>
 <p style="padding-left: 30px;">平面機構的自由度 = 3(包含地面的構件數 - 1) - 2(有一個自由度的接頭數) - 有兩個自由度的接頭數</p>
 <p style="padding-left: 30px;">因此平面五連桿的自由度 = 3(5-1) - 2(5) - 0 = 2，因此設計中的 Plotter 有兩個自由度。</p>
+<p>以下設計會讓 BCD 在繪圖範圍成為直線 (singularity)，因此修改設計需求如下，並轉而改用基因演算法進行尺寸設計:</p>
+<p>五連桿機構設計最佳化：最小化連桿尺寸<br/><br/>本設計的目標是針對一組 20 cm × 20 cm 的繪圖區域，尋找並最佳化三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>A. 待最佳化設計變數：<br/>1. L1：主連桿/驅動連桿長度（L1 = L4）。<br/>2. L2：副連桿長度（L2 = L3）。<br/>3. distance：機構底部距離（定義馬達中心連線到繪圖區域底邊的垂直距離）。<br/><br/>B. 固定參數：<br/>1. 馬達間距 (LENGTH)：兩側連桿（L1 和 L4）的固定轉軸中心必須保持 20 cm 的水平間距。<br/>2. 繪圖區域 (W×H)：機構必須能覆蓋一個 20 cm 寬度和 20 cm 高度的完整矩形區域。<br/>3. 對稱性要求：機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)</p>
+<p style="padding-left: 30px;">設計應追求連桿總尺寸的最小化。優化目標 J 定義為：</p>
+<p style="padding-left: 30px;">最小化 J = 1.0 * L1 + 1.0 * L2 + 0.5 * distance</p>
+<p style="padding-left: 30px;">（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）</p>
+<p>三、運動學與工程約束 (Constraints)</p>
+<p>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>C1. 可達性與外側奇異點迴避 (L1+L2 約束)</p>
+<p style="padding-left: 30px;">連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點所需的最大距離 Dmax。</p>
+<p style="padding-left: 30px;">目的：保證筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點）導致的鎖死。<br/>約束式：L1 + L2 &gt; Dmax</p>
+<p>C2. 繪圖區域穩定性與內側奇異點迴避</p>
+<p style="padding-left: 30px;">連桿 L2 的兩倍長度 (2 * L2) 必須大於筆尖 C 點在整個 20 cm × 20 cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br/><br/>安全裕度：必須強制加入 1.0 cm 的安全裕度 (Δ)。<br/>目的：保證筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點）導致的控制失效。<br/>約束式：2 * L2 &gt; Max(DBD)Area + 1.0 cm</p>
+<p>C3. 轉軸方向約束 (Y 座標約束)</p>
+<p style="padding-left: 30px;">在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。</p>
+<p style="padding-left: 30px;">目的：確保機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
+<p style="padding-left: 30px;">約束式：YB &gt;= 0 且 YD &gt;= 0</p>
+<hr/>
 <p>Plotter 尺寸設計:</p>
 <p style="padding-left: 30px;">假設左側的馬達中心座標為 (0, 0), 若希望右側的馬達與左側馬達保持水平位置，則右側馬達的座標可設為 (x1, 0), x1 為第一個系統的設計參數。 </p>
 <p style="padding-left: 30px;">若希望繪圖區 20cmx20cm 正方形的下方距離馬達 30mm，則繪圖區的左下角點座標為 (0, 30)， 而右下角點座標則為 (200, 30)， 左上角點的座標為 (0, 230)，右上角點的座標為 (200, 230)。</p>
@@ -80,10 +110,12 @@
 <p style="padding-left: 60px;">以五軸機構而言，連桿越長時，角度一點點改變就會讓筆尖移動很大距離，如此將會造成繪圖解析度下降（resolution drop）。<br/><br/>若 \(2L\) 尺寸選擇遠大於繪圖區，筆尖移動時會有過度放大現象。<br/><br/>因此控制在 \(2L = 310\sim350\) mm 可維持一個平衡的解析度。</p>
 <p style="padding-left: 30px;">針對<span style="background-color: #ccffcc;">物理尺寸與成本</span>（Practicality）的考量:</p>
 <p style="padding-left: 60px;">太長的連桿會導致整機體積變大，同時讓連桿本體與承載結構變重、造價也會提高。<br/><br/>因此兩倍連桿的長度設計選擇接近下限、但略微加大其尺寸範圍（如 310–350 mm）最符合成本效益與設計效率。</p>
-<p>最終 Plotter 尺寸設計採連桿長度 160mm 配置如下:</p>
+<p>以上考量 Plotter 尺寸設計採連桿長度 160mm 配置如下 (BCD 在繪圖區域中會形成 singularity):</p>
 <p><img alt="" height="259" src="/images/plotter_dimension_design.png" width="300"/></p>
 <p><a href="/downloads/plotter_dimension_design.slvs">plotter_dimension_design.slvs</a></p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>自由度</h2>
+<p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</p><h2>自由度</h2>
 <p>平面機構的自由度推導:<br/><br/>要解釋 <a href="https://en.wikipedia.org/wiki/Chebychev%E2%80%93Gr%C3%BCbler%E2%80%93Kutzbach_criterion">Grübler 公式</a>（或稱 Kutzbach 公式）如何推導出來，需要從平面機構的運動學基本原理出發，逐步分析構件、自由度和約束的關係。以下是 Grübler 公式的推導過程，針對平面五連桿機構的自由度計算：<br/><br/>Grübler 公式</p>
 <p>平面機構的自由度公式為：</p>
 <p>\[<br/>DOF = 3(N - 1) - 2J_1 - J_2<br/>\]</p>
@@ -115,13 +147,19 @@
 <p>一、平面運動：公式假設機構在二維平面內運動，每個構件有 3 個自由度。<br/>二、無冗餘約束：公式假設關節的約束是獨立的。如果機構有冗餘約束（例如平行四邊形結構），自由度可能需要進一步分析。<br/>三、關節類型：公式適用於常見的轉動對、滑動對等，若有特殊關節，需重新計算約束。<br/><br/>特殊情況的考慮</p>
 <p>如果機構有冗餘約束（例如某些連桿的運動被重複限制），Grübler 公式可能給出不正確的自由度（例如負值或零），這表示機構可能過約束或需要特殊分析。</p>
 <p>對於五連桿機構，若結構為閉環且無冗餘約束，自由度通常為 2，這與實際應用（如繪圖機或機械手臂）一致。</p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>AI_plotter</h2>
+<p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</p>
+<h2>AI_plotter</h2>
 <p><img alt="" height="259" src="/images/plotter_dimension_design.png" width="300"/></p>
 <p>已知一個平面五連桿繪圖機購得兩個馬達的中心座標位於 (0,0), (200,0), 四根連桿長度皆為 160mm, 若 plotter 繪圖的座標點為 (x,y), (0,0) 位置上的馬達其轉角從正向 X 軸起算, 以逆時針方向為正, 其轉動角度為 t1, 而(200,0) 位置上的馬達其轉角也是從正向 X 軸起算, 也是以逆時針方向為正, 其轉動角度為 t2, 請利用 Python sympy 推導出以 x, y 為輸入變數, 求四組 t1 與 t2 作為輸出的逆向運動方程式。</p>
 <p><a href="/downloads/plotter_sympy_inverse_kinematics.py">plotter_sympy_inverse_kinematics.py</a></p>
 <p><a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a></p>
 <p><img caption="false" height="233" src="/images/plotter_in_onshape.png" width="300"/></p>
-<p>link1 tip center: -24.436, 158.123, 9<br/>pen center: 96.762, 262.578, -3<br/>link3 tip center: 218.635, 158.911, 15<br/>right motor center: 200, 0, 15<br/>left motor center: 0,0,0</p>
+<p>link1 tip center: -24.436, 158.123, 9 (模型放大兩倍，並轉為 m (-0.048872, 0.316246))<br/>pen center: 96.762, 262.578, -3 (模型放大兩倍，並轉為 m，(0.193524, 0.525156))<br/>link3 tip center: 218.635, 158.911, 15 (模型放大兩倍，並轉為 m，(0.43727, 0.317822))<br/>right motor center: 200, 0, 15 (模型放大兩倍，並轉為 m，(0.4, 0))<br/>left motor center: 0,0,0</p>
+<p>Webots 場景檔案:</p>
+<p style="padding-left: 30px;"><a href="/downloads/plotter_onshape_w3.7z">plotter_onshape_w3.7z</a> (僅轉入馬達基座與左側 link1)</p>
+<p style="padding-left: 30px;"><a href="/downloads/plotter_onshape_w4.7z">plotter_onshape_w4.7z</a> (僅轉入馬達基座、左側link1 與 link2)</p>
 <p>採 matplotlib 模擬四種掃掠 20cmx20cm 正方形邊長的逆向運動學 Solutions:</p>
 <p><a href="/downloads/cad_demo_sym_formulation.py">cad_demo_sym_formulation.py</a></p>
 <p><a href="/downloads/cad_demo_check_sym_sol.py">cad_demo_check_sym_sol.py</a></p>
@@ -147,7 +185,86 @@ def t2_sol4(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 + 800*x**3 - 
 <p style="padding-left: 30px;">Plotter 到達點 (200, 230) 時的 t1 與 t2 角度（degree）:<br/><br/>JSolution 3 <span>(同上列 math 格式 Solution 4)</span>:</p>
 <p style="padding-left: 30px;">t1 = 66.72°</p>
 <p style="padding-left: 30px;">t2 = 45.95°</p>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><h2>P_webots</h2>
+<p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</p>
+<h2>P_onshape</h2>
+<p><img caption="false" height="234" src="/images/plotter_in_onshape.png" width="300"/></p>
+<p></p>
+<p><a href="/downloads/plotter_dimension_design_2.slvs">plotter_dimension_design_2.slvs</a></p>
+<p><a href="/downloads/webots_plotter_sympy.py">webots_plotter_sympy.py</a></p>
+<p><a href="/downloads/webots_verification.py">webots_verification.py</a></p>
+<p><img alt="" height="400" src="/images/webots_plotter_sympy.gif" width="400"/></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">import cmath
+import math
+
+# Solution 3:
+def t1_sol3(x, y):
+    rad = 2.0 * cmath.atan(
+        (1280.0 * y + cmath.sqrt(
+            -4000000.0 * x**4
+            - 3200000.0 * x**3
+            - 8000000.0 * x**2 * y**2
+            - 4000000.0 * x**2 * y
+            + 178400.0 * x**2
+            - 3200000.0 * x * y**2
+            - 1600000.0 * x * y
+            + 327360.0 * x
+            - 4000000.0 * y**4
+            - 4000000.0 * y**3
+            - 181600.0 * y**2
+            + 409200.0 * y
+            + 125911.0
+        ) + 320.0) / (
+            2000.0 * x**2 + 2080.0 * x + 2000.0 * y**2 + 1000.0 * y + 461.0
+        )
+    )
+    return math.degrees(rad.real)
+
+def t2_sol3(x, y):
+    rad = 2.0 * cmath.atan(
+        (1280.0 * y - cmath.sqrt(
+            -4000000.0 * x**4
+            + 3200000.0 * x**3
+            - 8000000.0 * x**2 * y**2
+            - 4000000.0 * x**2 * y
+            + 178400.0 * x**2
+            + 3200000.0 * x * y**2
+            + 1600000.0 * x * y
+            - 327360.0 * x
+            - 4000000.0 * y**4
+            - 4000000.0 * y**3
+            - 181600.0 * y**2
+            + 409200.0 * y
+            + 125911.0
+        ) + 320.0) / (
+            2000.0 * x**2 + 480.0 * x + 2000.0 * y**2 + 1000.0 * y - 51.0
+        )
+    )
+    return math.degrees(rad.real)
+
+# 測試
+print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
+</pre>
+<p><span>利用右上方最遠的繪圖點進行上列 Solution 3 方程式查驗:</span></p>
+<p><span><a href="/downloads/plotter_dimension_design_2.slvs">plotter_dimension_design_2.slvs</a></span></p>
+<p><span><a href="/downloads/webots_ik_right_top_corner.py">webots_ik_right_top_corner.py</a> 執行控制後機構模擬如下，之後可以修改此一程式透過 t1_ik(x, y) 與 t2_ik(x, y) 求得 plotter 繪圖點座標設置為繪圖區各點時的 t1 與 t2 馬達旋轉角度，其量測參考線為馬達右側的水平線作為起點，且逆時針方向為正。</span></p>
+<p><span>plotter 零組件轉檔、 Webots 場景與控制器程式: <a href="/downloads/plotter_onshape_w5.7z">plotter_onshape_w5.7z</a>，請各組根據此參考資料，嘗試讓 plotter 可以在繪圖區 (目前為 0.4mx0.4m) 繪製任何線架構圖形。隨後可進一步加入提筆機構，並考量若進行實作原型時，該如何從 Webcam 取得的相片圖檔，轉換為可讓 plotter 繪製的線段圖形。</span></p>
+<p><span><img alt="" height="297" src="/images/webots_ik_right_top_corner.py.png" width="300"/></span></p>
+<hr/>
+<p><span><a href="/downloads/webots_check_sol3.py">webots_check_sol3.py</a></span></p>
+<p><span>pythonw.exe -u "webots_check_sol3.py"<br/>--- Solution 3 at P(0.2, 0.185) ---<br/>t1 (Radians): (1.221335238965607+0j)<br/>t2 (Radians): (0.7473365120313953+0j)<br/>------------------------------------------<br/>t1 (Degrees): 69.9774 degrees<br/>t2 (Degrees): 42.8192 degrees</span></p>
+<p><span><img caption="false" height="254" src="/images/webots_check_sol3.png" width="300"/></span></p>
+<h2>P_webots</h2>
+<p>Webots 場景中的 hingejoint 是以機構的初始角度作為 0 度。</p>
+<p>轉入 Webots 的 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 其機構初始設置為:</p>
+<p><img alt="" height="300" src="/images/webots_plotter_initial_conf.png" width="300"/></p>
+<p>若以逆時針轉角為正， t1 必須反轉 8.78 度才能達到垂直的位置，而 t2 則必須正轉 6.69 度才能達到垂直的位置。</p>
+<p>若兩個馬達都以水平線作為 0 度，則處了考慮從垂直角度位置，還必須逆轉 90 度才能到達水平的零點轉角位置。</p>
+<p>此一角度座標定義，可以利用 <a href="/downloads/webots_plotter_zero_degree.py">webots_plotter_zero_degree.py</a> 控制程式，讓兩個馬達的轉角設置在水平位置。</p>
+<p><img alt="" height="265" src="/images/webots_plotter_zeor_degree.png" width="300"/></p>
+<p><a href="/downloads/plotter_onshape_w4.7z">plotter_onshape_w4.7z</a></p>
+<hr/>
 <p>兩種建立剛體的方法 url 給定 OBJ 或 STL 檔案所在相對位置:</p>
 <p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/reference/solid">Solid</a> - <a href="https://cyberbotics.com/doc/reference/shape">Shape</a> - <a href="https://cyberbotics.com/doc/reference/mesh">Mesh</a> - url</p>
 <p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/reference/cadshape">CadShape</a> - url</p>
@@ -155,12 +272,135 @@ def t2_sol4(x, y): return 2 * cmath.atan((320*y - cmath.sqrt(-x**4 + 800*x**3 - 
 <p style="padding-left: 30px;">boundingObject USE shape</p>
 <p><a href="https://cyberbotics.com/doc/reference/solidreference">SolidReference</a> 設定於 link3 端點，且參照 link4_solid，表示第四旋轉軸既位於 link3，同時也必須位於 link4，讓 Webots 透過此一 closed chain 約束條件，於系統方程式運算時，能夠模擬封閉連桿機構的運動。</p>
 <p><img alt="" height="253" src="/images/plotter_project_SolidReference.png" width="300"/></p>
-<p>從 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 以 <a href="https://en.wikipedia.org/wiki/STL_(file_format)">STL</a> 格式轉出後，利用 <a href="/downloads/plotter_onshape/cad/split_stl_to_obj_scale2_w_mtl.py">split_stl_to_obj_scale2_w_mtl.py</a>，以兩倍原始尺寸分割零件為 <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">OBJ</a> 格式後，轉進 Webots 建立第一階段的模擬場景: 僅 link1 轉動: <a href="/downloads/plotter_onshape_link1.7z">plotter_onshape_link1.7z</a></p><h1>Openduck</h1>
+<p>從 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 以 <a href="https://en.wikipedia.org/wiki/STL_(file_format)">STL</a> 格式轉出後，利用 <a href="/downloads/plotter_onshape/cad/split_stl_to_obj_scale2_w_mtl.py">split_stl_to_obj_scale2_w_mtl.py</a>，以兩倍原始尺寸分割零件為 <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">OBJ</a> 格式後，轉進 Webots 建立第一階段的模擬場景: 僅 link1 轉動: <a href="/downloads/plotter_onshape_link1.7z">plotter_onshape_link1.7z</a></p>
+<h1>Openduck</h1>
 <p><a href="https://github.com/apirrone/Open_Duck_Mini">Open Duck Mini</a> 是一款模組化、開源的雙足仿生機器人平台，專為教育與研究設計，具備高自由度與低成本特性。</p>
 <p><img caption="false" height="298" src="/images/openduck_mini.png" width="200"/></p>
+<p><a href="https://cad.onshape.com/documents/26c83cdd49510fc094b845a1/w/1f0ebd66fbcba930fc39351f/e/98c9ea7ad6f244e859d1e24a">Openduck in Onshape</a></p>
+<p><a href="https://github.com/apirrone/Open_Duck_reference_motion_generator">https://github.com/apirrone/Open_Duck_reference_motion_generator</a> </p>
+<p><a href="https://github.com/mdecycu/Open_Duck_Blender">https://github.com/mdecycu/Open_Duck_Blender</a> </p>
+<p><a href="/downloads/openduck_frame.7z">openduck_frame.7z</a> (parasolid in NX2312)</p>
+<p>Openduck in Solvespace:</p>
+<p><img alt="" height="184" src="/images/openduck_in_solvespace.png" width="300"/></p>
+<p>Inverse Kinematic Solutions: </p>
+<p style="padding-left: 30px;"><a href="https://github.com/rpiRobotics/ik-geo">https://github.com/rpiRobotics/ik-geo</a> </p>
+<p style="padding-left: 30px;"><a href="https://pypi.org/project/ik-geo/">https://pypi.org/project/ik-geo/</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/weigao95/yaik">https://github.com/weigao95/yaik</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/rpiRobotics/rpi_general_robotics_toolbox_py">https://github.com/rpiRobotics/rpi_general_robotics_toolbox_py</a> </p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0094114X25000606">IK-Geo: Unified robot inverse kinematics using subproblem decomposition</a></p>
+<ol>
+<li>IK‑Geo 是一個針對 6 自由度全旋轉關節機器人（6R manipulator） 的逆運動學解法，採用「子問題分解法（subproblem decomposition）」的方式，把整個 IK 問題拆成六種幾何子問題（如圓與點、兩圓之交、圓與平面、圓與球、三圓交、四圓交）來逐步求解。</li>
+<li>對於某些特定的機構構型（例如有三個交會或平行軸線的 6R 機構），它能用閉式（closed-form）方式解出所有解，而無需數值搜尋。其他構型則可能退化為對一或兩個關節角做 1D 或 2D 搜索。</li>
+<li>作者宣稱對於許多常見工業 6R機器人（例如 UR5 等），IK-Geo 的速度能比 IKFast 快 40 倍以上。</li>
+<li>IK-Geo 也具備處理奇異情況的能力（比如在解不存在時提供最小平方近似解或連續近似解）以增加解題穩健性。</li>
+<li>實作上，IK-Geo 提供 MATLAB、C++、Rust、Python 等多語言版本，並附有測試範例與效能比較。</li>
+<li>IK-Geo 的主要特點是其採用幾何分解，加上部分搜尋混合的策略，以在效率與泛用性之間取得不錯的折衷。</li>
+</ol>
+<p>其他參考資料: <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=11122599">Automatic Geometric Decomposition for Analytical Inverse Kinematics</a></p>
+<hr/>
 <p>設計規格：</p>
 <ol>
 <li>使用 12 顆 <a href="https://www.feetechrc.com/74v-19-kgcm-plastic-case-metal-tooth-magnetic-code-double-axis-ttl-series-steering-gear.html">FeeTech STS3215</a> 伺服馬達（7.4V，19kg·cm 扭矩）+ 2 顆 <a href="https://www.amazon.com/dp/B0FJQZSFMS">Miuzei 9g 輔助伺服</a>，實現 14 個自由度（雙足腿部 10 DOF，頭頸 4 DOF），支援穩定步態、轉向與精確感測定位。</li>
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
 </ol>
+<h1>Webots</h1>
+<p>如何將 MCAD(Mechanical Computer Aided Design) 組立檔案轉為 Webots 場景 .wbt</p>
+<h4>URDF(Unified Robot Description Format):</h4>
+<p style="padding-left: 30px;"><a href="https://wiki.ros.org/urdf/XML">https://wiki.ros.org/urdf/XML</a> </p>
+<p>將 <a href="https://github.com/Rhoban/onshape-to-robot">https://github.com/Rhoban/onshape-to-robot</a> 改寫為 NX-to-robot</p>
+<h4>Converter:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/scripts/converter">https://github.com/cyberbotics/webots/tree/master/scripts/converter</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/urdf2webots">https://github.com/cyberbotics/urdf2webots</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/tree/master/resources/osm_importer">https://github.com/cyberbotics/webots/tree/master/resources/osm_importer</a> </p>
+<p style="padding-left: 30px;"><a href="https://suke.uclalemur.org/pcbot/lab2/webots_import/">https://suke.uclalemur.org/pcbot/lab2/webots_import/</a> </p>
+<h4>PR:</h4>
+<p style="padding-left: 30px;"><a href="https://github.com/cyberbotics/webots/pull/1419">Mesh node</a></p>
+<p>利用 <a href="https://mermaid.js.org/">https://mermaid.js.org/</a> 建立 Webots 場景節點流程圖:</p>
+<p><a href="/downloads/link0.html">link0.html</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="mermaid"&gt;
+flowchart TD
+    %% link0
+    subgraph L0[link0]
+    direction TB
+
+    %% 頂層節點, Plotter 為物件名稱, 中括號內為內置字串
+    Plotter[Robot]
+
+    %% 三個主要分支
+    Plotter --&gt; Robot物理節點[physics]
+    Robot物理節點 --&gt; 物理節點[NULL]
+
+    Plotter --&gt; Robot_boundingObject[boundingObject]
+    Robot_boundingObject --&gt; UseLink0[NULL]
+
+    Plotter --&gt; Children[children]
+    Children --&gt; DefLink0[DEF Link_0 Shape]
+    Children --&gt; HingeJoint[HingeJoint]  
+    DefLink0 -.-&gt;UseLink0
+
+    HingeJoint --&gt; Devices[devices]
+    Devices --&gt; Motor[RotationalMotor&lt;br/&gt;name: 'motor0']
+
+    HingeJoint --&gt; JointParams[jointparameters]
+    JointParams --&gt; HingeParams[HingeJointParameters]
+
+    HingeJoint --&gt; EndPoint[endPoint]
+    EndPoint --&gt; Solid[DEF link1 Solid]
+
+    %% 新增三個節點並連接 Solid
+    Solid --&gt; Physics2[physics]
+    Solid --&gt; Bounding2[boundingobject]
+    Solid --&gt; Children2[children]
+    end
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h2>Mermaid</h2>
+<p>將 gist 上的 mermaid 流程圖顯示在頁面:</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script type="module"&gt;// &lt;![CDATA[
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+async function loadMermaidFromGist() {
+  const res = await fetch('https://gist.githubusercontent.com/mdecycu/ca89be74dfb4daec472df7c31cc935fb/raw/7fa1c03f621614134842daf17647f0a86ff581b7/cad1');
+  const code = await res.text();
+
+  const container = document.getElementById('cad1');
+  container.className = 'mermaid';        // apply mermaid styling
+  container.textContent = code;           // insert Mermaid diagram code as text
+
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: false });
+  mermaid.init(undefined, container);     // render only this container
+}
+
+loadMermaidFromGist();
+// ]]&gt;&lt;/script&gt;</pre>
+<div id="cad1"></div>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+async function loadMermaidFromGist() {
+  const res = await fetch('https://gist.githubusercontent.com/mdecycu/ca89be74dfb4daec472df7c31cc935fb/raw/7fa1c03f621614134842daf17647f0a86ff581b7/cad1');
+  const code = await res.text();
+
+  const container = document.getElementById('cad1');
+  container.className = 'mermaid';        // apply mermaid styling
+  container.textContent = code;           // insert Mermaid diagram code as text
+
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: false });
+  mermaid.init(undefined, container);     // render only this container
+}
+
+loadMermaidFromGist();
+</script>

@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Reading.html'>Reading</a><li><a href='CAD.html'>CAD</a><li><a href='Design.html'>Design</a><li class='has-children'><a href='Plotter.html'>Plotter</a><ul class='dropdown'><li><a href='自由度.html'>自由度</a><li><a href='AI_plotter.html'>AI_plotter</a><li><a href='P_webots.html'>P_webots</a></li></ul><li><a href='Openduck.html'>Openduck</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Reading.html'>Reading</a><li><a href='CAD.html'>CAD</a><li><a href='Design.html'>Design</a><li class='has-children'><a href='Plotter.html'>Plotter</a><ul class='dropdown'><li><a href='自由度.html'>自由度</a><li><a href='AI_plotter.html'>AI_plotter</a><li><a href='P_onshape.html'>P_onshape</a><li><a href='P_webots.html'>P_webots</a></li></ul><li><a href='Openduck.html'>Openduck</a><li class='has-children'><a href='Webots.html'>Webots</a><ul class='dropdown'><li><a href='Mermaid.html'>Mermaid</a></li>
                       </ul>
                 </nav>
               </div>
@@ -144,6 +144,16 @@ img.add_border {
         </header>
     <div id="tipue_search_content">CAD << <a href='CAD.html'>Previous</a> <a href='Plotter.html'>Next</a> >> Plotter<br /><h1>Design</h1>
 <h4>Math</h4>
+<p>利用基因演算法解決機械設計問題:</p>
+<p style="padding-left: 30px;">Length = 20</p>
+<p style="padding-left: 30px;">平面五連桿 Plotter 設計目標是針對一組 Length cm×Length cm 的繪圖區域，尋找並最佳化五連桿機構中的三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>    馬達間距 (LENGTH): 兩側連桿（L1 和 L4）的固定轉軸中心必須保持 Length cm 的水平間距。<br/><br/>    繪圖區域 (W×H): 機構必須能覆蓋一個 Length cm 寬度 (W) 和 Length cm 高度 (H) 的完整矩形區域。<br/><br/>    對稱性要求: 機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)<br/><br/>設計應追求連桿總尺寸的最小化。優化目標 J 定義為：<br/>最小化 J=1.0⋅L1+1.0⋅L2+0.5⋅distance<br/><br/>（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）<br/><br/>三、運動學與工程約束 (Constraints)<br/><br/>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>1. 可達性與外側奇異點迴避 (L1+L2 約束)<br/><br/>連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點（即 X=Length,Y=distance+Length）處所需的最大距離 Dmax。<br/><br/>這項約束保證了筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點，即 A,B,C 共線）導致的鎖死。<br/><br/>2. 繪圖區域穩定性 (內側奇異點迴避)<br/><br/>連桿 L2 的兩倍長度 (2⋅L2) 必須大於筆尖 C 點在整個 Length cm×Length cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br/><br/>更重要的是，為了考慮實際製造公差和控制誤差，必須強制加入 1.0 cm 的安全裕度 (Δ)：<br/>2⋅L2&gt;Max(DBD)Area+1.0 cm<br/><br/>這項約束保證了筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點，即 B,C,D 共線）導致的控制失效。<br/><br/>3. 轉軸方向約束 (Y 座標約束)<br/><br/>在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。<br/><br/>這確保了機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
+<p style="padding-left: 30px;"><a href="./../downloads/redesign_ga1.py">redesign_ga1.py</a></p>
+<p style="padding-left: 30px;"><a href="./../downloads/redesign_ga1.slvs">redesign_ga1.slvs</a></p>
+<p style="padding-left: 30px;">【基因演算法最終最小化尺寸設計結果】<br/>找到**滿足約束且最小化尺寸**的設計（總尺寸 J ≈ 59.44 cm）:<br/>L1 (Link 1 &amp; 4) = 21.79 cm<br/>L2 (Link 2 &amp; 3) = 26.70 cm<br/>Distance (Y-bottom) = 21.89 cm<br/><br/>--- 最終設計驗證 ---<br/>1. 最遠點奇異點約束 (L1+L2 &gt; D_max): 48.50 &gt; 46.42 (滿足)<br/>2. 繪圖區域穩定性 (2*L2 &gt; Max(D_BD) + 1.0cm):<br/>   2*L2 = 53.40 cm<br/>   Max(D_BD) + 1.0 cm = 51.60 + 1.00 = 52.60 cm<br/>   **裕度滿足 (2*L2 僅略大於所需值，實現最小化)**<br/>3. Y 座標約束 (Y_B, Y_D &gt;= 0): 在逆運動學中已確保 (滿足)</p>
+<hr/>
+<p style="padding-left: 30px;">最小尺寸設計如下:</p>
+<p style="padding-left: 30px;">【基因演算法最終最小化尺寸設計結果】<br/>找到**滿足約束且最小化尺寸**的設計（總尺寸 J ≈ 54.97 cm）:<br/>L1 (Link 1 &amp; 4) = 20.00 cm<br/>L2 (Link 2 &amp; 3) = 25.44 cm<br/>Distance (Y-bottom) = 19.04 cm<br/><br/>--- 最終設計驗證 ---<br/>1. 最遠點奇異點約束 (L1+L2 &gt; D_max): 45.45 &gt; 43.87 (滿足)<br/>2. 繪圖區域穩定性 (2*L2 &gt; Max(D_BD) + 1.0cm):<br/>   2*L2 = 50.89 cm<br/>   Max(D_BD) + 1.0 cm = 49.63 + 1.00 = 50.63 cm<br/>   **裕度滿足 (2*L2 僅略大於所需值，實現最小化)**<br/>3. Y 座標約束 (Y_B, Y_D &gt;= 0): 在逆運動學中已確保 (滿足)</p>
+<hr/>
 <p>利用 Python + Sympy 解數學相關題目:</p>
 <p style="padding-left: 30px;"><a href="./../downloads/taming math and physics using sympy.pdf">taming math and physics using sympy.pdf</a></p>
 <p style="padding-left: 30px;"><a href="./../downloads/sympy_documentation.pdf">sympy_documentation.pdf</a></p>
