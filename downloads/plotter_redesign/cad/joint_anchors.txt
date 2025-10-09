@@ -1,0 +1,3 @@
+(0,20) joint2 anchor
+(25.31, 29.40) joint3 anchor
+(39.03, 6.15) joint4 anchor

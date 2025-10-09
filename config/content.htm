@@ -76,7 +76,7 @@
 <p style="padding-left: 30px;">計算「平面五連桿機構（Five-bar linkage）」的自由度（Degrees of Freedom, DOF）可以使用「Gruebler-Kutzbach 方程式」來處理。</p>
 <p style="padding-left: 30px;">平面機構的自由度 = 3(包含地面的構件數 - 1) - 2(有一個自由度的接頭數) - 有兩個自由度的接頭數</p>
 <p style="padding-left: 30px;">因此平面五連桿的自由度 = 3(5-1) - 2(5) - 0 = 2，因此設計中的 Plotter 有兩個自由度。</p>
-<p>以下設計會讓 BCD 在繪圖範圍成為直線 (singularity)，因此修改設計需求如下，並轉而改用基因演算法進行尺寸設計:</p>
+<p>以下使用基因演算法進行尺寸設計:</p>
 <p>五連桿機構設計最佳化：最小化連桿尺寸<br/><br/>本設計的目標是針對一組 20 cm × 20 cm 的繪圖區域，尋找並最佳化三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>A. 待最佳化設計變數：<br/>1. L1：主連桿/驅動連桿長度（L1 = L4）。<br/>2. L2：副連桿長度（L2 = L3）。<br/>3. distance：機構底部距離（定義馬達中心連線到繪圖區域底邊的垂直距離）。<br/><br/>B. 固定參數：<br/>1. 馬達間距 (LENGTH)：兩側連桿（L1 和 L4）的固定轉軸中心必須保持 20 cm 的水平間距。<br/>2. 繪圖區域 (W×H)：機構必須能覆蓋一個 20 cm 寬度和 20 cm 高度的完整矩形區域。<br/>3. 對稱性要求：機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)</p>
 <p style="padding-left: 30px;">設計應追求連桿總尺寸的最小化。優化目標 J 定義為：</p>
 <p style="padding-left: 30px;">最小化 J = 1.0 * L1 + 1.0 * L2 + 0.5 * distance</p>
@@ -91,28 +91,23 @@
 <p style="padding-left: 30px;">在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。</p>
 <p style="padding-left: 30px;">目的：確保機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
 <p style="padding-left: 30px;">約束式：YB &gt;= 0 且 YD &gt;= 0</p>
+<p><a href="/downloads/redesign_ga1.py">redesign_ga1.py</a></p>
+<p>選用下列設計:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置, 其轉動角度以逆時針為正, 轉角設為 t1, 且從其右邊的水平線算起<br/>E 點座標 (20, 0) 為右邊馬達位置, 其轉動角度也是以逆時針為正, 轉角設為 t2, 也是從其右邊的水平線算起<br/>AB 為 link1 長度為 20, BC 為 link2 長度為 27, CD 為 link3 長度為 27, DE 為 link4 長度為 20, C 點為 plotter 擺放位置<br/>請利用數值方法推導 def t1(cx, cy) 以及 t2(cx, cy), 其中 cx 為 plotter C 點的 x 座標, 而 cy 則為 plotter C點的 y 座標</p>
 <hr/>
-<p>Plotter 尺寸設計:</p>
-<p style="padding-left: 30px;">假設左側的馬達中心座標為 (0, 0), 若希望右側的馬達與左側馬達保持水平位置，則右側馬達的座標可設為 (x1, 0), x1 為第一個系統的設計參數。 </p>
-<p style="padding-left: 30px;">若希望繪圖區 20cmx20cm 正方形的下方距離馬達 30mm，則繪圖區的左下角點座標為 (0, 30)， 而右下角點座標則為 (200, 30)， 左上角點的座標為 (0, 230)，右上角點的座標為 (200, 230)。</p>
-<p style="padding-left: 30px;">因此從左側馬達中心點到繪圖區右上角點的距離為: \[\sqrt{(200^2 + 230^2)}\] = 304.7950</p>
-<p style="padding-left: 30px;">若採四個連桿長度都相同的設計，單一桿長的兩倍必須大於 304.7950</p>
-<p style="padding-left: 30px;">以下尋找桿長的設計上限:</p>
-<p style="padding-left: 60px;">針對希望繪圖區域為 20cmx20cm 的平面五軸 plotter，初步設計內容如下，試問已知兩倍連桿長度必須大於 304.795, 請問能不能針對合理設計找出兩倍連桿長度必須小於多少的約束條件? 假設左側的馬達中心座標為 (0, 0), 若希望右側的馬達與左側馬達保持水平位置，則右側馬達的座標可設為 (x1, 0), x1 為第一個系統的設計參數。 </p>
-<p style="padding-left: 60px;">若希望繪圖區 20cmx20cm 正方形的下方距離馬達 30mm，則繪圖區的左下角點座標為 (0, 30)， 而右下角點座標則為 (200, 30)， 左上角點的座標為 (0, 230)，右上角點的座標為 (200, 230)。<br/>因此從左側馬達中心點到繪圖區右上角點的距離為: \[\sqrt{(200^2 + 230^2)}\]</p>
-<p style="padding-left: 30px;">針對 \(x\_1 = 200\) mm（左右馬達水平間距）來計算這個五軸平面機構的連桿長度範圍。<br/><br/>一、 左馬達到繪圖區右上角的距離（已知）：<br/><br/>\[<br/>L_{\text{left→RU}} = \sqrt{200^2 + 230^2} = \sqrt{40000 + 52900} = \sqrt{92900} \approx \boxed{304.80 \text{ mm}}<br/>\]<br/><br/><br/>二、右馬達到繪圖區左上角 \((0, 230)\) 的距離：<br/><br/>這是對稱點，對應右馬達控制的最遠點：<br/><br/>\[<br/>L_{\text{right→LU}} = \sqrt{(200)^2 + (230)^2} = \sqrt{92900} \approx \boxed{304.80 \text{ mm}}<br/>\]<br/><br/>因為 \(x_1 = 200\)，所以左右兩馬達的極限距離對稱<br/><br/><br/>所以，兩倍連桿長度的下限為：<br/><br/>\[<br/>\boxed{2L_{\text{min}} &gt; 304.80 \text{ mm}}<br/>\]<br/><br/>三、上限推導：<br/><br/>雖然理論上兩連桿長度可以非常長，但為了避免結構不穩、精度低落、繪圖區域外擴太多，我們以合理幾何極限來限制上限。<br/><br/>最大極限是：<br/><br/>當筆頭落在兩馬達直線中點的正上方（最大高度），也就是在 \((100, y)\)，最高為繪圖區頂端 \(y = 230\)，此時：<br/><br/>\[<br/>L_{\text{center}} = \sqrt{(100)^2 + (230)^2} = \sqrt{10000 + 52900} = \sqrt{62900} \approx \boxed{250.80 \text{ mm}}<br/>\]<br/><br/>所以每支連桿最大約需 250.80 mm，即：<br/><br/>\[<br/>\boxed{2L_{\text{max}} \le 501.60 \text{ mm}}<br/>\]<br/><br/>最終結果（針對 \(x_1 = 200\) mm）：<br/><br/>\[<br/>\boxed{<br/>\text{合理的兩倍連桿長度範圍為：} \quad<br/>\boxed{<br/>304.80 &lt; 2L \le 501.60 \text{ mm}<br/>}<br/>}<br/>\]<br/><br/><br/>建議設計值：<br/><br/>接下來選擇 2L 稍微大於 305 mm，並保留些許餘裕（比如 310\(~\)350 mm）以兼顧活動性與結構穩定性。<br/><br/>例如：<br/><br/>連桿長度 \(L = 160\) mm → 2L = 320 mm <br/>連桿長度 \(L = 175\) mm → 2L = 350 mm <br/><br/>如此 Plotter 不僅可完整覆蓋繪圖區，又不會讓連桿過長造成搖晃或干涉。<br/><br/></p>
-<p style="padding-left: 30px;">設計考量:</p>
-<p style="padding-left: 30px;"><span style="background-color: #ccffcc;">連桿長度</span>考量:</p>
-<p style="padding-left: 60px;">連桿過長會造成機構搖晃、擺動放大<br/><br/>輕微的驅動誤差或彎曲都會被放大，導致筆尖失準<br/><br/>選擇 \(2L \le 350\) mm 能兼顧結構剛性與控制穩定性，因為精簡的設計原則是希望連桿盡可能短而剛性強，只要能覆蓋工作區即可。</p>
-<p style="padding-left: 30px;">其次考慮<span style="background-color: #ccffcc;">角度靈活性</span>（Joint Angle Flexibility）</p>
-<p style="padding-left: 60px;">在過短的 \(2L\) 情況下，某些筆尖位置需要讓兩個關節角度幾乎伸直或壓扁，會造成奇異點問題（singularity)，控制算法難以計算，且反應變慢、系統容易不穩定。<br/><br/>適度延長 \(2L\) 讓關節角度變化更自然、更靈活，例如筆尖在中間時，兩支連桿不是筆直對拉，而有良好的角度展開。</p>
-<p style="padding-left: 30px;">針對<span style="background-color: #ccffcc;">控制精度</span>（Resolution）的考量:</p>
-<p style="padding-left: 60px;">以五軸機構而言，連桿越長時，角度一點點改變就會讓筆尖移動很大距離，如此將會造成繪圖解析度下降（resolution drop）。<br/><br/>若 \(2L\) 尺寸選擇遠大於繪圖區，筆尖移動時會有過度放大現象。<br/><br/>因此控制在 \(2L = 310\sim350\) mm 可維持一個平衡的解析度。</p>
-<p style="padding-left: 30px;">針對<span style="background-color: #ccffcc;">物理尺寸與成本</span>（Practicality）的考量:</p>
-<p style="padding-left: 60px;">太長的連桿會導致整機體積變大，同時讓連桿本體與承載結構變重、造價也會提高。<br/><br/>因此兩倍連桿的長度設計選擇接近下限、但略微加大其尺寸範圍（如 310–350 mm）最符合成本效益與設計效率。</p>
-<p>以上考量 Plotter 尺寸設計採連桿長度 160mm 配置如下 (BCD 在繪圖區域中會形成 singularity):</p>
-<p><img alt="" height="259" src="/images/plotter_dimension_design.png" width="300"/></p>
-<p><a href="/downloads/plotter_dimension_design.slvs">plotter_dimension_design.slvs</a></p>
+<p><a href="/downloads/redesign.slvs">redesign.slvs</a></p>
+<p><a href="/downloads/redesign.py">redesign.py</a></p>
+<p><a href="/downloads/verify_20_40.py">verify_20_40.py</a></p>
+<p><a href="/downloads/redesign.7z">redesign.7z</a></p>
+<p><a href="/downloads/redesign_simulation.py">redesign_simulation.py</a></p>
+<p><a href="/downloads/plotter_redesign.7z">plotter_redesign.7z</a> (含初步 Webots 場景)</p>
+<p>修正起始角度的 Webots 場景: <a href="/downloads/plotter_redesign_w6.7z">plotter_redesign_w6.7z</a></p>
+<p>Prompt:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置, 其轉動角度以逆時針為正, 轉角設為 t1, 且從其右邊的水平線算起<br/>E 點座標 (0.2, 0) 為右邊馬達位置, 其轉動角度也是以逆時針為正, 轉角設為 t2, 也是從其右邊的水平線算起<br/>AB 為 link1 長度為 0.2, BC 為 link2 長度為 027, CD 為 link3 長度為 0.27, DE 為 link4 長度為 0.2, C 點為 plotter 擺放位置<br/>請利用 sympy 方法推導 def t1(cx, cy) 以及 t2(cx, cy), 其中 cx 為 plotter C 點的 x 座標, 而 cy 則為 plotter C點的 y 座標<br/><br/>最後結果請給出四種 solutions 的 python function 格式</p>
+<p><img caption="false" height="272" src="/images/redesign1.png" width="300"/></p>
+<p><img alt="" height="282" src="/images/redesign2.png" width="300"/></p>
+<p><img alt="" height="225" src="/images/5bar_animation.gif" width="300"/></p>
+<p><img alt="" height="287" src="/images/redesign_plotter.png" width="300"/></p>
 <p>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 </p><h2>自由度</h2>
