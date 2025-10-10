@@ -102,7 +102,7 @@
 <p><a href="/downloads/redesign_simulation.py">redesign_simulation.py</a></p>
 <p><a href="/downloads/plotter_redesign.7z">plotter_redesign.7z</a> (含初步 Webots 場景)</p>
 <p>修正起始角度的 Webots 場景: <a href="/downloads/plotter_redesign_w6.7z">plotter_redesign_w6.7z</a></p>
-<p>影像辨識與繪圖: <a href="/downloads/plotter_redesign_w7.7z">plotter_redesign_w7.7z</a></p>
+<p>利用影像辨識導引繪圖: <a href="/downloads/plotter_redesign_w7.7z">plotter_redesign_w7.7z</a></p>
 <p>Prompt:</p>
 <p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置, 其轉動角度以逆時針為正, 轉角設為 t1, 且從其右邊的水平線算起<br/>E 點座標 (0.2, 0) 為右邊馬達位置, 其轉動角度也是以逆時針為正, 轉角設為 t2, 也是從其右邊的水平線算起<br/>AB 為 link1 長度為 0.2, BC 為 link2 長度為 027, CD 為 link3 長度為 0.27, DE 為 link4 長度為 0.2, C 點為 plotter 擺放位置<br/>請利用 sympy 方法推導 def t1(cx, cy) 以及 t2(cx, cy), 其中 cx 為 plotter C 點的 x 座標, 而 cy 則為 plotter C點的 y 座標<br/><br/>最後結果請給出四種 solutions 的 python function 格式</p>
 <p><img caption="false" height="272" src="/images/redesign1.png" width="300"/></p>
@@ -274,7 +274,25 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <h2>P_Control</h2>
 <p>Arduino <a href="https://wokwi.com/projects/366115111171985409">control two stepper motors</a></p>
 <p><a href="https://swf.com.tw/?p=1188">使用Python的pySerial模組進行序列通訊：連接電腦與Arduino和MicroPython</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/interfacing-webots-to-third-party-software-with-tcp-ip">Interfacing Webots through TCP/IP</a></p><h1>Openduck</h1>
+<p><a href="https://cyberbotics.com/doc/guide/interfacing-webots-to-third-party-software-with-tcp-ip">Interfacing Webots through TCP/IP</a></p>
+<h2>P_BOM</h2>
+<p>以下的 5 bar planar plotter 設計尺寸為 cm，希望自行以 3D 列印零件，請針對此機電設計提供詳細的所有零組件 BOM，其中包括規格以及說明採用原因，並且列出在台灣採購的單價:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置，其轉動角度以逆時針為正，轉角設為 t1，且從其右邊的水平線算起，E 點座標 (20, 0) 為右邊馬達位置，其轉動角度也是以逆時針為正，轉角設為 t2，也是從其右邊的水平線算起，AB 為 link1 長度為 20，BC 為 link2 長度為 27，CD 為 link3 長度為 27，DE 為 link4 長度為 20，C 點為 plotter 擺放位置。<br/>請利用數值方法推導 def t1(cx, cy) 以及 t2(cx, cy)，其中 cx 為 plotter C 點的 x 座標，而 cy 則為 plotter C點的 y 座標。</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">項目	零件名稱       	規格/建議型號                       	數量  	預計單價（TWD）	單項總價（TWD）	採購來源（台灣）                 	採用原因                        
+1   	步進馬達       	NEMA 17 (1.8°, 42BYGHW208)        	2     	300            	600            	樂積木、露天拍賣、Maker stores   	廣泛使用於 CNC/3D Printer，具備良好扭力
+2   	馬達驅動板     	A4988 / TMC2208                   	2     	75             	150            	樂積木、蝦皮、露天拍賣           	控制步進馬達；TMC 較安靜              
+3   	控制板         	Arduino Uno / Mega               	1     	375            	375            	樂積木、蝦皮                     	易用、資源多                      
+4   	板材（底座）    	雷射切割壓克力 / 木板（20x30cm）    	1     	150            	150            	DIY材料行                        	承載整個結構                      
+5   	3D 列印連桿    	長度 20cm / 27cm（自製）             	4     	40             	160            	自行列印                         	根據連桿尺寸製作，輕巧                 
+6   	銀球軸承       	8mm 內徑（608ZZ）                  	6     	25             	150            	蝦皮                             	降低摩擦，增加穩定性                  
+7   	M3 螺絲/螺帽組 	M3x20mm、M3x30mm                 	1     	50             	50             	蝦皮                             	組裝連桿與軸承                     
+8   	筆夾模組       	3D列印零件 + 彈簧結構                 	1     	20             	20             	自製                             	夾住筆尖，配合 Z 軸上下壓力             
+9   	電源模組       	12V 3A DC Adapter                	1     	200            	200            	樂積木 / 淘寶                    	供電給馬達及控制板                   
+10  	限位開關       	機械型 Endstop                    	3     	25             	75             	樂積木                           	做原點校準                       
+
+總計									                                1930
+</pre>
+<p></p><h1>Openduck</h1>
 <p><a href="https://github.com/apirrone/Open_Duck_Mini">Open Duck Mini</a> 是一款模組化、開源的雙足仿生機器人平台，專為教育與研究設計，具備高自由度與低成本特性。</p>
 <p><img caption="false" height="298" src="/images/openduck_mini.png" width="200"/></p>
 <p><a href="https://cad.onshape.com/documents/26c83cdd49510fc094b845a1/w/1f0ebd66fbcba930fc39351f/e/98c9ea7ad6f244e859d1e24a">Openduck in Onshape</a></p>
@@ -305,7 +323,8 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
 </ol>
-<h1>Webots</h1>
+<h2>O_BOM</h2>
+<p>請針對自組一隻 <a href="https://github.com/apirrone/Open_Duck_Mini">https://github.com/apirrone/Open_Duck_Mini</a> 所需要的詳細機電零組件 BOM, 其中包括零件名稱，規格，數列，單價，單項總價, 台灣採購來源, 採用原因等欄位, 最後一列再列出整體總價。</p><h1>Webots</h1>
 <p>如何將 MCAD(Mechanical Computer Aided Design) 組立檔案轉為 Webots 場景 .wbt</p>
 <h4>URDF(Unified Robot Description Format):</h4>
 <p style="padding-left: 30px;"><a href="https://wiki.ros.org/urdf/XML">https://wiki.ros.org/urdf/XML</a> </p>
