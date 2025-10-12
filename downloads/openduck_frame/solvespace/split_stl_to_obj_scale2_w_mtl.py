@@ -216,7 +216,7 @@ class STLConverter:
 # 直接轉換指定的 STL 檔案
 try:
     # 指定要轉換的 STL 檔案名稱和縮放比例
-    stl_file = "openduck_assembly.stl"
+    stl_file = "openduck_assembly2.stl"
     scale = 0.001  #convert to m
 
     # 創建轉換器實例並執行轉換
