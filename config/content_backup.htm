@@ -325,7 +325,51 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <li>使用 12 顆 <a href="https://www.feetechrc.com/74v-19-kgcm-plastic-case-metal-tooth-magnetic-code-double-axis-ttl-series-steering-gear.html">FeeTech STS3215</a> 伺服馬達（7.4V，19kg·cm 扭矩）+ 2 顆 <a href="https://www.amazon.com/dp/B0FJQZSFMS">Miuzei 9g 輔助伺服</a>，實現 14 個自由度（雙足腿部 10 DOF，頭頸 4 DOF），支援穩定步態、轉向與精確感測定位。</li>
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
-</ol><h2>O_BOM</h2>
+</ol><h2>O_Analysis</h2>
+<p>OpenDuck Mini 的單腿結構（5DoF）</p>
+<p style="padding-left: 30px;">Hip Yaw（髖部水平旋轉）- link1 長度即馬達旋轉中心至馬達底部的長度 0.03472m</p>
+<p style="padding-left: 30px;">Hip Roll（髖部側擺）- link2 長度 0.06234m</p>
+<p style="padding-left: 30px;">Hip Pitch（髖部前後擺）- link3 長度 0.07827m</p>
+<p style="padding-left: 30px;">Knee Pitch（膝關節）- link4 長度 0.07827m</p>
+<p style="padding-left: 30px;">Ankle Pitch（腳踝前後擺）- link5 長度 0.03132m</p>
+<p style="padding-left: 30px;">Base -- Hip Yaw (rot_z) -- Hip Roll (rot_y) -- Hip Pitch (rot_x) -- Knee Pitch (rot_x) -- Ankle Pitch (rot_x) -- Foot (end-effector)</p>
+<p>使用 <a href="https://github.com/Phylliade/ikpy">ikpy</a> 進行逆運動學運算:</p>
+<p style="padding-left: 30px;">導入必要的類別 (Chain, URDFLink, numpy)。</p>
+<p style="padding-left: 30px;">定義機器人的幾何結構，創建一個 Chain 對象。</p>
+<p style="padding-left: 30px;">定義目標位置或姿態 (target_position 或 target_frame)。</p>
+<p style="padding-left: 30px;">呼叫 chain.inverse_kinematics() 即可獲得所需的關節角度。</p>
+<p><a href="/downloads/openduck_frame/solvespace/openduck_ikpy1.py">openduck_ikpy1.py</a> (未移除警告) <a href="/downloads/openduck_frame/solvespace/openduck_ikpy2.py">openduck_ikpy2.py</a> (已移除警告)</p>
+<p>Inverse Kinematics 程式將末端執行器移動到，以第一旋轉軸中心為座標原點的目標相對位置 [0.05,0.02,−0.15] (米)。</p>
+<p>冗餘度： 在這個特定的目標位置下，<a href="https://github.com/Phylliade/ikpy">ikpy</a> 求解器將大多數的工作分配給了 hip_yaw 和 hip_roll 兩個關節，而</p>
+<p>hip_pitch、knee_pitch 和 ankle_pitch 三個俯仰角（理論上用來控制腿部彎曲和長度的主關節）都保持在它們的初始位置 0 rad。</p>
+<p>表示此目標位置僅靠髖關節的平移旋轉就能達到。</p>
+<p><a href="https://github.com/Phylliade/ikpy">ikpy</a> 的預設求解器 (基於梯度下降) 傾向於選擇最接近初始位置的解，由於您設置的初始位置都是 0 rad，因此它選擇了俯仰角接近 0 的解。</p>
+<p>關節名稱    角度（弧度）    角度（約略）    備註<br/>hip_yaw    0.3805 rad    ≈21.8∘    髖關節偏航角<br/>hip_roll    −0.2837 rad    ≈−16.3∘    髖關節滾轉角<br/>hip_pitch    0.0000 rad    0∘    髖關節俯仰角<br/>knee_pitch    0.0000 rad    0∘    膝關節俯仰角<br/>ankle_pitch    0.0000 rad    0∘    踝關節俯仰角</p>
+<hr/>
+<p>一、步調類型（Gait Type）選擇：</p>
+<p style="padding-left: 30px;">步調類別：</p>
+<p style="padding-left: 30px;">ZMP-based gait（零力矩點）：適合穩定行走</p>
+<p style="padding-left: 30px;">CPG（Central Pattern Generator）：模仿生物神經節律</p>
+<p style="padding-left: 30px;">步態庫（Gait Library）：預定義步態參數</p>
+<p>二、步態參數（Gait Parameters）包括：</p>
+<p style="padding-left: 30px;">步長（Step Length）</p>
+<p style="padding-left: 30px;">步高（Step Height）</p>
+<p style="padding-left: 30px;">步頻（Step Frequency）</p>
+<p style="padding-left: 30px;">支撐相時間（Support phase time）</p>
+<p style="padding-left: 30px;">擺動相時間（Swing phase time）</p>
+<p>三、設定流程：</p>
+<p style="padding-left: 30px;">設計足端軌跡（在空間中畫出足的移動路徑）</p>
+<p style="padding-left: 60px;">採用拋物線形或貝茲曲線軌跡</p>
+<p style="padding-left: 60px;">在某個時間內足端從 A 點擺到 B 點</p>
+<p style="padding-left: 30px;">對每個時間點做 IK 求 joint angles</p>
+<p style="padding-left: 30px;">依據時間產生 joint command (例如 100Hz 控制迴圈，每 10ms 更新一次關節角度)</p>
+<p>步驟:</p>
+<p style="padding-left: 30px;">建立單腿的 D-H 參數模型</p>
+<p style="padding-left: 30px;">寫出 forward kinematics</p>
+<p style="padding-left: 30px;">用 symbolic 解反向運動學（或用數值法）</p>
+<p style="padding-left: 30px;">設計簡單的 foot trajectory（比如步高 5cm，步長 10cm）</p>
+<p style="padding-left: 30px;">實作 gait scheduler：分成支撐相與擺動相</p>
+<p style="padding-left: 30px;">讓雙腿交錯控制（左腳擺動時右腳支撐）</p><h2>O_BOM</h2>
 <p>請針對自組一隻 <a href="https://github.com/apirrone/Open_Duck_Mini">https://github.com/apirrone/Open_Duck_Mini</a> 所需要的詳細機電零組件 BOM, 其中包括零件名稱，規格，數列，單價，單項總價, 台灣採購來源, 採用原因等欄位, 最後一列再列出整體總價。</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">序號	類別		零件名稱		規格 / 型號 / 備註					數量	單價(TWD)	小計(TWD)	採購來源				採用理由
 1	控制		Raspberry Pi Zero 2W	1GHz CPU / WiFi / BT / GPIO			1	467		467		樂積木、台灣 Maker 通路	輕巧嵌入式 Linux 控制核心
@@ -347,8 +391,8 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 17	外觀		裝飾殼件		3D列印或壓克力蓋板					若干	100		100		自印/壓克力材料行			外觀美化/防塵
 
 總計												-	-		16,317		-
-</pre>
-<h2>O_IK</h2>
+</pre><h2>O_IK</h2>
+<p><a href="https://github.com/Phylliade/ikpy">https://github.com/Phylliade/ikpy</a> </p>
 <p><a href="https://la.disneyresearch.com/wp-content/uploads/BD_X_paper.pdf">https://la.disneyresearch.com/wp-content/uploads/BD_X_paper.pdf</a> </p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7_LW7u-nk6Q?si=7Sne6ywiFFDxFQNx" title="YouTube video player" width="560"></iframe></p>
 <p><a href="https://github.com/pollen-robotics/Open_Duck_Blender">https://github.com/pollen-robotics/Open_Duck_Blender</a></p>
