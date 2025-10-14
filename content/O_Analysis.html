@@ -143,6 +143,7 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">Openduck << <a href='Openduck.html'>Previous</a> <a href='O_BOM.html'>Next</a> >> O_BOM<br /><h1>O_Analysis</h1>
+<p><img alt="" height="263" src="./../images/openduck_link_dimension.png" width="300"/></p>
 <p>OpenDuck Mini 的單腿結構（5DoF）</p>
 <p style="padding-left: 30px;">Hip Yaw（髖部水平旋轉）- link1 長度即馬達旋轉中心至馬達底部的長度 0.03472m</p>
 <p style="padding-left: 30px;">Hip Roll（髖部側擺）- link2 長度 0.06234m</p>
@@ -161,8 +162,15 @@ img.add_border {
 <p><a href="https://github.com/Phylliade/ikpy">ikpy</a> 的預設求解器 (基於梯度下降) 傾向於選擇最接近初始位置的解，由於您設置的初始位置都是 0 rad，因此它選擇了俯仰角接近 0 的解。</p>
 <p>關節名稱    角度（弧度）    角度（約略）    備註<br/>hip_yaw    0.3805 rad    ≈21.8∘    髖關節偏航角<br/>hip_roll    −0.2837 rad    ≈−16.3∘    髖關節滾轉角<br/>hip_pitch    0.0000 rad    0∘    髖關節俯仰角<br/>knee_pitch    0.0000 rad    0∘    膝關節俯仰角<br/>ankle_pitch    0.0000 rad    0∘    踝關節俯仰角</p>
 <hr/>
-<p>一、步調類型（Gait Type）選擇：</p>
-<p style="padding-left: 30px;">步調類別：</p>
+<p>步態的角色： 步態 (Gait) 是一個動態、有時間序列的運動過程。它定義了 Openduck 如何按順序移動其雙足，其中涉及：</p>
+<ol>
+<li>足端軌跡 (Foot Trajectory)： 腳尖在空中和地面上移動的路徑（通常是週期性的曲線，如正弦曲線或圓弧）。</li>
+<li>相位 (Phase)： 哪一條腿什麼時候在空中 (Swing Phase)，什麼時候在地上 (Stance Phase)。</li>
+<li>穩定性 (Stability)： 確保機器人的質心 (Center of Mass, CoM) 始終落在支撐多邊形內（靜態穩定性）或在動態上穩定。</li>
+</ol>
+<hr/>
+<p>一、步態類型（Gait Type）選擇：</p>
+<p style="padding-left: 30px;">步態類別：</p>
 <p style="padding-left: 30px;">ZMP-based gait（零力矩點）：適合穩定行走</p>
 <p style="padding-left: 30px;">CPG（Central Pattern Generator）：模仿生物神經節律</p>
 <p style="padding-left: 30px;">步態庫（Gait Library）：預定義步態參數</p>
@@ -184,7 +192,13 @@ img.add_border {
 <p style="padding-left: 30px;">用 symbolic 解反向運動學（或用數值法）</p>
 <p style="padding-left: 30px;">設計簡單的 foot trajectory（比如步高 5cm，步長 10cm）</p>
 <p style="padding-left: 30px;">實作 gait scheduler：分成支撐相與擺動相</p>
-<p style="padding-left: 30px;">讓雙腿交錯控制（左腳擺動時右腳支撐）</p><br />Openduck << <a href='Openduck.html'>Previous</a> <a href='O_BOM.html'>Next</a> >> O_BOM</div>
+<p style="padding-left: 30px;">讓雙腿交錯控制（左腳擺動時右腳支撐）</p>
+<p>步態規劃:</p>
+<p style="padding-left: 30px;"><a href="https://github.com/ami-iit/bipedal-locomotion-framework">https://github.com/ami-iit/bipedal-locomotion-framework</a> </p>
+<p style="padding-left: 30px;">若希望 Webots 結合上列 BLF 框架，在 Windows 環境中可以使用 conda 指令安裝:</p>
+<p style="padding-left: 30px;">conda install conda-forge::bipedal-locomotion-framework-python</p>
+<p style="padding-left: 30px;">提問: Webots 模擬環境如何與 Bipedal Locomotion Framework (BLF, 即 bipedal‑locomotion‑framework) 結合應用?</p>
+<p style="padding-left: 30px;">提問: 假如採用 https://github.com/aidudezzz/deepbots 與 webots 對 openduck 進行步態規劃學習, 該如何進行? </p><br />Openduck << <a href='Openduck.html'>Previous</a> <a href='O_BOM.html'>Next</a> >> O_BOM</div>
         
     <!-- footer -->
       <div class="container">

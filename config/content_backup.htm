@@ -340,14 +340,19 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p style="padding-left: 30px;">呼叫 chain.inverse_kinematics() 即可獲得所需的關節角度。</p>
 <p><a href="/downloads/openduck_frame/solvespace/openduck_ikpy1.py">openduck_ikpy1.py</a> (未移除警告) <a href="/downloads/openduck_frame/solvespace/openduck_ikpy2.py">openduck_ikpy2.py</a> (已移除警告)</p>
 <p>Inverse Kinematics 程式將末端執行器移動到，以第一旋轉軸中心為座標原點的目標相對位置 [0.05,0.02,−0.15] (米)。</p>
-<p>冗餘度： 在這個特定的目標位置下，<a href="https://github.com/Phylliade/ikpy">ikpy</a> 求解器將大多數的工作分配給了 hip_yaw 和 hip_roll 兩個關節，而</p>
-<p>hip_pitch、knee_pitch 和 ankle_pitch 三個俯仰角（理論上用來控制腿部彎曲和長度的主關節）都保持在它們的初始位置 0 rad。</p>
-<p>表示此目標位置僅靠髖關節的平移旋轉就能達到。</p>
+<p>冗餘度： 在這個特定的目標位置下，ikpy 求解器將大多數的工作分配給了 hip_yaw 和 hip_roll 兩個關節，而 hip_pitch、knee_pitch 和 ankle_pitch 三個俯仰角（理論上用來控制腿部彎曲和長度的主關節）都保持在它們的初始位置 0 rad。表示此目標位置僅靠髖關節的平移旋轉就能達到。</p>
 <p><a href="https://github.com/Phylliade/ikpy">ikpy</a> 的預設求解器 (基於梯度下降) 傾向於選擇最接近初始位置的解，由於您設置的初始位置都是 0 rad，因此它選擇了俯仰角接近 0 的解。</p>
 <p>關節名稱    角度（弧度）    角度（約略）    備註<br/>hip_yaw    0.3805 rad    ≈21.8∘    髖關節偏航角<br/>hip_roll    −0.2837 rad    ≈−16.3∘    髖關節滾轉角<br/>hip_pitch    0.0000 rad    0∘    髖關節俯仰角<br/>knee_pitch    0.0000 rad    0∘    膝關節俯仰角<br/>ankle_pitch    0.0000 rad    0∘    踝關節俯仰角</p>
 <hr/>
-<p>一、步調類型（Gait Type）選擇：</p>
-<p style="padding-left: 30px;">步調類別：</p>
+<p>步態的角色： 步態 (Gait) 是一個動態、有時間序列的運動過程。它定義了 Openduck 如何按順序移動其雙足，其中涉及：</p>
+<ol>
+<li>足端軌跡 (Foot Trajectory)： 腳尖在空中和地面上移動的路徑（通常是週期性的曲線，如正弦曲線或圓弧）。</li>
+<li>相位 (Phase)： 哪一條腿什麼時候在空中 (Swing Phase)，什麼時候在地上 (Stance Phase)。</li>
+<li>穩定性 (Stability)： 確保機器人的質心 (Center of Mass, CoM) 始終落在支撐多邊形內（靜態穩定性）或在動態上穩定。</li>
+</ol>
+<hr/>
+<p>一、步態類型（Gait Type）選擇：</p>
+<p style="padding-left: 30px;">步態類別：</p>
 <p style="padding-left: 30px;">ZMP-based gait（零力矩點）：適合穩定行走</p>
 <p style="padding-left: 30px;">CPG（Central Pattern Generator）：模仿生物神經節律</p>
 <p style="padding-left: 30px;">步態庫（Gait Library）：預定義步態參數</p>
@@ -369,7 +374,13 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p style="padding-left: 30px;">用 symbolic 解反向運動學（或用數值法）</p>
 <p style="padding-left: 30px;">設計簡單的 foot trajectory（比如步高 5cm，步長 10cm）</p>
 <p style="padding-left: 30px;">實作 gait scheduler：分成支撐相與擺動相</p>
-<p style="padding-left: 30px;">讓雙腿交錯控制（左腳擺動時右腳支撐）</p><h2>O_BOM</h2>
+<p style="padding-left: 30px;">讓雙腿交錯控制（左腳擺動時右腳支撐）</p>
+<p>步態規劃:</p>
+<p style="padding-left: 30px;"><a href="https://github.com/ami-iit/bipedal-locomotion-framework">https://github.com/ami-iit/bipedal-locomotion-framework</a> </p>
+<p style="padding-left: 30px;">若希望 Webots 結合上列 BLF 框架，在 Windows 環境中可以使用 conda 指令安裝:</p>
+<p style="padding-left: 30px;">conda install conda-forge::bipedal-locomotion-framework-python</p>
+<p style="padding-left: 30px;">提問: Webots 模擬環境如何與 Bipedal Locomotion Framework (BLF, 即 bipedal‑locomotion‑framework) 結合應用?</p>
+<p style="padding-left: 30px;">提問: 假如採用 https://github.com/aidudezzz/deepbots 與 webots 對 openduck 進行步態規劃學習, 該如何進行? </p><h2>O_BOM</h2>
 <p>請針對自組一隻 <a href="https://github.com/apirrone/Open_Duck_Mini">https://github.com/apirrone/Open_Duck_Mini</a> 所需要的詳細機電零組件 BOM, 其中包括零件名稱，規格，數列，單價，單項總價, 台灣採購來源, 採用原因等欄位, 最後一列再列出整體總價。</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">序號	類別		零件名稱		規格 / 型號 / 備註					數量	單價(TWD)	小計(TWD)	採購來源				採用理由
 1	控制		Raspberry Pi Zero 2W	1GHz CPU / WiFi / BT / GPIO			1	467		467		樂積木、台灣 Maker 通路	輕巧嵌入式 Linux 控制核心
