@@ -101,10 +101,16 @@
 <p><a href="/downloads/redesign.7z">redesign.7z</a></p>
 <p><a href="/downloads/redesign_simulation.py">redesign_simulation.py</a></p>
 <p><a href="/downloads/plotter_redesign.7z">plotter_redesign.7z</a> (含初步 Webots 場景)</p>
+<p>修正起始角度的 Webots 場景: <a href="/downloads/plotter_redesign_w6.7z">plotter_redesign_w6.7z</a></p>
+<p>利用影像辨識導引繪圖: <a href="/downloads/plotter_redesign_w7.7z">plotter_redesign_w7.7z</a></p>
+<p>Prompt:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置, 其轉動角度以逆時針為正, 轉角設為 t1, 且從其右邊的水平線算起<br/>E 點座標 (0.2, 0) 為右邊馬達位置, 其轉動角度也是以逆時針為正, 轉角設為 t2, 也是從其右邊的水平線算起<br/>AB 為 link1 長度為 0.2, BC 為 link2 長度為 027, CD 為 link3 長度為 0.27, DE 為 link4 長度為 0.2, C 點為 plotter 擺放位置<br/>請利用 sympy 方法推導 def t1(cx, cy) 以及 t2(cx, cy), 其中 cx 為 plotter C 點的 x 座標, 而 cy 則為 plotter C點的 y 座標<br/><br/>最後結果請給出四種 solutions 的 python function 格式</p>
 <p><img caption="false" height="272" src="/images/redesign1.png" width="300"/></p>
 <p><img alt="" height="282" src="/images/redesign2.png" width="300"/></p>
 <p><img alt="" height="225" src="/images/5bar_animation.gif" width="300"/></p>
 <p><img alt="" height="287" src="/images/redesign_plotter.png" width="300"/></p>
+<p><img alt="" height="271" src="/images/plotter_redesign_draw_circle.gif" width="300"/></p>
+<p><img alt="" height="271" src="/images/plotter_redesign_draw_apple.gif" width="300"/></p>
 <p>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 </p><h2>自由度</h2>
@@ -265,7 +271,28 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p><a href="https://cyberbotics.com/doc/reference/solidreference">SolidReference</a> 設定於 link3 端點，且參照 link4_solid，表示第四旋轉軸既位於 link3，同時也必須位於 link4，讓 Webots 透過此一 closed chain 約束條件，於系統方程式運算時，能夠模擬封閉連桿機構的運動。</p>
 <p><img alt="" height="253" src="/images/plotter_project_SolidReference.png" width="300"/></p>
 <p>從 <a href="https://cad.onshape.com/documents/9ebaa0fe12e0330fda26ad1a/w/7f1387b419b76633fa18bb67/e/0f3404b1684ff733f4127c25?renderMode=0&amp;uiState=68d292d7dfd536c40bf38d8d">Plotter in Onshape</a> 以 <a href="https://en.wikipedia.org/wiki/STL_(file_format)">STL</a> 格式轉出後，利用 <a href="/downloads/plotter_onshape/cad/split_stl_to_obj_scale2_w_mtl.py">split_stl_to_obj_scale2_w_mtl.py</a>，以兩倍原始尺寸分割零件為 <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">OBJ</a> 格式後，轉進 Webots 建立第一階段的模擬場景: 僅 link1 轉動: <a href="/downloads/plotter_onshape_link1.7z">plotter_onshape_link1.7z</a></p>
-<h1>Openduck</h1>
+<h2>P_Control</h2>
+<p>Arduino <a href="https://wokwi.com/projects/366115111171985409">control two stepper motors</a></p>
+<p><a href="https://swf.com.tw/?p=1188">使用Python的pySerial模組進行序列通訊：連接電腦與Arduino和MicroPython</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/interfacing-webots-to-third-party-software-with-tcp-ip">Interfacing Webots through TCP/IP</a></p>
+<h2>P_BOM</h2>
+<p>以下的 5 bar planar plotter 設計尺寸為 cm，希望自行以 3D 列印零件，請針對此機電設計提供詳細的所有零組件 BOM，其中包括規格以及說明採用原因，並且列出在台灣採購的單價:</p>
+<p style="padding-left: 30px;">A 點座標 (0, 0) 為 5-bar planar plotter 的左邊馬達位置，其轉動角度以逆時針為正，轉角設為 t1，且從其右邊的水平線算起，E 點座標 (20, 0) 為右邊馬達位置，其轉動角度也是以逆時針為正，轉角設為 t2，也是從其右邊的水平線算起，AB 為 link1 長度為 20，BC 為 link2 長度為 27，CD 為 link3 長度為 27，DE 為 link4 長度為 20，C 點為 plotter 擺放位置。<br/>請利用數值方法推導 def t1(cx, cy) 以及 t2(cx, cy)，其中 cx 為 plotter C 點的 x 座標，而 cy 則為 plotter C點的 y 座標。</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">項目	零件名稱       	規格/建議型號                       	數量  	預計單價（TWD）	單項總價（TWD）	採購來源（台灣）                 	採用原因                        
+1   	步進馬達       	NEMA 17 (1.8°, 42BYGHW208)        	2     	300            	600            	樂積木、露天拍賣、Maker stores   	廣泛使用於 CNC/3D Printer，具備良好扭力
+2   	馬達驅動板     	A4988 / TMC2208                   	2     	75             	150            	樂積木、蝦皮、露天拍賣           	控制步進馬達；TMC 較安靜              
+3   	控制板         	Arduino Uno / Mega               	1     	375            	375            	樂積木、蝦皮                     	易用、資源多                      
+4   	板材（底座）    	雷射切割壓克力 / 木板（20x30cm）    	1     	150            	150            	DIY材料行                        	承載整個結構                      
+5   	3D 列印連桿    	長度 20cm / 27cm（自製）             	4     	40             	160            	自行列印                         	根據連桿尺寸製作，輕巧                 
+6   	銀球軸承       	8mm 內徑（608ZZ）                  	6     	25             	150            	蝦皮                             	降低摩擦，增加穩定性                  
+7   	M3 螺絲/螺帽組 	M3x20mm、M3x30mm                 	1     	50             	50             	蝦皮                             	組裝連桿與軸承                     
+8   	筆夾模組       	3D列印零件 + 彈簧結構                 	1     	20             	20             	自製                             	夾住筆尖，配合 Z 軸上下壓力             
+9   	電源模組       	12V 3A DC Adapter                	1     	200            	200            	樂積木 / 淘寶                    	供電給馬達及控制板                   
+10  	限位開關       	機械型 Endstop                    	3     	25             	75             	樂積木                           	做原點校準                       
+
+總計									                                1930
+</pre>
+<p></p><h1>Openduck</h1>
 <p><a href="https://github.com/apirrone/Open_Duck_Mini">Open Duck Mini</a> 是一款模組化、開源的雙足仿生機器人平台，專為教育與研究設計，具備高自由度與低成本特性。</p>
 <p><img caption="false" height="298" src="/images/openduck_mini.png" width="200"/></p>
 <p><a href="https://cad.onshape.com/documents/26c83cdd49510fc094b845a1/w/1f0ebd66fbcba930fc39351f/e/98c9ea7ad6f244e859d1e24a">Openduck in Onshape</a></p>
@@ -274,6 +301,9 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p><a href="/downloads/openduck_frame.7z">openduck_frame.7z</a> (parasolid in NX2312)</p>
 <p>Openduck in Solvespace:</p>
 <p><img alt="" height="184" src="/images/openduck_in_solvespace.png" width="300"/></p>
+<p><img alt="" height="210" src="/images/openduck_in_solvespace2.png" width="300"/></p>
+<p><a href="/downloads/openduck_in_solvespace.7z">openduck_in_solvespace.7z</a></p>
+<hr/>
 <p>Inverse Kinematic Solutions: </p>
 <p style="padding-left: 30px;"><a href="https://github.com/rpiRobotics/ik-geo">https://github.com/rpiRobotics/ik-geo</a> </p>
 <p style="padding-left: 30px;"><a href="https://pypi.org/project/ik-geo/">https://pypi.org/project/ik-geo/</a> </p>
@@ -295,8 +325,39 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <li>使用 12 顆 <a href="https://www.feetechrc.com/74v-19-kgcm-plastic-case-metal-tooth-magnetic-code-double-axis-ttl-series-steering-gear.html">FeeTech STS3215</a> 伺服馬達（7.4V，19kg·cm 扭矩）+ 2 顆 <a href="https://www.amazon.com/dp/B0FJQZSFMS">Miuzei 9g 輔助伺服</a>，實現 14 個自由度（雙足腿部 10 DOF，頭頸 4 DOF），支援穩定步態、轉向與精確感測定位。</li>
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
-</ol>
-<h1>Webots</h1>
+</ol><h2>O_BOM</h2>
+<p>請針對自組一隻 <a href="https://github.com/apirrone/Open_Duck_Mini">https://github.com/apirrone/Open_Duck_Mini</a> 所需要的詳細機電零組件 BOM, 其中包括零件名稱，規格，數列，單價，單項總價, 台灣採購來源, 採用原因等欄位, 最後一列再列出整體總價。</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">序號	類別		零件名稱		規格 / 型號 / 備註					數量	單價(TWD)	小計(TWD)	採購來源				採用理由
+1	控制		Raspberry Pi Zero 2W	1GHz CPU / WiFi / BT / GPIO			1	467		467		樂積木、台灣 Maker 通路	輕巧嵌入式 Linux 控制核心
+2	控制		MicroSD 卡		32 GB UHS-I (Class 10)				1	150		150		記憶卡通路				作業系統與資料儲存
+3	電源		鋰電池組		2S / 7.4V LiPo, ≥2000mAh				1	300		300		模型電池店、RC通路			機器人主要動力來源
+4	電源		保護板 / BMS		過充/過放/過流保護 2S					1	120		120		電子零件店				保護鋰電池安全運作
+5	電源		DC-DC 降壓模組		輸入 7.4V → 輸出 5V/3A				1	80		80		樂積木、蝦皮等				Raspberry Pi 電源穩壓
+6	驅動器		BAM 關節驅動器		Rhoban BAM mini 或同級（每關節一顆）	12	1200		14400		國外代理（Rhoban）			高整合度，適用於輕型機器人關節
+7	感測器		IMU 模組		MPU-9250 / BNO055 等 9軸模組			1	250		250		感測器通路、樂積木			測姿態與角度
+8	感測器		電流感測器		INA219 / ACS712 模組					2	80		160		電子零件通路				偵測耗電/異常動作
+9	感測器		限位開關		微型機械型，常閉					4	25		100		電子零件行				做歸零 / 原點偵測
+10	機構		3D 列印件		PLA（身體）、TPU（腳底）				1	300		300		自列或代印					機構主體、自定義設計
+11	機構		軸承			如 5×11×4mm（視設計）				10	30		300		五金行、蝦皮、軸承商			降低轉動摩擦、延長壽命
+12	機構		鋼軸 / 鉸軸		Φ3mm / Φ4mm 不鏽鋼或碳鋼軸			6	20		120		模型五金店					關節或連桿軸心用
+13	機構		螺絲螺帽		M2~M3 不等規格					1組	50		50		螺絲材料包、蝦皮				結構固定用
+14	連接		線材排線		杜邦線 / JST / AWG22-26				1組	100		100		電子材料行				訊號/電源連接
+15	選配		OLED 顯示模組		0.96 吋 I2C OLED					1	120		120		模組供應商				狀態顯示/除錯介面
+16	選配		無線模組		ESP32 / nRF24L01+ 模組				1	150		150		樂積木、模組商				遠端調試/無線通信
+17	外觀		裝飾殼件		3D列印或壓克力蓋板					若干	100		100		自印/壓克力材料行			外觀美化/防塵
+
+總計												-	-		16,317		-
+</pre>
+<h2>O_IK</h2>
+<p><a href="https://la.disneyresearch.com/wp-content/uploads/BD_X_paper.pdf">https://la.disneyresearch.com/wp-content/uploads/BD_X_paper.pdf</a> </p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7_LW7u-nk6Q?si=7Sne6ywiFFDxFQNx" title="YouTube video player" width="560"></iframe></p>
+<p><a href="https://github.com/pollen-robotics/Open_Duck_Blender">https://github.com/pollen-robotics/Open_Duck_Blender</a></p>
+<p><a href="https://la.disneyresearch.com/wp-content/uploads/Development-of-a-Bipedal-Robot-that-Walks-Like-an-Animation-Character-Paper.pdf">https://la.disneyresearch.com/wp-content/uploads/Development-of-a-Bipedal-Robot-that-Walks-Like-an-Animation-Character-Paper.pdf</a> </p>
+<p><span class="HzN33d" data-huuid="9348372231713830910"><span>5R robot foot inverse kinematics involves calculating the joint angles needed to place a robot's foot in a desired position and orientation, which is a complex problem solved through various methods like analytical solutions, geometric approaches, and computational algorithms.</span><span> </span></span></p>
+<p><span class="HzN33d" data-huuid="9348372231713829945"><span>These methods often involve using the robot's kinematic model, such as the<span> </span><span class="M5tQyf"><a class="DTlJ6d" data-hveid="CAMQAQ" href="https://www.google.com/search?cs=0&amp;sca_esv=cd21e55dc34b3a69&amp;q=Denavit-Hartenberg+%28D-H%29+model&amp;sa=X&amp;ved=2ahUKEwjqhc7QtKKQAxWeoK8BHYEnHsMQxccNegQIAxAB&amp;mstk=AUtExfA-AyyhAwbob41Al8HH44CzV__tU84HTYnOg6GOCdEHI3nhwoORDocTf-3ZWfM1qvHodqcYCc1IimqQPc-yEzqPXAMrvOghXHCZP3OoPGE0JatlZGMQfQIeLvwxW-5PeUqYzp-VADh5e2u6_Mflg6h3Dy5mwu_GbUhDKFnJGO-xqGJM-CvjEXz0EH_PzrTvxw36&amp;csui=3" jsname="TGaAqd">Denavit-Hartenberg (D-H) model</a>,</span><span> </span>to derive a system of equations that can then be solved for the joint angles.</span><span><span> </span></span></span><span class="HzN33d" data-huuid="9348372231713828980"><span>Advanced techniques like<span> </span><a class="DTlJ6d" data-hveid="CAoQAQ" href="https://www.google.com/search?cs=0&amp;sca_esv=cd21e55dc34b3a69&amp;q=screw+theory&amp;sa=X&amp;ved=2ahUKEwjqhc7QtKKQAxWeoK8BHYEnHsMQxccNegQIChAB&amp;mstk=AUtExfA-AyyhAwbob41Al8HH44CzV__tU84HTYnOg6GOCdEHI3nhwoORDocTf-3ZWfM1qvHodqcYCc1IimqQPc-yEzqPXAMrvOghXHCZP3OoPGE0JatlZGMQfQIeLvwxW-5PeUqYzp-VADh5e2u6_Mflg6h3Dy5mwu_GbUhDKFnJGO-xqGJM-CvjEXz0EH_PzrTvxw36&amp;csui=3" jsname="TGaAqd">screw theory</a><span> </span>or<span> </span><a class="DTlJ6d" data-hveid="CAoQAg" href="https://www.google.com/search?cs=0&amp;sca_esv=cd21e55dc34b3a69&amp;q=Gr%C3%B6bner+bases&amp;sa=X&amp;ved=2ahUKEwjqhc7QtKKQAxWeoK8BHYEnHsMQxccNegQIChAC&amp;mstk=AUtExfA-AyyhAwbob41Al8HH44CzV__tU84HTYnOg6GOCdEHI3nhwoORDocTf-3ZWfM1qvHodqcYCc1IimqQPc-yEzqPXAMrvOghXHCZP3OoPGE0JatlZGMQfQIeLvwxW-5PeUqYzp-VADh5e2u6_Mflg6h3Dy5mwu_GbUhDKFnJGO-xqGJM-CvjEXz0EH_PzrTvxw36&amp;csui=3" jsname="TGaAqd">Gröbner bases</a><span> </span>are used to handle complex robot configurations and provide efficient, accurate, and singularity-free solutions.</span><span class="pjBG2e" data-cid="455cfd6c-4809-4032-887c-deb0d38e057c" jsaction="rcuQ6b:npT2md" jscontroller="JHnpme"><span class="UV3uM"> </span></span></span></p>
+<p><span class="HzN33d" data-huuid="9348372231713828980"><span class="pjBG2e" data-cid="455cfd6c-4809-4032-887c-deb0d38e057c" jsaction="rcuQ6b:npT2md" jscontroller="JHnpme"><span class="UV3uM"><a href="https://github.com/rpiRobotics/ik-geo">https://github.com/rpiRobotics/ik-geo</a> </span></span></span></p>
+<p><span class="HzN33d" data-huuid="9348372231713828980"><span class="pjBG2e" data-cid="455cfd6c-4809-4032-887c-deb0d38e057c" jsaction="rcuQ6b:npT2md" jscontroller="JHnpme"><span class="UV3uM"><a href="https://alefram.github.io/posts/Basic-inverse-kinematics-in-Mujoco">https://alefram.github.io/posts/Basic-inverse-kinematics-in-Mujoco</a> </span></span></span></p>
+<p><span class="HzN33d" data-huuid="9348372231713828980"><span class="pjBG2e" data-cid="455cfd6c-4809-4032-887c-deb0d38e057c" jsaction="rcuQ6b:npT2md" jscontroller="JHnpme"><span class="UV3uM"><a href="https://github.com/petercorke/robotics-toolbox-python">https://github.com/petercorke/robotics-toolbox-python</a> </span></span></span></p><h1>Webots</h1>
 <p>如何將 MCAD(Mechanical Computer Aided Design) 組立檔案轉為 Webots 場景 .wbt</p>
 <h4>URDF(Unified Robot Description Format):</h4>
 <p style="padding-left: 30px;"><a href="https://wiki.ros.org/urdf/XML">https://wiki.ros.org/urdf/XML</a> </p>
