@@ -6,5 +6,4 @@ maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
 textFiles: 0 "../openduck_webots/controllers/openduck_controller/openduck_controller.py"
-globalOptionalRendering: CoordinateSystem
 consoles: Console:All:All
