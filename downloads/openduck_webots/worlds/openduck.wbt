@@ -1,0 +1,75 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.18767291944799647 -0.11741548280867384 0.975188432920875 1.8251106172924316
+  position 0.1315643522062065 -0.4490948083285811 0.3195496087323423
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  translation 0 0 0.21
+  children [
+    CadShape {
+      url [
+        "../openduck_in_solvespace/split_parts/part_1.obj"
+      ]
+    }
+    CadShape {
+      url [
+        "../openduck_in_solvespace/split_parts/part_5.obj"
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.07 0 0.05222
+      }
+      device [
+        RotationalMotor {
+          name "t1"
+        }
+      ]
+      endPoint Solid {
+        children [
+          CadShape {
+            url [
+              "../openduck_in_solvespace/split_parts/part_2.obj"
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0.07 -0.0145 0.0175
+            }
+            device [
+              RotationalMotor {
+                name "t2"
+              }
+            ]
+            endPoint Solid {
+              rotation 0 1 0 0
+              children [
+                CadShape {
+                  url [
+                    "../openduck_in_solvespace/split_parts/part_6.obj"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+  controller "openduck_controller"
+}
