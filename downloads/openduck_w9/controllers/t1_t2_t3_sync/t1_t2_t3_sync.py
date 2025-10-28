@@ -20,11 +20,13 @@ timestep = int(robot.getBasicTimeStep())
 t1 = robot.getDevice('t1')
 t2 = robot.getDevice('t2')
 t3 = robot.getDevice('t3')
+t4 = robot.getDevice('t4')
 
 # 取得對應的旋轉位置感測器（PositionSensor），用來讀取目前關節角度
 t1_sensor = robot.getDevice('t1_sensor')
 t2_sensor = robot.getDevice('t2_sensor')
 t3_sensor = robot.getDevice('t3_sensor')
+t4_sensor = robot.getDevice('t4_sensor')
 
 # 啟用位置感測器，並設定更新頻率與 timestep 同步
 # 這樣每一步 robot.step(timestep) 後，感測器才會更新數值
