@@ -1,0 +1,231 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        0.8
+      ]
+      bounce 0.1
+      maxContactJoints 100
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.19059620010547876 -0.026766798138636416 0.9813035346021931 3.688545314615114
+  position 0.30098426066055195 0.1353164419826722 0.3162451247996961
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  translation 0 0 0.21
+  children [
+    DEF central_body Solid {
+      children [
+        DEF central_body_shape Shape {
+          appearance Appearance {
+            material Material {
+            }
+          }
+          geometry Mesh {
+            url [
+              "../openduck_in_solvespace/split_parts/part_1.obj"
+            ]
+          }
+        }
+        DEF first_motor_shape Shape {
+          appearance Appearance {
+            material Material {
+            }
+          }
+          geometry Mesh {
+            url [
+              "../openduck_in_solvespace/split_parts/part_5.obj"
+            ]
+          }
+        }
+      ]
+      name "central_body"
+      boundingObject Group {
+        children [
+          Mesh {
+            url [
+              "../openduck_in_solvespace/split_parts/part_1.obj"
+            ]
+          }
+          Mesh {
+            url [
+              "../openduck_in_solvespace/split_parts/part_5.obj"
+            ]
+          }
+        ]
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.07 0 0.05222
+      }
+      device [
+        RotationalMotor {
+          name "t1"
+        }
+        PositionSensor {
+          name "t1_sensor"
+        }
+      ]
+      endPoint DEF second_motor Solid {
+        children [
+          DEF second_motor_shape Shape {
+            appearance Appearance {
+              material Material {
+              }
+            }
+            geometry Mesh {
+              url [
+                "../openduck_in_solvespace/split_parts/part_2.obj"
+              ]
+            }
+          }
+          DEF left_shoulder HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0.07 -0.0145 0.0175
+            }
+            device [
+              RotationalMotor {
+                name "t2"
+              }
+              PositionSensor {
+                name "t2_sensor"
+              }
+            ]
+            endPoint DEF left_shoulder Solid {
+              rotation 0 1 0 0
+              children [
+                DEF left_shoulder_shape Shape {
+                  appearance Appearance {
+                    material Material {
+                    }
+                  }
+                  geometry Mesh {
+                    url [
+                      "../openduck_in_solvespace/split_parts/part_6.obj"
+                    ]
+                  }
+                }
+                DEF third_motor_shape Shape {
+                  appearance Appearance {
+                    material Material {
+                    }
+                  }
+                  geometry Mesh {
+                    url [
+                      "../openduck_in_solvespace/split_parts/part_8.obj"
+                    ]
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0.15313 0.01464 0.01652
+                  }
+                  device [
+                    RotationalMotor {
+                      name "t3"
+                    }
+                    PositionSensor {
+                      name "t3_sensor"
+                    }
+                  ]
+                  endPoint DEF third_motor Solid {
+                    rotation 1 0 0 0
+                    children [
+                      DEF left_leg_1_shape Shape {
+                        appearance Appearance {
+                          material Material {
+                          }
+                        }
+                        geometry Mesh {
+                          url [
+                            "../openduck_in_solvespace/split_parts/part_10.obj"
+                          ]
+                        }
+                      }
+                      DEF left_leg_2_shape Shape {
+                        appearance Appearance {
+                          material Material {
+                          }
+                        }
+                        geometry Mesh {
+                          url [
+                            "../openduck_in_solvespace/split_parts/part_11.obj"
+                          ]
+                        }
+                      }
+                    ]
+                    boundingObject Group {
+                      children [
+                        Mesh {
+                          url [
+                            "../openduck_in_solvespace/split_parts/part_10.obj"
+                          ]
+                        }
+                        Mesh {
+                          url [
+                            "../openduck_in_solvespace/split_parts/part_11.obj"
+                          ]
+                        }
+                      ]
+                    }
+                    physics Physics {
+                    }
+                  }
+                }
+              ]
+              name "left_shoulder"
+              boundingObject Mesh {
+                url [
+                  "../openduck_in_solvespace/split_parts/part_6.obj"
+                ]
+              }
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "second_motor"
+        boundingObject Mesh {
+          url [
+            "../openduck_in_solvespace/split_parts/part_2.obj"
+          ]
+        }
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject Group {
+    children [
+      DEF central_body Mesh {
+        url [
+          "../openduck_in_solvespace/split_parts/part_1.obj"
+        ]
+      }
+      DEF first_motor Mesh {
+        url [
+          "../openduck_in_solvespace/split_parts/part_5.obj"
+        ]
+      }
+    ]
+  }
+  controller "t1_t2_t3_sync"
+  selfCollision TRUE
+}
