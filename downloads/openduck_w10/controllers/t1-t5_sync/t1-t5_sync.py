@@ -44,10 +44,10 @@ t5_sensor.enable(timestep)
 
 # 定義三個馬達的目標角度（單位：度）
 t1_degree = 0   # t1 要轉到 20 度
-t2_degree = 2   # t2 要轉到 20 度
+t2_degree = 0   # t2 要轉到 20 度
 t3_degree = 0  # t3 要轉到 60 度（您改為 60°）
-t4_degree = 20
-t5_degree = 0
+t4_degree = -40
+t5_degree = 40
 
 # 將「度」轉換為「弧度」（Webots 內部使用弧度）
 # 轉換公式：radians = degrees × π / 180
