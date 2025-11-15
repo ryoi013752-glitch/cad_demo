@@ -564,7 +564,25 @@ flowchart TD
   &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</pre><h2>Mermaid</h2>
+</pre><h2>啟動</h2>
+<p>啟動可攜程式環境過程，若希望同時啟動 Webots，可以整合下列批次指令:</p>
+<p>start_webots_streamming_and_www_server.bat</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">start webotsw.exe --stream
+timeout /t 5
+
+REM start：在新的視窗中啟動程式，不會讓目前的批次檔等待。
+REM webotsw.exe：啟動 Webots（Windows GUI 版）。
+REM --stream：啟動 Webots 的 streaming 伺服器，可以設法將模擬場景執行內容，顯示在近端或遠端瀏覽器中。
+REM timeout：批次檔暫停。
+REM /t 5：等待 5 秒，讓 Webots 有足夠時間啟動。
+
+start python %Disk%:\webots_streamming\web\python_www_server.py
+timeout /t 5
+
+REM 利用 python 啟動 www 伺服器接收來自 Webots 模擬場景的串流影像。
+</pre>
+<p><a href="/downloads/webots_streamming.7z">webots_streamming.7z</a></p>
+<p><a href="/downloads/openduck_w10.7z">openduck_w10.7z</a></p><h2>Mermaid</h2>
 <p>將 gist 上的 mermaid 流程圖顯示在頁面:</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script type="module"&gt;// &lt;![CDATA[
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
@@ -602,8 +620,7 @@ async function loadMermaidFromGist() {
 }
 
 loadMermaidFromGist();
-</script>
-<h2>Rocket</h2>
+</script><h2>Rocket</h2>
 <p></p>
 <p><a href="https://cyberbotics.com/doc/automobile/openstreetmap-importer?tab-os=windows#windows">osm importer</a> <a href="https://www.openstreetmap.org/export#map=16/22.18877/120.88494&amp;layers=P">OSM</a></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/rUb94MCggPg?si=J-Y-VZRHyNDAqyY8" title="YouTube video player" width="560"></iframe></p>

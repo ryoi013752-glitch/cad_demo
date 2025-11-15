@@ -1,5 +1,0 @@
-Every streaming port corresponding to different python_www_server.py
-
-webotsw --stream --port=1235 Y:\tmp\cad_demo\downloads\plotter_redesign\worlds\redesign_plotter_circle.wbt
-
-webotsw --stream --port=1234 Y:\tmp\cad_demo\downloads\plotter_redesign\worlds\redesign_plotter_apple.wbt
