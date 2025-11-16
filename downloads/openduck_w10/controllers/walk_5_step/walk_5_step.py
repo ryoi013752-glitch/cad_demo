@@ -52,14 +52,13 @@ last_com_time = 0.0
 # 【手動計算 CoM】零件質量與 DEF 名稱
 # ========================
 PART_MASSES = {
-    'torso': 5.0,
-    'head': 1.0,
-    'left_upper_leg': 1.5,
-    'left_lower_leg': 1.0,
-    'left_foot': 0.5,
-    'right_upper_leg': 1.5,
-    'right_lower_leg': 1.0,
-    'right_foot': 0.5,
+    'central_body': 5.0,
+    'second_motor': 1.5,
+    'left_shoulder': 1.0,
+    'left_leg1': 0.5,
+    'right_second_motor': 1.5,
+    'right_shoulder': 1.0,
+    'right_leg1': 0.5,
 }
 
 part_nodes = {}

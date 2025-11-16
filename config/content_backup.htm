@@ -331,7 +331,16 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <li>使用 12 顆 <a href="https://www.feetechrc.com/74v-19-kgcm-plastic-case-metal-tooth-magnetic-code-double-axis-ttl-series-steering-gear.html">FeeTech STS3215</a> 伺服馬達（7.4V，19kg·cm 扭矩）+ 2 顆 <a href="https://www.amazon.com/dp/B0FJQZSFMS">Miuzei 9g 輔助伺服</a>，實現 14 個自由度（雙足腿部 10 DOF，頭頸 4 DOF），支援穩定步態、轉向與精確感測定位。</li>
 <li>機身採用 3D 列印（PLA 機身硬性結構/TPU 腳底軟性結構），尺寸約 42cm 高，總重約 1.0–1.3kg。</li>
 <li>控制單元為 <a href="https://www.taiwaniot.com.tw/product/raspberry-pi-zero-wh/">Raspberry Pi Zero WH</a>，支援 Wi-Fi/Bluetooth 與模組化感測器擴充（如 IMU、攝影機）。電源為 7.4V 2S（2 顆 <a href="https://www.taiwaniot.com.tw/product/panasonic-ncr18650ga-3450mah/">18650 電池</a>），峰值電流 4–7A。提供 <a href="https://cad.onshape.com/documents/64074dfcfa379b37d8a47762/w/3650ab4221e215a4f65eb7fe/e/0505c262d882183a25049d05">CAD</a>、韌體與原始碼，採開放授權，零件公開取得，BOM 總成本約$400 美元。</li>
-</ol><h2>O_Analysis</h2>
+</ol><h2>O_Box</h2>
+<p>trunk 零件:</p>
+<p>底部: 0.108 x 0.038 x 0.007 - trunk_1</p>
+<p>中柱: 0.025 x 0.038 x 0.058 - trunk_2</p>
+<p>上板: 0.044 x 0.08 x 0.01 - trunk_3</p>
+<p>上左右直版: 0.0065 x 0.08 x  0.027 - trunk_4 and trunk_5</p>
+<p>motor 零件: 0.02472 x 0.04522 x 0.029</p>
+<p>roll_ro_pitch 零件: 0.08943 x 0.047 x 0.028 </p>
+<p>knee_to_ankle_sheet 零件: 0.04775 x x 0.028 x 0.06963 </p>
+<p>foot 零件: 0.09241 x 0.0469 x 0.04130</p><h2>O_Analysis</h2>
 <p><img alt="" height="263" src="/images/openduck_link_dimension.png" width="300"/></p>
 <p>OpenDuck Mini 的單腿結構（5DoF）</p>
 <p style="padding-left: 30px;">Hip Yaw（髖部水平旋轉）- link1 長度即馬達旋轉中心至馬達底部的長度 0.03472m</p>
@@ -387,8 +396,7 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p style="padding-left: 30px;">若希望 Webots 結合上列 BLF 框架，在 Windows 環境中可以使用 conda 指令安裝:</p>
 <p style="padding-left: 30px;">conda install conda-forge::bipedal-locomotion-framework-python</p>
 <p style="padding-left: 30px;">提問: Webots 模擬環境如何與 Bipedal Locomotion Framework (BLF, 即 bipedal‑locomotion‑framework) 結合應用?</p>
-<p style="padding-left: 30px;">提問: 假如採用 https://github.com/aidudezzz/deepbots 與 webots 對 openduck 進行步態規劃學習, 該如何進行? </p>
-<h3>O_Prompts</h3>
+<p style="padding-left: 30px;">提問: 假如採用 https://github.com/aidudezzz/deepbots 與 webots 對 openduck 進行步態規劃學習, 該如何進行? </p><h3>O_Prompts</h3>
 <p><a href="https://ikpy.readthedocs.io/en/latest/">https://ikpy.readthedocs.io/en/latest/</a> </p>
 <p>針對運用 <a href="https://github.com/Phylliade/ikpy">ikpy</a> 的 <a href="/downloads/openduck_frame/solvespace/openduck_ikpy2.py">openduck_ikpy2.py</a> 進行提問:</p>
 <p style="padding-left: 30px;">請詳細說明以下程式的設置原理:(接著貼上 <a href="/downloads/openduck_frame/solvespace/openduck_ikpy2.py">openduck_ikpy2.py</a> 程式碼)</p>

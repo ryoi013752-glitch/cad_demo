@@ -13,8 +13,9 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.030368904305278235 -0.04897397398864969 0.9983382590700689 3.708252619856586
-  position 0.7562666893930192 1.3152855987661476 0.12143421948208899
+  orientation -0.083147221810569 0.04869843281752302 0.9953466743533639 1.5977437554404081
+  position 0.05669581428904065 0.6545508033458336 0.2871646946014111
+  followType "None"
 }
 TexturedBackground {
 }
@@ -24,7 +25,7 @@ RectangleArena {
   floorSize 2 3
 }
 Robot {
-  translation -4.97438e-06 1.06 0.17134
+  translation -4.97e-06 1.06 0.17134
   rotation 0 0 1 4.692820414042842e-06
   children [
     DEF central_body Solid {
@@ -694,6 +695,16 @@ Robot {
         physics Physics {
         }
       }
+    }
+    Pose {
+      translation 0.035 0 0.0035
+      children [
+        Shape {
+          geometry Box {
+            size 0.108 0.038 0.007
+          }
+        }
+      ]
     }
   ]
   boundingObject Group {
