@@ -766,7 +766,46 @@ async function loadMermaidFromGist() {
 }
 
 loadMermaidFromGist();
-</script><h2>Rocket</h2>
+</script>
+<h2>O_mermaid</h2>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+ 
+async function loadMermaidFromGist() {
+  const res = await fetch('https://gist.githubusercontent.com/mdecycu/ca89be74dfb4daec472df7c31cc935fb/raw/bc620a3f73b5c7b9d72e1e81057f5e8350f21d81/openduck');
+  const code = await res.text();
+ 
+  const container = document.getElementById('openduck');
+  container.className = 'mermaid';        // apply mermaid styling
+  container.textContent = code;           // insert Mermaid diagram code as text
+ 
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: false });
+  mermaid.init(undefined, container);     // render only this container
+}
+ 
+loadMermaidFromGist();
+</script>
+<div id="openduck"></div><h2>O_mermaid2</h2>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+ 
+async function loadMermaidFromGist() {
+  const res = await fetch('https://gist.githubusercontent.com/mdecycu/ca89be74dfb4daec472df7c31cc935fb/raw/c59d92ca2c35864f4bfc8fbe8d36d2517c48bef1/openduck2');
+  const code = await res.text();
+ 
+  const container = document.getElementById('openduck');
+  container.className = 'mermaid';        // apply mermaid styling
+  container.textContent = code;           // insert Mermaid diagram code as text
+ 
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: false });
+  mermaid.init(undefined, container);     // render only this container
+}
+ 
+loadMermaidFromGist();
+</script>
+<div id="openduck"></div><h2>Rocket</h2>
 <p></p>
 <p><a href="https://cyberbotics.com/doc/automobile/openstreetmap-importer?tab-os=windows#windows">osm importer</a> <a href="https://www.openstreetmap.org/export#map=16/22.18877/120.88494&amp;layers=P">OSM</a></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/rUb94MCggPg?si=J-Y-VZRHyNDAqyY8" title="YouTube video player" width="560"></iframe></p>
