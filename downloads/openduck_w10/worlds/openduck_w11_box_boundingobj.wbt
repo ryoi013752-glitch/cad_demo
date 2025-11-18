@@ -1,4 +1,4 @@
-#VRML_SIM R2025a utf8
+#VRML_SIM R2023b utf8
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
@@ -13,8 +13,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.16837042506246222 -0.20594202953082005 0.9639705806906208 4.795802469579407
-  position 0.017867826310628304 1.4486046026801078 0.3092177483531079
+  orientation -0.3608583245064769 0.2704612007449113 0.8925424407421748 1.8391696443971546
+  position 0.0746359926109065 0.8306194380399877 0.37239522866930347
   followType "None"
 }
 TexturedBackground {
@@ -361,6 +361,14 @@ Robot {
                 }
               ]
               name "left_shoulder"
+              boundingObject DEF left_shoulder Pose {
+                translation 0.105 -0.001 0.0175
+                children [
+                  Box {
+                    size 0.08943 0.047 0.028
+                  }
+                ]
+              }
               physics Physics {
               }
             }
@@ -368,7 +376,7 @@ Robot {
         ]
         name "left_second_motor"
         boundingObject DEF left_second_motor Pose {
-          translation 0 0 0.02961
+          translation 0.07 0 0.02961
           children [
             Box {
               size 0.02472 0.029 0.04522
