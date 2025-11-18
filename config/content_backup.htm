@@ -107,6 +107,7 @@
 <li>B：程式與逆運動學</li>
 <li>C：電控與配線</li>
 <li>D：軌跡設計與測試</li>
+<li>E : 協作工具選擇 (Github、Onshape)</li>
 </ol>
 <p>團隊需設法整合 CAD 圖、裝配圖、控制程式、誤差分析報告。</p>
 <p>應用在 Openduck mini:</p>
@@ -169,7 +170,7 @@
 <h4>Math</h4>
 <p>利用基因演算法解決機械設計問題:</p>
 <p style="padding-left: 30px;">Length = 20</p>
-<p style="padding-left: 30px;">平面五連桿 Plotter 設計目標是針對一組 Length cm×Length cm 的繪圖區域，尋找並最佳化五連桿機構中的三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>    馬達間距 (LENGTH): 兩側連桿（L1 和 L4）的固定轉軸中心必須保持 Length cm 的水平間距。<br/><br/>    繪圖區域 (W×H): 機構必須能覆蓋一個 Length cm 寬度 (W) 和 Length cm 高度 (H) 的完整矩形區域。<br/><br/>    對稱性要求: 機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)<br/><br/>設計應追求連桿總尺寸的最小化。優化目標 J 定義為：<br/>最小化 J=1.0⋅L1+1.0⋅L2+0.5⋅distance<br/><br/>（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）<br/><br/>三、運動學與工程約束 (Constraints)<br/><br/>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>1. 可達性與外側奇異點迴避 (L1+L2 約束)<br/><br/>連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點（即 X=Length,Y=distance+Length）處所需的最大距離 Dmax。<br/><br>這項約束保證了筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點，即 A,B,C 共線）導致的鎖死。<br><br>2. 繪圖區域穩定性 (內側奇異點迴避)<br><br>連桿 L2 的兩倍長度 (2⋅L2) 必須大於筆尖 C 點在整個 Length cm×Length cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br><br>更重要的是，為了考慮實際製造公差和控制誤差，必須強制加入 1.0 cm 的安全裕度 (Δ)：<br>2⋅L2&gt;Max(DBD)Area+1.0 cm<br/><br/>這項約束保證了筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點，即 B,C,D 共線）導致的控制失效。<br/><br/>3. 轉軸方向約束 (Y 座標約束)<br/><br/>在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。<br/><br/>這確保了機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</br></br></br></br></br></br></br></br></p>
+<p style="padding-left: 30px;">平面五連桿 Plotter 設計目標是針對一組 Length cm×Length cm 的繪圖區域，尋找並最佳化五連桿機構中的三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>    馬達間距 (LENGTH): 兩側連桿（L1 和 L4）的固定轉軸中心必須保持 Length cm 的水平間距。<br/><br/>    繪圖區域 (W×H): 機構必須能覆蓋一個 Length cm 寬度 (W) 和 Length cm 高度 (H) 的完整矩形區域。<br/><br/>    對稱性要求: 機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)<br/><br/>設計應追求連桿總尺寸的最小化。優化目標 J 定義為：<br/>最小化 J=1.0⋅L1+1.0⋅L2+0.5⋅distance<br/><br/>（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）<br/><br/>三、運動學與工程約束 (Constraints)<br/><br/>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>1. 可達性與外側奇異點迴避 (L1+L2 約束)<br/><br/>連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點（即 X=Length,Y=distance+Length）處所需的最大距離 Dmax。<br/><br/>這項約束保證了筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點，即 A,B,C 共線）導致的鎖死。<br/><br/>2. 繪圖區域穩定性 (內側奇異點迴避)<br/><br/>連桿 L2 的兩倍長度 (2⋅L2) 必須大於筆尖 C 點在整個 Length cm×Length cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br/><br/>更重要的是，為了考慮實際製造公差和控制誤差，必須強制加入 1.0 cm 的安全裕度 (Δ)：<br/>2⋅L2&gt;Max(DBD)Area+1.0 cm<br/><br/>這項約束保證了筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點，即 B,C,D 共線）導致的控制失效。<br/><br/>3. 轉軸方向約束 (Y 座標約束)<br/><br/>在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。<br/><br/>這確保了機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
 <p style="padding-left: 30px;"><a href="/downloads/redesign_ga1.py">redesign_ga1.py</a></p>
 <p style="padding-left: 30px;"><a href="/downloads/redesign_ga1.slvs">redesign_ga1.slvs</a></p>
 <p style="padding-left: 30px;">【基因演算法最終最小化尺寸設計結果】<br/>找到**滿足約束且最小化尺寸**的設計（總尺寸 J ≈ 59.44 cm）:<br/>L1 (Link 1 &amp; 4) = 21.79 cm<br/>L2 (Link 2 &amp; 3) = 26.70 cm<br/>Distance (Y-bottom) = 21.89 cm<br/><br/>--- 最終設計驗證 ---<br/>1. 最遠點奇異點約束 (L1+L2 &gt; D_max): 48.50 &gt; 46.42 (滿足)<br/>2. 繪圖區域穩定性 (2*L2 &gt; Max(D_BD) + 1.0cm):<br/>   2*L2 = 53.40 cm<br/>   Max(D_BD) + 1.0 cm = 51.60 + 1.00 = 52.60 cm<br/>   **裕度滿足 (2*L2 僅略大於所需值，實現最小化)**<br/>3. Y 座標約束 (Y_B, Y_D &gt;= 0): 在逆運動學中已確保 (滿足)</p>
@@ -464,7 +465,18 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p>motor 零件: 0.02472 x 0.04522 x 0.029 - left_motor1 and right_motor1</p>
 <p>roll_ro_pitch 零件: 0.08943 x 0.047 x 0.028 </p>
 <p>knee_to_ankle_sheet 零件: 0.04775 x x 0.028 x 0.06963 </p>
-<p>foot 零件: 0.09241 x 0.0469 x 0.04130</p><h2>O_Analysis</h2>
+<p>foot 零件: 0.09241 x 0.0469 x 0.04130</p>
+<hr/>
+<p><a href="/downloads/openduck_in_solvespace.7z">openduck_in_solvespace.7z</a></p>
+<p>原點座標位於 trunk 底板右孔底部圓心，兩個圓心距離 0.07 m</p>
+<p>trunk 底板厚度: 0.007 m</p>
+<p>trunk 底板圓心距離 shoulder 旋轉孔圓心為 0.0175 m</p>
+<p>shoulder 長度: 0.08943 m</p>
+<p>上肢 boundingObject xyz 方向尺寸: 0.04775 x 0.028 x 0.09874 m</p>
+<p>上肢旋轉中心與下肢旋轉中心距離: 0.07827 m</p>
+<p>上肢與下肢圓心 offset: 0.00164</p>
+<p>下肢旋轉中心與腳掌旋轉中心距離: 0.07827 m</p>
+<p>腳掌 0.0469 x 0.09241 x 0.03964 m</p><h2>O_Analysis</h2>
 <p><img alt="" height="263" src="/images/openduck_link_dimension.png" width="300"/></p>
 <p>OpenDuck Mini 的單腿結構（5DoF）</p>
 <p style="padding-left: 30px;">Hip Yaw（髖部水平旋轉）- link1 長度即馬達旋轉中心至馬達底部的長度 0.03472m</p>
@@ -713,7 +725,8 @@ timeout /t 5
 
 REM 利用 python 啟動 www 伺服器接收來自 Webots 模擬場景的串流影像。
 </pre>
-<p><a href="/downloads/webots_streamming.7z">webots_streamming.7z</a></p>
+<p><a href="/downloads/webots_streamming.7z">webots_streamming.7z</a> (for Webots 2023b)</p>
+<p><a href="/downloads/webots_streamming_for_2025a.7z">webots_streamming_for_2025a.7z</a></p>
 <p><a href="/downloads/openduck_w10.7z">openduck_w10.7z</a></p><h2>Mermaid</h2>
 <p>將 gist 上的 mermaid 流程圖顯示在頁面:</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script type="module"&gt;// &lt;![CDATA[

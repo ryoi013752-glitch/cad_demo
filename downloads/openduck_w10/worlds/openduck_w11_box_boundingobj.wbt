@@ -13,8 +13,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.3608583245064769 0.2704612007449113 0.8925424407421748 1.8391696443971546
-  position 0.0746359926109065 0.8306194380399877 0.37239522866930347
+  orientation -0.0922707209265549 -0.08094989534315687 0.9924380224999572 4.568558454014965
+  position 0.15395050413284783 1.7831182045245733 0.2488505450346673
   followType "None"
 }
 TexturedBackground {
@@ -181,38 +181,20 @@ Robot {
                     translation 1.1102230246251565e-16 5.204170427930421e-18 3.469446951953614e-18
                     rotation 1 0 0 0
                     children [
-                      DEF left_leg_1_shape Shape {
-                        appearance Appearance {
-                          material Material {
-                          }
-                        }
-                        geometry Mesh {
-                          url [
-                            "../openduck_in_solvespace/split_parts/part_10.obj"
-                          ]
-                        }
+                      DEF left_leg_1 CadShape {
+                        url [
+                          "../openduck_in_solvespace/split_parts/part_10.obj"
+                        ]
                       }
-                      DEF left_leg_2_shape Shape {
-                        appearance Appearance {
-                          material Material {
-                          }
-                        }
-                        geometry Mesh {
-                          url [
-                            "../openduck_in_solvespace/split_parts/part_11.obj"
-                          ]
-                        }
+                      DEF left_leg_2 CadShape {
+                        url [
+                          "../openduck_in_solvespace/split_parts/part_11.obj"
+                        ]
                       }
-                      DEF fourth_motor Shape {
-                        appearance Appearance {
-                          material Material {
-                          }
-                        }
-                        geometry Mesh {
-                          url [
-                            "../openduck_in_solvespace/split_parts/part_14.obj"
-                          ]
-                        }
+                      DEF left_fourth_motor CadShape {
+                        url [
+                          "../openduck_in_solvespace/split_parts/part_14.obj"
+                        ]
                       }
                       DEF fourth_motor HingeJoint {
                         jointParameters HingeJointParameters {
@@ -231,38 +213,20 @@ Robot {
                         endPoint DEF fourth_motor_leg Solid {
                           rotation 1 0 0 0
                           children [
-                            DEF left_leg_3_shape Shape {
-                              appearance Appearance {
-                                material Material {
-                                }
-                              }
-                              geometry Mesh {
-                                url [
-                                  "../openduck_in_solvespace/split_parts/part_16.obj"
-                                ]
-                              }
+                            DEF left_leg_3 CadShape {
+                              url [
+                                "../openduck_in_solvespace/split_parts/part_16.obj"
+                              ]
                             }
-                            DEF left_leg_4_shape Shape {
-                              appearance Appearance {
-                                material Material {
-                                }
-                              }
-                              geometry Mesh {
-                                url [
-                                  "../openduck_in_solvespace/split_parts/part_17.obj"
-                                ]
-                              }
+                            DEF left_leg_4 CadShape {
+                              url [
+                                "../openduck_in_solvespace/split_parts/part_17.obj"
+                              ]
                             }
-                            DEF fifth_motor_shape Shape {
-                              appearance Appearance {
-                                material Material {
-                                }
-                              }
-                              geometry Mesh {
-                                url [
-                                  "../openduck_in_solvespace/split_parts/part_20.obj"
-                                ]
-                              }
+                            DEF left_fifth_motor CadShape {
+                              url [
+                                "../openduck_in_solvespace/split_parts/part_20.obj"
+                              ]
                             }
                             DEF fifth_motor HingeJoint {
                               jointParameters HingeJointParameters {
@@ -305,26 +269,12 @@ Robot {
                                 }
                               }
                             }
-                            GPS {
-                              name "t4_gps"
-                            }
                           ]
-                          boundingObject Group {
+                          boundingObject Pose {
+                            translation 0.13333 0.016 -0.10105
                             children [
-                              Mesh {
-                                url [
-                                  "../openduck_in_solvespace/checked_repaired_simplified/part_16_repaired_simplified.obj"
-                                ]
-                              }
-                              Mesh {
-                                url [
-                                  "../openduck_in_solvespace/checked_repaired_simplified/part_17_repaired_simplified.obj"
-                                ]
-                              }
-                              Mesh {
-                                url [
-                                  "../openduck_in_solvespace/checked_repaired_simplified/part_20_repaired_simplified.obj"
-                                ]
+                              Box {
+                                size 0.04775 0.028 0.09874
                               }
                             ]
                           }
@@ -332,26 +282,12 @@ Robot {
                           }
                         }
                       }
-                      GPS {
-                        name "t3_gps"
-                      }
                     ]
-                    boundingObject Group {
+                    boundingObject Pose {
+                      translation 0.13333 0.015 -0.02
                       children [
-                        DEF left_leg_1 Mesh {
-                          url [
-                            "../openduck_in_solvespace/checked_repaired_simplified/part_10_repaired_simplified.obj"
-                          ]
-                        }
-                        DEF left_leg_2 Mesh {
-                          url [
-                            "../openduck_in_solvespace/checked_repaired_simplified/part_11_repaired_simplified.obj"
-                          ]
-                        }
-                        DEF fourth_motor Mesh {
-                          url [
-                            "../openduck_in_solvespace/checked_repaired_simplified/part_14_repaired_simplified.obj"
-                          ]
+                        Box {
+                          size 0.04775 0.028 0.09874
                         }
                       ]
                     }

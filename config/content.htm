@@ -465,7 +465,19 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p>motor 零件: 0.02472 x 0.04522 x 0.029 - left_motor1 and right_motor1</p>
 <p>roll_ro_pitch 零件: 0.08943 x 0.047 x 0.028 </p>
 <p>knee_to_ankle_sheet 零件: 0.04775 x x 0.028 x 0.06963 </p>
-<p>foot 零件: 0.09241 x 0.0469 x 0.04130</p><h2>O_Analysis</h2>
+<p>foot 零件: 0.09241 x 0.0469 x 0.04130</p>
+<hr/>
+<p><a href="/downloads/openduck_in_solvespace.7z">openduck_in_solvespace.7z</a></p>
+<p>原點座標位於 trunk 底板右孔底部圓心，兩個圓心距離 0.07 m</p>
+<p>trunk 底板厚度: 0.007 m</p>
+<p>trunk 底板圓心距離 shoulder 旋轉孔圓心為 0.0175 m</p>
+<p>trunk 底板左孔圓心距離上肢 the fourth motor 旋轉中心: 0.06333</p>
+<p>shoulder 長度: 0.08943 m</p>
+<p>上肢 boundingObject xyz 方向尺寸: 0.04775 x 0.028 x 0.09874 m</p>
+<p>上肢旋轉中心與下肢旋轉中心距離: 0.07827 m</p>
+<p>上肢與下肢圓心 offset: 0.00164</p>
+<p>下肢旋轉中心與腳掌旋轉中心距離: 0.07827 m</p>
+<p>腳掌 0.0469 x 0.09241 x 0.03964 m</p><h2>O_Analysis</h2>
 <p><img alt="" height="263" src="/images/openduck_link_dimension.png" width="300"/></p>
 <p>OpenDuck Mini 的單腿結構（5DoF）</p>
 <p style="padding-left: 30px;">Hip Yaw（髖部水平旋轉）- link1 長度即馬達旋轉中心至馬達底部的長度 0.03472m</p>
@@ -714,7 +726,8 @@ timeout /t 5
 
 REM 利用 python 啟動 www 伺服器接收來自 Webots 模擬場景的串流影像。
 </pre>
-<p><a href="/downloads/webots_streamming.7z">webots_streamming.7z</a></p>
+<p><a href="/downloads/webots_streamming.7z">webots_streamming.7z</a> (for Webots 2023b)</p>
+<p><a href="/downloads/webots_streamming_for_2025a.7z">webots_streamming_for_2025a.7z</a></p>
 <p><a href="/downloads/openduck_w10.7z">openduck_w10.7z</a></p><h2>Mermaid</h2>
 <p>將 gist 上的 mermaid 流程圖顯示在頁面:</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script type="module"&gt;// &lt;![CDATA[
