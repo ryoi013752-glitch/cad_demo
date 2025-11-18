@@ -15,10 +15,134 @@
 <p style="padding-left: 60px;">w18: 課程總結</p>
 <p style="padding-left: 30px;"><span style="background-color: #ffff00;">個人與分組網站維護 (40%)</span> - 每週至少兩次推送與課程進度相關的學習內容與心得。</p>
 <p style="padding-left: 60px;">w9 期中自評、w18 期末自評</p>
-<h1>Reading</h1>
+<h2>IEET</h2>
+<p>畢業生核心能力:</p>
+<ol>
+<li>具備應用數學、科學及工程知識之能力</li>
+<li>具備設計與執行實驗，以及分析與解釋數據之能力</li>
+<li>具備設計工程系統、元件或流程之能力</li>
+<li>具備執行工程實務所需之技術、技能與現代工具使用能力</li>
+<li>具備發現、分析及解決工程問題之能力</li>
+<li>具備有效溝通與團隊合作能力</li>
+<li>瞭解工程倫理與社會責任</li>
+<li>具備終身學習之能力</li>
+</ol>
+<p><span style="background-color: #ffff00;">核心能力1: 工程知識與問題解決能力</span></p>
+<p>教學主軸: 機械、電控、程式與系統整合</p>
+<p>應用在「平面五軸連桿繪圖機」</p>
+<p>學生必須理解：</p>
+<ol>
+<li>平面連桿機構學（Five-bar linkage）</li>
+<li>運動學逆運動學（IK）</li>
+<li>幾何約束與連桿長度配置</li>
+<li>電機驅動（伺服或步進）</li>
+<li>曲線繪圖軌跡生成（Bezier / spline）</li>
+</ol>
+<p>實習操作：</p>
+<p style="padding-left: 30px;">學生需要根據機構的運動學模型推算筆尖位置，解出五軸連桿各關節角度，達成軌跡控制功能。設計過程包括工程問題定義、推導以及求解的能力。</p>
+<p>應用在 Openduck mini:</p>
+<p>需運用：</p>
+<ol>
+<li>雙足行走步態模型基礎</li>
+<li>3D 剛體運動學、動力學</li>
+<li>伺服馬達扭力需求計算</li>
+<li>穩定性分析（ZMP、CoM）</li>
+</ol>
+<p>實習操作：</p>
+<p>學生必須計算每個關節在行走或擺腿時的需求扭力，並依此選擇適合的伺服馬達。</p>
+<p><span style="background-color: #ffff00;">核心能力 2: 實驗能力與數據分析能力</span></p>
+<p>應用在「平面五軸連桿繪圖機」</p>
+<p>透過實際量測：</p>
+<ol>
+<li>模擬與控制前的起始條件校正</li>
+<li>馬達轉速與筆尖移動誤差</li>
+<li>連桿加工後的尺寸誤差</li>
+<li>繪圖軌跡精度 vs. 理論軌跡差異</li>
+<li>機電系統的不確定性分析</li>
+</ol>
+<p>實習操作：</p>
+<p>學生輸入圓形軌跡，量測實際繪出的圓並與理論模型比對，用 MATLAB/Python 計算誤差分布，分析造成誤差的原因（如連桿鬆動、馬達反應時間不足）。</p>
+<p>應用在 Openduck mini:</p>
+<p>可量測：</p>
+<ol>
+<li>步態穩定性（加速度感測器）</li>
+<li>馬達電流 vs. 荷重關係</li>
+<li>行走速度與耗能之關係</li>
+</ol>
+<p><span style="background-color: #ffff00;">核心能力 3：工程設計能力</span></p>
+<p>應用在「平面五軸連桿繪圖機」</p>
+<ol>
+<li>定義需求：成本、尺寸限制、筆尖精度</li>
+<li>設計運算：連桿構型與尺寸設計（五桿平面機構）</li>
+<li>CAD 設計：SolidWorks/Inventor/Onshape/NX/Solvespace 繪製連桿零組件</li>
+<li>選材：鋁擠型/PLA 印製零件</li>
+<li>製造：3D列印、CNC、雷切</li>
+<li>測試與修改</li>
+</ol>
+<p>實際操作：</p>
+<p>透過原型機構設計組立與伺服馬達的配置，比較動態模擬與實際繪圖的差異，並分析造成誤差或系統不穩的原因。<br/><br/>應用在 Openduck mini:</p>
+<ol>
+<li>步態需求：步幅、穩定性</li>
+<li>關節配置：左右腳、膝、髖等10 DOF，頭、頸等4 DOF</li>
+<li>CAD 零組件繪圖 + 運動分析</li>
+<li>材料與結構強度分析</li>
+</ol>
+<p><span style="background-color: #ffff00;">核心能力 4：現代工程工具使用能力</span><br/><br/>使用 CAD、機器人模擬套件、控制程式、模擬 Openduck min 行進與姿態變化。<br/><br/>應用在 Openduck mini:</p>
+<ol>
+<li>SolidWorks/Inventor/Onshape/NX/Solvespace：零組件繪圖</li>
+<li>MATLAB/Python：逆運動學、軌跡計算</li>
+<li>Arduino/STM32/Rasberry Pi：馬達控制</li>
+<li>CNC/3D 印表機：零件製造</li>
+<li>ROS（Robot Operating System）：控制架構</li>
+<li>Webots：走路動態模擬</li>
+<li>Python + OpenCV：視覺功能</li>
+</ol>
+<p>實際操作：</p>
+<p>從 Openduck min 零組件繪圖到機電系統配置以及動態行走模擬的實際操作。</p>
+<p><span style="background-color: #ffff00;">核心能力 5：團隊合作與溝通能力</span></p>
+<p>應用在「平面五軸連桿繪圖機」</p>
+<p>團隊分工可能為：</p>
+<ol>
+<li>A：機構設計</li>
+<li>B：程式與逆運動學</li>
+<li>C：電控與配線</li>
+<li>D：軌跡設計與測試</li>
+</ol>
+<p>團隊需設法整合 CAD 圖、裝配圖、控制程式、誤差分析報告。</p>
+<p>應用在 Openduck mini:</p>
+<ol>
+<li>機構子組</li>
+<li>馬達與電源系統</li>
+<li>控制步態演算法</li>
+<li>外觀與封裝</li>
+</ol>
+<p><span style="background-color: #ffff00;">核心能力 6：工程倫理與自我學習</span><br/><br/>應用在「平面五軸連桿繪圖機」</p>
+<ol>
+<li>若模仿網路設計，需標註引用來源，展現倫理責任。</li>
+<li>遇到問題，需查資料、查論文，展現自主學習。</li>
+</ol>
+<p>應用在 Openduck mini:</p>
+<ol>
+<li>使用鋰電池需遵守安全規範</li>
+<li>學生需自行研究步態控制法（ZMP、倒立擺模型）</li>
+</ol>
+<p><span style="background-color: #ffff00;">核心能力 7：當代議題與國際視野</span></p>
+<p>應用在「平面五軸連桿繪圖機」</p>
+<ol>
+<li>探討 CNC、自動化製造、智慧機械在工業 4.0 角色</li>
+<li>理解國際功能性機構設計的趨勢</li>
+</ol>
+<p>應用在 Openduck mini:</p>
+<ol>
+<li>探討寵物與人形機器人在社會中的應用</li>
+<li>了解目前機器人發展與應用趨勢</li>
+</ol>
+<p><span style="background-color: #ffff00;">核心能力 8 : 具備終身學習之能力</span></p>
+<p>透過課程內容，了解利用電腦軟硬體針對「平面五軸連桿繪圖機」與 Openduck min 進行輔助設計與動態模擬，仍有許多議題必須持續研究與探討，往後必須持續學習，提升自我工程能力，才能符合未來就業或創業需求。</p>
+<p></p><h1>Reading</h1>
 <p>英文資料基本閱讀能力自我查驗:</p>
 <p style="padding-left: 30px;">認不認得這 <a href="/downloads/2000_words.txt">2000_words.txt</a>，<a href="/downloads/5000_words.txt">5000_words.txt</a> 呢?</p>
-<h1>CAD</h1>
+<p></p><h1>CAD</h1>
 <p>參數式零組件繪圖相關參考資料:</p>
 <p style="padding-left: 30px;">AutoDesk Inventor:</p>
 <p style="padding-left: 60px;"><a href="/downloads/autodesk_inventor_api.7z">autodesk_inventor_api.7z</a></p>
@@ -45,7 +169,7 @@
 <h4>Math</h4>
 <p>利用基因演算法解決機械設計問題:</p>
 <p style="padding-left: 30px;">Length = 20</p>
-<p style="padding-left: 30px;">平面五連桿 Plotter 設計目標是針對一組 Length cm×Length cm 的繪圖區域，尋找並最佳化五連桿機構中的三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>    馬達間距 (LENGTH): 兩側連桿（L1 和 L4）的固定轉軸中心必須保持 Length cm 的水平間距。<br/><br/>    繪圖區域 (W×H): 機構必須能覆蓋一個 Length cm 寬度 (W) 和 Length cm 高度 (H) 的完整矩形區域。<br/><br/>    對稱性要求: 機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)<br/><br/>設計應追求連桿總尺寸的最小化。優化目標 J 定義為：<br/>最小化 J=1.0⋅L1+1.0⋅L2+0.5⋅distance<br/><br/>（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）<br/><br/>三、運動學與工程約束 (Constraints)<br/><br/>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>1. 可達性與外側奇異點迴避 (L1+L2 約束)<br/><br/>連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點（即 X=Length,Y=distance+Length）處所需的最大距離 Dmax。<br/><br/>這項約束保證了筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點，即 A,B,C 共線）導致的鎖死。<br/><br/>2. 繪圖區域穩定性 (內側奇異點迴避)<br/><br/>連桿 L2 的兩倍長度 (2⋅L2) 必須大於筆尖 C 點在整個 Length cm×Length cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br/><br/>更重要的是，為了考慮實際製造公差和控制誤差，必須強制加入 1.0 cm 的安全裕度 (Δ)：<br/>2⋅L2&gt;Max(DBD)Area+1.0 cm<br/><br/>這項約束保證了筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點，即 B,C,D 共線）導致的控制失效。<br/><br/>3. 轉軸方向約束 (Y 座標約束)<br/><br/>在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。<br/><br/>這確保了機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</p>
+<p style="padding-left: 30px;">平面五連桿 Plotter 設計目標是針對一組 Length cm×Length cm 的繪圖區域，尋找並最佳化五連桿機構中的三個核心設計變數：連桿 L1、連桿 L2，以及底部距離 distance。最終目的是在確保機構穩定運行的前提下，找到能使連桿尺寸最小化（即材料成本與運動慣性最低）的設計。<br/><br/>一、幾何參數設定<br/><br/>    馬達間距 (LENGTH): 兩側連桿（L1 和 L4）的固定轉軸中心必須保持 Length cm 的水平間距。<br/><br/>    繪圖區域 (W×H): 機構必須能覆蓋一個 Length cm 寬度 (W) 和 Length cm 高度 (H) 的完整矩形區域。<br/><br/>    對稱性要求: 機構必須保持對稱，即 L1=L4 且 L2=L3。<br/><br/>二、最小化優化目標 (Objective)<br/><br/>設計應追求連桿總尺寸的最小化。優化目標 J 定義為：<br/>最小化 J=1.0⋅L1+1.0⋅L2+0.5⋅distance<br/><br/>（此權重分配旨在優先最小化連桿長度 L1 和 L2，同時適度控制機構的底部高度 distance。）<br/><br/>三、運動學與工程約束 (Constraints)<br/><br/>設計結果必須嚴格滿足以下三個工程約束，以確保筆尖 C 點在整個繪圖區域內不會遇到死點或不可達的情況。<br/><br/>1. 可達性與外側奇異點迴避 (L1+L2 約束)<br/><br/>連桿 L1 與 L2 的長度總和必須大於機構在繪圖區域最遠點（即 X=Length,Y=distance+Length）處所需的最大距離 Dmax。<br/><br>這項約束保證了筆尖在最遠處不會發生連桿 L1 和 L2 完全伸直共線（外側奇異點，即 A,B,C 共線）導致的鎖死。<br><br>2. 繪圖區域穩定性 (內側奇異點迴避)<br><br>連桿 L2 的兩倍長度 (2⋅L2) 必須大於筆尖 C 點在整個 Length cm×Length cm 繪圖區域內時，點 B 到點 D 之間的最大距離 Max(DBD)Area。<br><br>更重要的是，為了考慮實際製造公差和控制誤差，必須強制加入 1.0 cm 的安全裕度 (Δ)：<br>2⋅L2&gt;Max(DBD)Area+1.0 cm<br/><br/>這項約束保證了筆尖在任何位置都不會發生連桿 L2 和 L3 完全伸直共線（內側奇異點，即 B,C,D 共線）導致的控制失效。<br/><br/>3. 轉軸方向約束 (Y 座標約束)<br/><br/>在求解逆運動學時，連桿 L1 和 L4 的擺動點 B 點和 D 點的垂直坐標 (YB 和 YD) 必須始終大於或等於零。<br/><br/>這確保了機構在整個工作過程中始終處於轉軸上方（上搖桿解）的穩定配置，防止機構翻轉至下方區域。</br></br></br></br></br></br></br></br></p>
 <p style="padding-left: 30px;"><a href="/downloads/redesign_ga1.py">redesign_ga1.py</a></p>
 <p style="padding-left: 30px;"><a href="/downloads/redesign_ga1.slvs">redesign_ga1.slvs</a></p>
 <p style="padding-left: 30px;">【基因演算法最終最小化尺寸設計結果】<br/>找到**滿足約束且最小化尺寸**的設計（總尺寸 J ≈ 59.44 cm）:<br/>L1 (Link 1 &amp; 4) = 21.79 cm<br/>L2 (Link 2 &amp; 3) = 26.70 cm<br/>Distance (Y-bottom) = 21.89 cm<br/><br/>--- 最終設計驗證 ---<br/>1. 最遠點奇異點約束 (L1+L2 &gt; D_max): 48.50 &gt; 46.42 (滿足)<br/>2. 繪圖區域穩定性 (2*L2 &gt; Max(D_BD) + 1.0cm):<br/>   2*L2 = 53.40 cm<br/>   Max(D_BD) + 1.0 cm = 51.60 + 1.00 = 52.60 cm<br/>   **裕度滿足 (2*L2 僅略大於所需值，實現最小化)**<br/>3. Y 座標約束 (Y_B, Y_D &gt;= 0): 在逆運動學中已確保 (滿足)</p>
@@ -337,7 +461,7 @@ print(t1_sol3(0.2, 0.185), t2_sol3(0.2, 0.185))
 <p>中柱: 0.025 x 0.038 x 0.058 - trunk_2</p>
 <p>上板: 0.044 x 0.08 x 0.01 - trunk_3</p>
 <p>上左右直版: 0.0065 x 0.08 x  0.027 - trunk_4 and trunk_5</p>
-<p>motor 零件: 0.02472 x 0.04522 x 0.029</p>
+<p>motor 零件: 0.02472 x 0.04522 x 0.029 - left_motor1 and right_motor1</p>
 <p>roll_ro_pitch 零件: 0.08943 x 0.047 x 0.028 </p>
 <p>knee_to_ankle_sheet 零件: 0.04775 x x 0.028 x 0.06963 </p>
 <p>foot 零件: 0.09241 x 0.0469 x 0.04130</p><h2>O_Analysis</h2>
