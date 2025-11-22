@@ -13,8 +13,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.1720374305865122 0.23929481900908026 0.9555841732011904 1.2500811534171545
-  position -0.08163330408550665 0.4332099506484071 0.23584381956010425
+  orientation -0.09970554474117313 -0.050597083950046876 0.993729711462638 4.07572915531409
+  position 0.7070110801192404 1.761289153218209 0.31016991264563837
   followType "None"
 }
 TexturedBackground {
@@ -89,7 +89,7 @@ Robot {
               }
             ]
           }
-          DEF left_motor1 Pose {
+          DEF right_motor1 Pose {
             translation 0 0.01211 0.0749197
             children [
               Box {
@@ -97,7 +97,7 @@ Robot {
               }
             ]
           }
-          DEF right_motor1 Pose {
+          DEF left_motor1 Pose {
             translation 0.07 0.0121 0.0749
             rotation 0 1 0 4.692820414042842e-06
             children [
@@ -261,7 +261,7 @@ Robot {
                               }
                             }
                           ]
-                          boundingObject Pose {
+                          boundingObject DEF left_lower_leg Pose {
                             translation 0.13333 0.016 -0.10105
                             children [
                               Box {
@@ -351,7 +351,7 @@ Robot {
                 name "rt2_sensor"
               }
             ]
-            endPoint Solid {
+            endPoint DEF right_shoulder Solid {
               rotation 0 1 0 0
               children [
                 DEF right_shoulder CadShape {
@@ -418,7 +418,7 @@ Robot {
                                 "../openduck_in_solvespace/split_parts/part_18.obj"
                               ]
                             }
-                            DEF roght_lower_2 CadShape {
+                            DEF right_lower_2 CadShape {
                               url [
                                 "../openduck_in_solvespace/split_parts/part_19.obj"
                               ]
