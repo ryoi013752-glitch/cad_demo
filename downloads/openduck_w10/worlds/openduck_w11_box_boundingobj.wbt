@@ -13,8 +13,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.16895044469060289 0.3339892883892655 0.9273116533723059 0.9576464436661775
-  position -0.39163339747548637 0.543080732849777 0.26759349169446683
+  orientation -0.1720374305865122 0.23929481900908026 0.9555841732011904 1.2500811534171545
+  position -0.08163330408550665 0.4332099506484071 0.23584381956010425
   followType "None"
 }
 TexturedBackground {
@@ -413,38 +413,20 @@ Robot {
                         endPoint DEF right_lower Solid {
                           rotation 1 0 0 0
                           children [
-                            DEF right_lower_1 Shape {
-                              appearance Appearance {
-                                material Material {
-                                }
-                              }
-                              geometry Mesh {
-                                url [
-                                  "../openduck_in_solvespace/split_parts/part_18.obj"
-                                ]
-                              }
+                            DEF right_lower_1 CadShape {
+                              url [
+                                "../openduck_in_solvespace/split_parts/part_18.obj"
+                              ]
                             }
-                            DEF right_lower_2 Shape {
-                              appearance Appearance {
-                                material Material {
-                                }
-                              }
-                              geometry Mesh {
-                                url [
-                                  "../openduck_in_solvespace/split_parts/part_19.obj"
-                                ]
-                              }
+                            DEF roght_lower_2 CadShape {
+                              url [
+                                "../openduck_in_solvespace/split_parts/part_19.obj"
+                              ]
                             }
-                            DEF right_fifth_motor Shape {
-                              appearance Appearance {
-                                material Material {
-                                }
-                              }
-                              geometry Mesh {
-                                url [
-                                  "../openduck_in_solvespace/split_parts/part_21.obj"
-                                ]
-                              }
+                            DEF right_fifth_motor CadShape {
+                              url [
+                                "../openduck_in_solvespace/split_parts/part_21.obj"
+                              ]
                             }
                             HingeJoint {
                               jointParameters HingeJointParameters {
@@ -463,51 +445,31 @@ Robot {
                               endPoint DEF right_sole Solid {
                                 rotation 1 0 0 0
                                 children [
-                                  DEF right_sole_shape Shape {
-                                    appearance Appearance {
-                                      material Material {
-                                      }
-                                    }
-                                    geometry Mesh {
-                                      url [
-                                        "../openduck_in_solvespace/split_parts/part_23.obj"
-                                      ]
-                                    }
-                                  }
-                                  GPS {
-                                    name "rt5_gps"
+                                  CadShape {
+                                    url [
+                                      "../openduck_in_solvespace/split_parts/part_23.obj"
+                                    ]
                                   }
                                 ]
-                                boundingObject Mesh {
-                                  url [
-                                    "../openduck_in_solvespace/checked_repaired_simplified/part_23_repaired_simplified.obj"
+                                boundingObject Pose {
+                                  translation -0.067 0.011 -0.15
+                                  children [
+                                    Box {
+                                      size 0.0469 0.09241 0.0413
+                                    }
                                   ]
                                 }
                                 physics Physics {
                                 }
                               }
                             }
-                            GPS {
-                              name "rt4_gps"
-                            }
                           ]
                           name "right_lower"
-                          boundingObject Group {
+                          boundingObject DEF right_lower Pose {
+                            translation -0.063 0.016 -0.101
                             children [
-                              Mesh {
-                                url [
-                                  "../openduck_in_solvespace/checked_repaired_simplified/part_18_repaired_simplified.obj"
-                                ]
-                              }
-                              Mesh {
-                                url [
-                                  "../openduck_in_solvespace/checked_repaired_simplified/part_19_repaired_simplified.obj"
-                                ]
-                              }
-                              Mesh {
-                                url [
-                                  "../openduck_in_solvespace/checked_repaired_simplified/part_21_repaired_simplified.obj"
-                                ]
+                              Box {
+                                size 0.04775 0.028 0.09874
                               }
                             ]
                           }
