@@ -17,7 +17,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.08207197097061929 -0.09000674657912126 0.9925537653705414 4.79710145544301
-  position 0.14679375392157024 2.223068275874333 0.3017229775219331
+  position -0.043151917368663445 1.7822857495976383 0.23003659695279208
   followType "None"
 }
 TexturedBackground {
@@ -120,7 +120,7 @@ Robot {
         ]
       }
       physics Physics {
-        density 1400
+        density 800
       }
     }
     HingeJoint {
@@ -285,7 +285,7 @@ Robot {
                             ]
                           }
                           physics Physics {
-                            density 1100
+                            density 800
                           }
                         }
                       }
@@ -299,7 +299,7 @@ Robot {
                       ]
                     }
                     physics Physics {
-                      density 1100
+                      density 800
                     }
                   }
                 }
@@ -314,7 +314,7 @@ Robot {
                 ]
               }
               physics Physics {
-                density 1200
+                density 800
               }
             }
           }
@@ -329,7 +329,7 @@ Robot {
           ]
         }
         physics Physics {
-          density 1500
+          density 800
         }
       }
     }
@@ -493,7 +493,7 @@ Robot {
                             ]
                           }
                           physics Physics {
-                            density 1100
+                            density 800
                           }
                         }
                       }
@@ -509,7 +509,7 @@ Robot {
                       ]
                     }
                     physics Physics {
-                      density 1100
+                      density 800
                     }
                   }
                 }
@@ -524,7 +524,7 @@ Robot {
                 ]
               }
               physics Physics {
-                density 1200
+                density 800
               }
             }
           }
@@ -539,7 +539,7 @@ Robot {
           ]
         }
         physics Physics {
-          density 1500
+          density 800
         }
       }
     }
@@ -562,6 +562,6 @@ Robot {
   }
   physics Physics {
   }
-  controller "walk"
+  controller "walk_sync"
   selfCollision TRUE
 }
