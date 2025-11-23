@@ -16,8 +16,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.15505600807799566 -0.15079784159931045 0.9763286564102815 4.660609870447817
-  position 0.01862245833310246 2.5183324232832303 0.6130170326188015
+  orientation -0.12915892270603893 -0.08554689148452174 0.9879269720190612 4.3004354475070095
+  position 0.9820563849470847 2.672979731683278 0.8159132593848819
   followType "None"
 }
 TexturedBackground {
@@ -48,8 +48,107 @@ Robot {
             "../openduck_in_solvespace/split_parts/part_4.obj"
           ]
         }
+        DEF body_front Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF body_front CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/body_front.obj"
+              ]
+            }
+          ]
+        }
+        DEF body_middle_top Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF body_middle_top CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/body_middle_top.obj"
+              ]
+            }
+          ]
+        }
+        DEF body_back Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF body_back CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/body_back.obj"
+              ]
+            }
+          ]
+        }
+        DEF middle_bottom Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF midele_bottom CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/body_middle_bottom.obj"
+              ]
+            }
+          ]
+        }
+        DEF neck_right_sheet Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF nect_right_sheet CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/neck_right_sheet.obj"
+              ]
+            }
+          ]
+        }
+        DEF neck_left_sheet Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF neck_left_sheet CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/neck_left_sheet.obj"
+              ]
+            }
+          ]
+        }
+        DEF neck_motor Pose {
+          translation -0.099 -0.003 0.13
+          rotation 1 0 0 3.14159
+          children [
+            DEF neck_motor CadShape {
+              url [
+                "../openduck_in_solvespace/split_parts/part_14.obj"
+              ]
+            }
+          ]
+        }
+        DEF head_pitch_to_yaw Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF head_pitch_to_yaw CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/head_pitch_to_yaw.obj"
+              ]
+            }
+          ]
+        }
+        DEF head Pose {
+          translation 0.035 0 0.1
+          rotation 0 0 1 -1.5707
+          children [
+            DEF head CadShape {
+              url [
+                "../openduck_in_solvespace/onshape/head.obj"
+              ]
+            }
+          ]
+        }
       ]
-      name "trunk_solid(1)"
+      name "trunk_solid"
       boundingObject DEF trunk_shape Group {
         children [
           DEF trunk_1 Pose {
@@ -206,6 +305,17 @@ Robot {
                       DEF left_fourth_motor CadShape {
                         url [
                           "../openduck_in_solvespace/split_parts/part_14.obj"
+                        ]
+                      }
+                      DEF left_cache Pose {
+                        translation 0.042 0 0.07
+                        rotation 0 0 1 -1.5707
+                        children [
+                          DEF left_cache CadShape {
+                            url [
+                              "../openduck_in_solvespace/onshape/left_cache.obj"
+                            ]
+                          }
                         ]
                       }
                       DEF fourth_motor HingeJoint {
@@ -413,6 +523,17 @@ Robot {
                       DEF right_fourth_motor CadShape {
                         url [
                           "../openduck_in_solvespace/split_parts/part_15.obj"
+                        ]
+                      }
+                      DEF right_cache Pose {
+                        translation 0.025 0 0.075
+                        rotation 0 0 1 -1.5707
+                        children [
+                          DEF right_cache CadShape {
+                            url [
+                              "../openduck_in_solvespace/onshape/right_cache.obj"
+                            ]
+                          }
                         ]
                       }
                       HingeJoint {
