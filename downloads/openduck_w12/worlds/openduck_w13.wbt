@@ -16,8 +16,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.016729951476089615 0.011626500761618107 0.9997924450622978 2.060821359983734
-  position 1.2205039179140262 -0.30925164920406734 0.38466115782001903
+  orientation -0.14215400535162898 -0.08070735845252228 0.9865488133154412 4.17922936752257
+  position 0.9460094177951377 2.4139688111384547 0.8040253424514705
   followType "None"
 }
 TexturedBackground {
@@ -676,6 +676,7 @@ Robot {
   }
   physics Physics {
   }
-  controller "walk_sync"
+  controller "w13"
+  supervisor TRUE
   selfCollision TRUE
 }

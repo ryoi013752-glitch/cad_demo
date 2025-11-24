@@ -4,9 +4,9 @@ import math
 TIME_STEP = 16
 MAX_SPEED = 12.0
 
-STEP_HEIGHT   = 0.009
+STEP_HEIGHT     = 0.009
 LATERAL_SWING = 0.016
-GAIT_PERIOD   = 0.48
+GAIT_PERIOD     = 0.48
 
 KP_PITCH = 0.58 
 KD_PITCH = 0.09
@@ -36,34 +36,36 @@ class YourDuckFinalFix:
         self.stand_deg = {
             "t1":0,   "rt1":0,
             "t2":0,   "rt2":0,
-            "t3": 64, "rt3": 64,     # 旋轉 64° 將大腿往後頂
-            "t4": -126,"rt4":-126,   # 膝蓋彎到 -126° 配合重心偏後的設定
-            "t5": 62, "rt5": 62,     # 踝關節選轉 62° 以免腳尖翹起
+            "t3": 64, "rt3": 64,   
+            "t4": -126,"rt4":-126, 
+            "t5": 62, "rt5": 62,   
         }
         self.stand = {k: deg_to_rad(v) for k, v in self.stand_deg.items()}
 
-        print("Openduckt 初始化(蹲下→站起，約7秒)")
+        print("Openduck 初始化(蹲下→站起，約需 1.4 秒)")
 
-        # 先蹲低
+        # 1. 快速移動到蹲低姿勢
         squat = self.stand.copy()
         squat["t3"] = squat["rt3"] = deg_to_rad(30)
         squat["t4"] = squat["rt4"] = deg_to_rad(-80)
         squat["t5"] = squat["rt5"] = deg_to_rad(40)
         for n in self.motors:
             self.motors[n].setPosition(squat[n])
-        for _ in range(80): self.robot.step(TIME_STEP)
+            
+        # 僅等待 10 步 (約 160ms) 讓電機開始動作
+        for _ in range(10): self.robot.step(TIME_STEP) 
 
-        # 慢慢站起來（200 步插值）
-        for p in range(201):
-            alpha = p / 200.0
+        # 2. 快速站起來（60 步插值，約 960ms）
+        num_interpolation_points = 60 
+        for p in range(num_interpolation_points + 1):
+            alpha = p / num_interpolation_points
             for n in self.motors:
                 pos = squat[n] * (1-alpha) + self.stand[n] * alpha
                 self.motors[n].setPosition(pos)
-            for _ in range(5): 
-                self.robot.step(TIME_STEP)
+            self.robot.step(TIME_STEP) # 每點只 step 一次
 
-        # 再鎖住 4 秒
-        for _ in range(250):
+        # 3. 再鎖住 0.48 秒
+        for _ in range(30): 
             for n in self.motors:
                 self.motors[n].setPosition(self.stand[n])
             self.robot.step(TIME_STEP)

@@ -9,15 +9,15 @@ WorldInfo {
   contactProperties [
     ContactProperties {
       coulombFriction [
-        1.5
+        3
       ]
       maxContactJoints 50
     }
   ]
 }
 Viewpoint {
-  orientation -0.12915892270603893 -0.08554689148452174 0.9879269720190612 4.3004354475070095
-  position 0.9820563849470847 2.672979731683278 0.8159132593848819
+  orientation -0.07803311531744556 -0.05050963935251142 0.9956704320438232 4.316771426147133
+  position 0.9555750230896296 2.783283396973922 0.6945065220582497
   followType "None"
 }
 TexturedBackground {
@@ -208,14 +208,6 @@ Robot {
               }
             ]
           }
-          Pose {
-            translation 0.015 0 0.05
-            children [
-              Box {
-                size 0.08 0.07 0.09
-              }
-            ]
-          }
         ]
       }
       physics Physics {
@@ -231,7 +223,7 @@ Robot {
         RotationalMotor {
           name "t1"
           maxVelocity 300
-          maxTorque 300
+          maxTorque 1000
         }
         PositionSensor {
           name "t1_sensor"
@@ -254,7 +246,7 @@ Robot {
               RotationalMotor {
                 name "t2"
                 maxVelocity 300
-                maxTorque 300
+                maxTorque 1000
               }
               PositionSensor {
                 name "t2_sensor"
@@ -282,7 +274,7 @@ Robot {
                     RotationalMotor {
                       name "t3"
                       maxVelocity 300
-                      maxTorque 300
+                      maxTorque 1000
                     }
                     PositionSensor {
                       name "t3_sensor"
@@ -326,7 +318,7 @@ Robot {
                           RotationalMotor {
                             name "t4"
                             maxVelocity 300
-                            maxTorque 300
+                            maxTorque 1000
                           }
                           PositionSensor {
                             name "t4_sensor"
@@ -358,7 +350,7 @@ Robot {
                                 RotationalMotor {
                                   name "t5"
                                   maxVelocity 300
-                                  maxTorque 300
+                                  maxTorque 1000
                                 }
                                 PositionSensor {
                                   name "t5_sensor"
@@ -374,10 +366,10 @@ Robot {
                                   }
                                 ]
                                 boundingObject Pose {
-                                  translation 0.106 0.011 -0.15
+                                  translation 0.137 0.011 -0.165
                                   children [
                                     Box {
-                                      size 0.0469 0.09241 0.0413
+                                      size 0.0469 0.09241 0.0113
                                     }
                                   ]
                                 }
@@ -452,7 +444,7 @@ Robot {
         RotationalMotor {
           name "rt1"
           maxVelocity 300
-          maxTorque 300
+          maxTorque 1000
         }
         PositionSensor {
           name "rt1_sensor"
@@ -474,7 +466,7 @@ Robot {
               RotationalMotor {
                 name "rt2"
                 maxVelocity 300
-                maxTorque 300
+                maxTorque 1000
               }
               PositionSensor {
                 name "rt2_sensor"
@@ -501,7 +493,7 @@ Robot {
                     RotationalMotor {
                       name "rt3"
                       maxVelocity 300
-                      maxTorque 300
+                      maxTorque 1000
                     }
                     PositionSensor {
                       name "rt3_sensor"
@@ -544,7 +536,7 @@ Robot {
                           RotationalMotor {
                             name "rt4"
                             maxVelocity 300
-                            maxTorque 300
+                            maxTorque 1000
                           }
                           PositionSensor {
                             name "rt4_sensor"
@@ -576,7 +568,7 @@ Robot {
                                 RotationalMotor {
                                   name "rt5"
                                   maxVelocity 300
-                                  maxTorque 300
+                                  maxTorque 1000
                                 }
                                 PositionSensor {
                                   name "rt5_sensor"
@@ -592,10 +584,10 @@ Robot {
                                   }
                                 ]
                                 boundingObject Pose {
-                                  translation -0.037 0.011 -0.15
+                                  translation -0.066 0.011 -0.165
                                   children [
                                     Box {
-                                      size 0.0469 0.09241 0.0413
+                                      size 0.0469 0.09241 0.0113
                                     }
                                   ]
                                 }
