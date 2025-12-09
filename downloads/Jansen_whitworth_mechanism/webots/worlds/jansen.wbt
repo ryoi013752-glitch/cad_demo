@@ -1,0 +1,264 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  position 0.10548238724614303 -0.18879213298497255 2.6253707302715705
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Robot {
+  children [
+    DEF motor Solid {
+      children [
+        DEF motor_shape Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 1 0 0
+            }
+          }
+          geometry Mesh {
+            url [
+              "../cad/split_parts/motor.obj"
+            ]
+          }
+        }
+      ]
+    }
+    DEF motor_plate Solid {
+      children [
+        DEF motor_plate_shape Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 1 0 0
+            }
+          }
+          geometry Mesh {
+            url [
+              "../cad/split_parts/motor_plate.obj"
+            ]
+          }
+        }
+      ]
+      name "motor_plate"
+    }
+    DEF origin_joint HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      endPoint DEF top_triangle Solid {
+        children [
+          DEF top_triangle_shape Shape {
+            appearance Appearance {
+              material Material {
+                diffuseColor 1 1 0
+              }
+            }
+            geometry Mesh {
+              url [
+                "../cad/split_parts/top_triangle.obj"
+              ]
+            }
+          }
+          DEF to_left_link HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor -0.3802 -0.1274 0
+            }
+            endPoint DEF left_link Solid {
+              children [
+                DEF left_link_shape Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                    }
+                  }
+                  geometry Mesh {
+                    url [
+                      "../cad/split_parts/left_link.obj"
+                    ]
+                  }
+                }
+                DEF to_lower_triangle HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 0 1
+                    anchor -0.2315 -0.4922 0
+                  }
+                  endPoint DEF lower_triangle Solid {
+                    children [
+                      DEF lower_triangle_shape Shape {
+                        appearance Appearance {
+                          material Material {
+                            diffuseColor 0 0 1
+                          }
+                        }
+                        geometry Mesh {
+                          url [
+                            "../cad/split_parts/lower_triangle.obj"
+                          ]
+                        }
+                      }
+                      DEF to_midele_link HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0 0 1
+                          anchor 0.1164 -0.3754 0
+                        }
+                        endPoint DEF midele_link Solid {
+                          children [
+                            DEF middle_link_shape Shape {
+                              appearance Appearance {
+                                material Material {
+                                  diffuseColor 0.666667 0.666667 0.498039
+                                }
+                              }
+                              geometry Mesh {
+                                url [
+                                  "../cad/split_parts/middle_link.obj"
+                                ]
+                              }
+                            }
+                            DEF to_origin HingeJoint {
+                              jointParameters HingeJointParameters {
+                                axis 0 0 1
+                              }
+                              endPoint SolidReference {
+                                solidName "top_triangle"
+                              }
+                            }
+                          ]
+                          name "middle_link"
+                          boundingObject USE middle_link_shape
+                          physics Physics {
+                          }
+                        }
+                      }
+                    ]
+                    name "lower_triangle"
+                    boundingObject USE lower_triangle_shape
+                    physics Physics {
+                    }
+                  }
+                }
+              ]
+              name "left_link"
+              boundingObject USE left_link_shape
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "top_triangle"
+        boundingObject USE top_triangle_shape
+        physics Physics {
+        }
+      }
+    }
+    DEF motor_joint HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.38 0.078 0
+      }
+      device [
+        RotationalMotor {
+          name "motor"
+          maxTorque 10000
+        }
+      ]
+      endPoint DEF crank Solid {
+        children [
+          DEF crank_shape Shape {
+            appearance Appearance {
+              material Material {
+                diffuseColor 0.054902 0.6 0.960784
+              }
+            }
+            geometry Mesh {
+              url [
+                "../cad/split_parts/crank.obj"
+              ]
+            }
+          }
+          DEF to_upper_link HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor 0.3122 0.2118 0
+            }
+            endPoint DEF upper_link Solid {
+              children [
+                DEF upper_link Shape {
+                  appearance Appearance {
+                    material Material {
+                    }
+                  }
+                  geometry Mesh {
+                    url [
+                      "../cad/split_parts/upper_link.obj"
+                    ]
+                  }
+                }
+                DEF to_top_triangle HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 0 1
+                    anchor -0.1572 0.3841 0
+                  }
+                  endPoint SolidReference {
+                    solidName "top_triangle"
+                  }
+                }
+              ]
+              name "upper_link"
+              boundingObject USE upper_link
+              physics Physics {
+              }
+            }
+          }
+          DEF to_right_long_link HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor 0.3122 0.2118 0
+            }
+            endPoint DEF right_long_link Solid {
+              children [
+                DEF right_long_link_shape Shape {
+                  appearance Appearance {
+                    material Material {
+                    }
+                  }
+                  geometry Mesh {
+                    url [
+                      "../cad/split_parts/right_long_link.obj"
+                    ]
+                  }
+                }
+                DEF to_middle_link HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 0 1
+                    anchor 0.1164 -0.3754 0
+                  }
+                  endPoint SolidReference {
+                    solidName "middle_link"
+                  }
+                }
+              ]
+              name "right_long_link"
+              boundingObject USE right_long_link_shape
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "crank"
+        boundingObject USE crank_shape
+        physics Physics {
+        }
+      }
+    }
+  ]
+  controller "motor"
+}

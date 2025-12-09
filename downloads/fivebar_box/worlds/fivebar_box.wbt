@@ -1,0 +1,66 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.19976207860606734 0.20177192258801213 0.9588447231987671 1.6028202345803562
+  position -0.0022982835471432317 -0.6426298323429094 0.26694742228436
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  children [
+    Solid {
+      translation 0 0 0.01
+      children [
+        DEF left_motor_shape Shape {
+          appearance Appearance {
+            material Material {
+            }
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.02
+          }
+        }
+      ]
+      name "left_motor"
+    }
+    DEF joint1 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "joint1"
+        }
+      ]
+      endPoint DEF link1 Solid {
+        translation 0 0.1 0.01
+        rotation 0 0 -1 1.5708
+        children [
+          DEF link1_shape Shape {
+            appearance Appearance {
+              material Material {
+              }
+            }
+            geometry Box {
+              size 0.2 0.02 0.02
+            }
+          }
+        ]
+        name "link1"
+      }
+    }
+  ]
+  name "fivebar"
+  controller "fivebar"
+}
