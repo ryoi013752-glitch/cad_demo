@@ -5,5 +5,5 @@ sceneTreePerspectives: 000000ff00000001000000030000001d000001cc000000fa010000000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 0 "controllers/motor/motor.py"
+textFiles: 0 "../Jansen_whitworth_mechanism/webots/controllers/motor/motor.py"
 consoles: Console:All:All

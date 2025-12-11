@@ -1,0 +1,13 @@
+AI  時代該如何從已知的 Plotter 模型進行學習:
+
+1. 請解析這個 webots .wbt 檔案,  轉化為建立這個 World 所需要的條列式導引, 每一個步驟的操作說明越詳細越好: (貼上https://github.com/mdecycu/cad_demo/blob/main/downloads/plotter_redesign/worlds/redesign_plotter_apple.wbt 檔案內容)
+
+2. 請從開啟 Webots 套件開始, 一步步詳細說明該如何建立這個 .wbt 模擬檔案
+
+3. 接著請進一步說明以下這個 python controller 的設計內容, 並且逐行詳細說明其用法: ( 貼上 https://github.com/mdecycu/cad_demo/blob/main/downloads/plotter_redesign/controllers/draw_apple/draw_apple.py 控制程式內容)
+
+4. 為何控制程式使用 supervisor 模式而非一般的 robot 模式?
+
+5. 當完成這個專案後, 你會建議如何整理操作心得?
+
+6. 針對機械設計工程師就電腦輔助設計與實習的角度來看, 建立此一模擬系統的重要性如何?
