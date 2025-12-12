@@ -1,9 +1,11 @@
-"""fivebar controller."""
+"""my_controller controller."""
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
 from controller import Robot
 import math
+
+deg = math.pi/180
 
 # create the Robot instance.
 robot = Robot()
@@ -13,7 +15,8 @@ timestep = int(robot.getBasicTimeStep())
 
 # You should insert a getDevice-like function in order to get the
 # instance of a device of the robot. Something like:
-joint1 = robot.getDevice('joint1')
+motor1 = robot.getDevice('t1')
+motor2 = robot.getDevice('t2')
 #  ds = robot.getDevice('dsname')
 #  ds.enable(timestep)
 
@@ -27,13 +30,9 @@ while robot.step(timestep) != -1:
     # Process sensor data here.
 
     # Enter here functions to send actuator commands, like:
-    # case one
-    # rotate 90 degree
-    #joint1.setPosition(math.pi/2)
-    # case two
-    # set rotation velocity
-    joint1.setPosition(float('inf'))
-    joint1.setVelocity(1.0)
+    # 讓 t1 與 t2 緊貼 X 軸
+    motor1.setPosition(-90*deg)
+    motor2.setPosition(-18*deg)
     pass
 
 # Enter here exit cleanup code.

@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5888450312453467 0.5925367502728924 0.5496923946660592 2.13109799896103
-  position 0.2530723807841459 0.09709251027859835 0.9328669804778154
+  orientation -0.5778097591139892 0.5814323883386088 0.5727759248288067 2.0958755368857496
+  position 0.11068068318968806 0.1662426025387296 0.9714241979478778
 }
 TexturedBackground {
 }
@@ -182,6 +182,6 @@ Robot {
       }
     }
   ]
-  controller "my_controller"
+  controller "draw_apple"
   supervisor TRUE
 }
